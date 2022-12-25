@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>John E Pierce, Speech Pathologist & Researcher</title>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="description" content="Dr John E Pierce, speech pathologist and researcher"
+</head>
+<body>
+    <img alt="Profile photograph of John Pierce" src="images/profile.jpg" id="profileimg"/>
+
+    <a href="www.twitter.com/johnpierce85" ></a>
+    <a href="https://www.youtube.com/@johnepierce"></a>
+    <a href="www.aphasiatherapyonline.com"></a>
+    <a href="mailto:cvrepr.wbua.r@tznvy.pbz" id="emaila"></a>
+        <script>
+            let emaila = document.getElementById('emaila')
+            let href = emaila.getAttribute("href").substring(7);
+            function rot13(str) {
+            // Create an empty string to store the decrypted string
+            let decrypted = "";
+            for (let i = 0; i < str.length; i++) {
+                let charCode = str.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    charCode = (charCode - 65 + 13) % 26 + 65;
+                } else if (charCode >= 97 && charCode <= 122) {
+                    charCode = (charCode - 97 + 13) % 26 + 97;
+                }
+            decrypted += String.fromCharCode(charCode);
+            }
+            return decrypted;
+            }
+            let newhref = rot13(href);
+            emaila.setAttribute("href","mailto:"+newhref);
+        </script>
+    <a href="https://scholars.latrobe.edu.au/jpierce"></a>
+
+    <p>I'm a speech pathologist and researcher. I want to make life better for people with aphasia by taking management and rehabilitation towards optimal care. I think technology, clinical tools and research are the way to do so. I also <i>love</i> communicating research to speech pathologists, students and people with aphasia</p>
+</body>
+</html>

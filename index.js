@@ -1,24 +1,24 @@
 //Unscramble
-let emaila = document.getElementById('emaila')
-let href = emaila.getAttribute("href").substring(7);
-function rot13(str) {
-// Create an empty string to store the decrypted string
-let decrypted = "";
-for (let i = 0; i < str.length; i++) {
-    let charCode = str.charCodeAt(i);
-    if (charCode >= 65 && charCode <= 90) {
-        charCode = (charCode - 65 + 13) % 26 + 65;
-    } else if (charCode >= 97 && charCode <= 122) {
-        charCode = (charCode - 97 + 13) % 26 + 97;
+    let emaila = document.getElementById('emaila')
+    let href = emaila.getAttribute("href").substring(7);
+    function rot13(str) {
+    // Create an empty string to store the decrypted string
+    let decrypted = "";
+    for (let i = 0; i < str.length; i++) {
+        let charCode = str.charCodeAt(i);
+        if (charCode >= 65 && charCode <= 90) {
+            charCode = (charCode - 65 + 13) % 26 + 65;
+        } else if (charCode >= 97 && charCode <= 122) {
+            charCode = (charCode - 97 + 13) % 26 + 97;
+        }
+    decrypted += String.fromCharCode(charCode);
     }
-decrypted += String.fromCharCode(charCode);
-}
-return decrypted;
-}
-let newhref = rot13(href);
-emaila.setAttribute("href","mailto:"+newhref);
+    return decrypted;
+    }
+    let newhref = rot13(href);
+    emaila.setAttribute("href","mailto:"+newhref);
 
-//Toplinks
+//Toplinks toggling
 const hideElements = (event) => {
     let clickedElement = event.target.className;
     const allElements = document.querySelectorAll('.contentlinks div');
@@ -28,10 +28,37 @@ toplinks.forEach(function(element){
     element.addEventListener('click', function(){
         this.classList.toggle("focus");
         let toplinkCategory = element.id;
-        toplinkCategoryMatches = document.querySelectorAll(`.${toplinkCategory}`);
+        toplinkCategoryMatches = document.querySelectorAll(`.contentlinks > div:not(.${toplinkCategory})`);
         toplinkCategoryMatches.forEach(function(div){
             div.classList.toggle("hidden")
         })
     })
 })
 
+//Wordcloud
+const elements = Array.from(document.querySelector(".contentlinks").querySelectorAll('*'));
+const wordcloud = document.querySelector(".wordcloud");
+var classCounts = elements.reduce((acc, curr) => {
+    curr.classList.forEach(className => {
+      if (className in acc) {
+        acc[className]++;
+      } else {
+        acc[className] = 1;
+        var span = document.createElement('span');
+        span.textContent = className;
+        wordcloud.appendChild(span);
+      }
+    });
+    return acc;
+  }, {});
+  var fontSize = count => count;
+  document.querySelectorAll('.wordcloud span').forEach(span => {
+      // Get the class name of the span element
+    const className = span.textContent;
+
+    // Get the count of the class from the classCounts object
+    const count = classCounts[className];
+
+    // Set the font size of the span element based on the count
+    span.style.fontSize = `${fontSize(count)}rem`;
+});

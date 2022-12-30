@@ -1,15 +1,21 @@
 :root {
     --primary-color: white;
+    --secondary-color: rgb(5,5,5);
     --soft-primary-color: rgba(255,255,255,0.5);
+    --focus-color: rgb(0,150,0);
   }
   
 
 body {
     background: rgb(142,142,142);
-    background: linear-gradient(325deg, rgba(1,0,20,1) 0%, rgba(2,0,30,1) 49%, rgba(1,0,20,1) 100%);
+    background: linear-gradient(325deg, rgb(100, 100, 150) 0%, rgb(140, 130, 160) 49%, rgb(100, 100, 150) 100%);
     font-family: Quicksand, Calibri, Arial, Helvetica, sans-serif;
+    max-width: 60vw;
+    margin: auto;
+    height: max-content;
 }
 
+/* PROFILE */
 .profileContainer {
     display: flex;
     align-items: center;
@@ -20,9 +26,10 @@ body {
     border-radius: 50%;
     max-width: 50%;
     min-width: none;
-    max-height: 25vh;
+    max-height: 20vh;
 }
 
+/* EXTERNAL LINKS */
 .externalLinks {
     display: flex;
     align-items: center;
@@ -38,31 +45,87 @@ body {
 
     min-width: 8vw;
     height: 100%;
-    max-height: 2.5rem;
+    max-height: 2rem;
+}
+.externalLinks a:hover {
+    transition: all 0.2s;
+}
+#twitter:hover {
+    color: #1DA1F2;
+}
+#youtube:hover {
+    color: #FF0000;
+}
+#aphasiatherapyonline:hover {
+    color: rgb(68, 208, 7);
+}
+#emaila:hover {
+    color:#fddb00;
+}
+#latrobe:hover {
+    color: #e22333;
 }
 
+
+/* BIO PARAGRAPH */
 .bioParagraph {
-    background-color: var(--soft-primary-color);
-    padding: 2rem;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.bioParagraph p {
+    /* background-color: var(--soft-primary-color); */
+    padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 500;
     border-radius: 1rem;
-    margin-top: 1rem;
+    margin: 0;
 }
 
-.contentlinks div {
-    transition: all 2s;
+/* TOP LINKS */
+.toplinkContainer {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.toplinkContainer > div {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    width: 20%;
+    height: 3rem;
+    margin: auto 0.2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.7rem;
+}
+.focus {
+    color: var(--focus-color)!important;
+}
+
+/* CONTENT LINKS */
+.contentlinks > div {
+    transition: all 0.2s;
+    color: var(--secondary-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background-color: var(--soft-primary-color);
 }
 
 .hidden {
     height: 0;
+    display: none;
 }
 
 @media (orientation: portrait) {
+    body {
+        max-width: 90vw;
+    }
     .externalLinks {
         padding: 0;
-    }
-    .bioParagraph {
-        padding: 0.5rem 1rem;;
     }
 }

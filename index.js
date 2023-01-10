@@ -36,7 +36,7 @@ toplinks.forEach(function(element){
 })
 
 //Wordcloud
-const elements = Array.from(document.querySelector(".contentlinks").querySelectorAll('*'));
+var elements = Array.from(document.querySelector(".contentlinks").querySelectorAll('*'));
 const wordcloud = document.querySelector(".wordcloud");
 var classCounts = elements.reduce((acc, curr) => {
     curr.classList.forEach(className => {
@@ -45,20 +45,52 @@ var classCounts = elements.reduce((acc, curr) => {
       } else {
         acc[className] = 1;
         var span = document.createElement('span');
+        span.classList.add(className);
         span.textContent = className;
         wordcloud.appendChild(span);
       }
     });
     return acc;
   }, {});
+
+  //fontsize function
   var fontSize = count => count;
-  document.querySelectorAll('.wordcloud span').forEach(span => {
-      // Get the class name of the span element
-    const className = span.textContent;
+  
+  
+  //exclude toplinks
+  var excludeToplinks = [];
+  for(i=0;i<toplinks.length;i++){
+        excludeToplinks.push(toplinks[i].id);
+    }
+
+    document.querySelectorAll('.wordcloud span').forEach(span => {
+      // Delete if in exclude list
+    if(excludeToplinks.includes(span.className)){
+        span.remove();
+    }
 
     // Get the count of the class from the classCounts object
-    const count = classCounts[className];
+    const count = classCounts[span.className];
 
     // Set the font size of the span element based on the count
     span.style.fontSize = `${fontSize(count)}rem`;
 });
+
+//sort by font size
+const spanElements = wordcloud.querySelectorAll('span');
+
+const sortedSpans = Array.from(spanElements).sort((a, b) => {
+  const fontSizeA = parseInt(getComputedStyle(a).fontSize, 10);
+  const fontSizeB = parseInt(getComputedStyle(b).fontSize, 10);
+  // Sort the elements in descending order by font size
+  if (fontSizeA > fontSizeB) {
+    return -1;
+  } else if (fontSizeA < fontSizeB) {
+    return 1;
+  } else {
+    return 0;
+  }
+});
+
+// Append the sorted span elements to the wordcloud div
+sortedSpans.forEach(span => wordcloud.appendChild(span));

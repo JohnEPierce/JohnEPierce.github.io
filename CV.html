@@ -2,9 +2,2109 @@
 <html>
 <head>
     <title>John E Pierce Curriculum Vitae</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="CV.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name="description" content="Dr John E Pierce, Curriculum Vitae"
+    <meta name="description" content="Dr John E Pierce, Curriculum Vitae">
 </head>
 <body>
+    <script>
+        window.onload = function() {
+        //Unscramble
+        let emaila = document.getElementById('emaila');
+        let href = emaila.getAttribute("href").substring(7);
+        function rot13(str) {
+        // Create an empty string to store the decrypted string
+        let decrypted = "";
+        for (let i = 0; i < str.length; i++) {
+            let charCode = str.charCodeAt(i);
+            if (charCode >= 65 && charCode <= 90) {
+                charCode = (charCode - 65 + 13) % 26 + 65;
+            } else if (charCode >= 97 && charCode <= 122) {
+                charCode = (charCode - 97 + 13) % 26 + 97;
+            }
+        decrypted += String.fromCharCode(charCode);
+        }
+        return decrypted;
+        }
+        let newhref = rot13(href);
+        emaila.setAttribute("href","mailto:"+newhref);
+
+        //Years post PhD
+        let now = Date.now();
+        console.log(now);
+        const Phd = 1628204400000;
+        let elapsed = Math.round((now - Phd)/31556736000);
+        document.getElementById("yearsPost").innerHTML = elapsed;
+
+        //Scopus details
+        //API key 82f43dfad55c686aeadb39347e41084c
+        //https://api.elsevier.com/metrics/metrics?metrics=ScholarlyOutput%2CCitedPublications&authors=57209304655&includeSelfCitations=true&byYear=true&includedDocs=AllPublicationTypes&journalImpactType=CiteScore&showAsFieldWeighted=false&indexType=hIndex&apiKey=82f43dfad55c686aeadb39347e41084c
+
+        //strip word styling
+        var wordStyling = ["class=MsoNormal", "mso-bidi-font-weight:normal","font-size:11.0pt;",'font-family:"Helvetica Neue Light";',"mso-themecolor:text1","mso-themetint:217","color:#262626;",'Helvetica Neue Light','font-family','MsoNormal',"11.0pt","10.0pt", "-18.0pt;"];
+        for (var str of wordStyling) {
+            document.body.innerHTML = document.body.innerHTML.replaceAll(str, '');
+        }
+
+    }
+    </script>
+    <div id="header">
+        <h1>John E. Pierce, PhD</h1>
+        <p>
+            <a href="mailto:cvrepr.wbua.r@tznvy.pbz" id="emaila">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="inherit" class="bi bi-at" viewBox="0 0 16 16">
+                    <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"/>
+                    
+                </svg>pierce.john.e@gmail.com
+            </a>
+            <a href="http://www.twitter.com/johnpierce85">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="inherit" viewBox="0 0 16 16">
+                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                </svg>
+                @johnpierce85
+            </a>
+            <a href="https://orcid.org/0000-0001-5164-5106">
+                <svg width="17" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" overflow="hidden"><defs><clipPath id="clip0"><rect x="0" y="0" width="17" height="16"/></clipPath><clipPath id="clip1"><rect x="0" y="0" width="17" height="15"/></clipPath><clipPath id="clip2"><rect x="0" y="-1" width="17" height="16"/></clipPath></defs><g clip-path="url(#clip0)"><g clip-path="url(#clip1)"><g clip-path="url(#clip2)"><path d="M9.58826 6.40425 8.21522 6.40425 8.21522 10.9975 9.63436 10.9975C11.6528 10.9975 12.117 9.46314 12.117 8.69924 12.117 7.4579 11.3235 6.40425 9.58826 6.40425ZM8.42924 1.02073C4.33645 1.02073 1.02073 4.33645 1.02073 8.42924 1.02073 12.522 4.33645 15.8378 8.42924 15.8378 12.522 15.8378 15.8378 12.522 15.8378 8.42924 15.8378 4.33645 12.522 1.02073 8.42924 1.02073ZM6.01571 11.7976 5.1234 11.7976 5.1234 5.59754 6.01571 5.59754 6.01571 11.7976ZM5.5712 4.89291C5.24852 4.89291 4.9851 4.63279 4.9851 4.30681 4.9851 3.98084 5.24523 3.72072 5.5712 3.72072 5.89388 3.72072 6.1573 3.98084 6.1573 4.30681 6.154 4.6295 5.89388 4.89291 5.5712 4.89291ZM9.74302 11.8042 7.3229 11.8042 7.3229 5.59754 9.72984 5.59754C12.0215 5.59754 13.0291 7.234 13.0291 8.69924 13.0291 10.2929 11.7878 11.8042 9.74302 11.8042Z" fill="inherit" fill-rule="nonzero" fill-opacity="1" transform="matrix(1.00839 0 0 1 0 -0.958742)"/></g></g></g></svg>
+                0000-0001-5164-5106</a>
+            <a href="http://www.aphasiatherapyonline.com/">
+                <svg width="18" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" overflow="hidden"><defs><clipPath id="clip0"><rect x="0" y="0" width="18" height="16"/></clipPath><clipPath id="clip1"><rect x="0" y="0" width="18" height="15"/></clipPath><clipPath id="clip2"><rect x="0" y="0" width="18" height="15"/></clipPath></defs><g clip-path="url(#clip0)"><g clip-path="url(#clip1)"><g clip-path="url(#clip2)"><path d="M12.1832 10.4257C12.2428 9.93422 12.2875 9.44272 12.2875 8.93634 12.2875 8.42995 12.2428 7.93845 12.1832 7.44695L14.7003 7.44695C14.8194 7.92355 14.8939 8.4225 14.8939 8.93634 14.8939 9.45018 14.8194 9.94913 14.7003 10.4257M10.8651 14.5662C11.3119 13.7396 11.6545 12.846 11.8928 11.9151L14.0896 11.9151C13.3747 13.1439 12.2353 14.0971 10.8651 14.5662M10.6789 10.4257 7.19375 10.4257C7.11928 9.93422 7.07459 9.44272 7.07459 8.93634 7.07459 8.42995 7.11928 7.931 7.19375 7.44695L10.6789 7.44695C10.7459 7.931 10.7981 8.42995 10.7981 8.93634 10.7981 9.44272 10.7459 9.93422 10.6789 10.4257M8.93634 14.8641C8.31825 13.9705 7.8193 12.98 7.51398 11.9151L10.3587 11.9151C10.0534 12.98 9.55443 13.9705 8.93634 14.8641M5.95755 5.95755 3.78306 5.95755C4.49051 4.72137 5.63735 3.76815 7.00014 3.30644 6.55332 4.13306 6.21821 5.02669 5.95755 5.95755M3.78306 11.9151 5.95755 11.9151C6.21821 12.846 6.55332 13.7396 7.00014 14.5662 5.63735 14.0971 4.49051 13.1439 3.78306 11.9151M3.1724 10.4257C3.05324 9.94913 2.97879 9.45018 2.97879 8.93634 2.97879 8.4225 3.05324 7.92355 3.1724 7.44695L5.68946 7.44695C5.62989 7.93845 5.58521 8.42995 5.58521 8.93634 5.58521 9.44272 5.62989 9.93422 5.68946 10.4257M8.93634 3.00113C9.55443 3.89476 10.0534 4.89264 10.3587 5.95755L7.51398 5.95755C7.8193 4.89264 8.31825 3.89476 8.93634 3.00113M14.0896 5.95755 11.8928 5.95755C11.6545 5.02669 11.3119 4.13306 10.8651 3.30644 12.2353 3.7756 13.3747 4.72137 14.0896 5.95755M8.93634 1.48939C4.81817 1.48939 1.48939 4.84051 1.48939 8.93634 1.48939 13.0471 4.82562 16.3833 8.93634 16.3833 13.0471 16.3833 16.3833 13.0471 16.3833 8.93634 16.3833 4.82562 13.0471 1.48939 8.93634 1.48939Z" fill="inherit" fill-rule="nonzero" fill-opacity="1" transform="matrix(1.00712 0 0 1 0 -1.41141)"/></g></g></g></svg>
+                aphasiatherapyonline.com
+            </a>
+          </p>
+    </div>
+    <div id="details">
+        <p>
+            <span><span id="yearsPost">1</span> year post PhD</span>
+            <span><span>$291k</span> funding | <span>$191k</span> as CIA </span>
+            <span><span>8</span> articles </span>
+            <span><span>80</span> citations</span>
+        </p>
+    </div>
+    <div id="content">
+        <div class="leftCol">Education</div>
+        <div class="rightCol">
+            <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>Doctor of Philosophy<o:p></o:p></span></b></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>La Trobe University Aug
+                2021<o:p></o:p></span></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>A Comparison of Lower
+                Intensity Constraint-Induced and Multimodal Therapies in Chronic Aphasia<o:p></o:p></span></i></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Supervisors: Prof
+                Miranda Rose, Dr Robyn O’Halloran &amp; Prof Leanne Togher<o:p></o:p></span></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>Post Graduate Diploma in Health
+                Research Methodology (1st class)<o:p></o:p></span></b></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>La Trobe University
+                2011<o:p></o:p></span></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Alternating &amp;
+                Sequential Motion Rates in Older Adults – Normative Data<o:p></o:p></span></i></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Supervisors: Prof
+                Alison Perry &amp; A/Prof Susan Cotton<b style='mso-bidi-font-weight:normal'><o:p></o:p></b></span></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>Bachelor of Speech Pathology<o:p></o:p></span></b></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>La Trobe University
+                2008 || Member of Golden Key Society<o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Professional Experience
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal style='tab-stops:83.9pt'><span class=SpellE><b
+                style='mso-bidi-font-weight:normal'><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:#262626;mso-themecolor:text1;mso-themetint:217'>Post
+                Doctoral</span></b></span><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'> Research Fellow – Centre of Research
+                Excellence in Aphasia Recovery and Rehabilitation<o:p></o:p></span></b></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217;mso-bidi-font-weight:bold'>May 2021 </span><span
+                style='font-size:11.0pt;font-family:"Cambria Math",serif;mso-bidi-font-family:
+                "Cambria Math";color:#262626;mso-themecolor:text1;mso-themetint:217'>⇾ </span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217;mso-bidi-font-weight:bold'>Present ||
+                Full-time<o:p></o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><i><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217;mso-bidi-font-weight:bold'>Coordinator of Communication
+                Connect ($1.8m NHMRC Ideas Grant)<o:p></o:p></span></i></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Grade 4 Speech
+                Pathologist – Cabrini Health<o:p></o:p></span></b></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'>Sep 2017 </span><span style='font-size:11.0pt;font-family:
+                "Cambria Math",serif;mso-bidi-font-family:"Cambria Math";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>⇾</span><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'> April 2021 || Permanent part-time<o:p></o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><i style='mso-bidi-font-style:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Rehabilitation in inpatient,
+                <span class=GramE>outpatient</span> and ambulatory services<o:p></o:p></span></i></p>
+                <p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt;mso-list:l36 level1 lfo22;
+                tab-stops:83.9pt'><![if !supportLists]><span style='font-size:11.0pt;
+                font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;
+                color:#262626;mso-themecolor:text1;mso-themetint:217'><span style='mso-list:
+                Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:#262626;mso-themecolor:text1;mso-themetint:217'>Coordinator
+                of interdisciplinary Parkinson’s Program<o:p></o:p></span></p>
+                <p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt;mso-list:l36 level1 lfo22;
+                tab-stops:83.9pt'><![if !supportLists]><span style='font-size:11.0pt;
+                font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;
+                color:#262626;mso-themecolor:text1;mso-themetint:217'><span style='mso-list:
+                Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:#262626;mso-themecolor:text1;mso-themetint:217'>Senior
+                Subacute Speech Pathologist, managed team of six<o:p></o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Grade 3 Subacute Speech
+                Pathologist – Cabrini Health<o:p></o:p></span></b></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'>May 2016 </span><span style='font-size:11.0pt;font-family:
+                "Cambria Math",serif;mso-bidi-font-family:"Cambria Math";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>⇾</span><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'> Sep 2017 || Permanent part-time<o:p></o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><i style='mso-bidi-font-style:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Rehabilitation in inpatient,
+                <span class=GramE>outpatient</span> and ambulatory services<o:p></o:p></span></i></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Movement Disorders
+                Program Coordinator – Peninsula Health<o:p></o:p></span></b></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'>Sep 2013 </span><span style='font-size:11.0pt;font-family:
+                "Cambria Math",serif;mso-bidi-font-family:"Cambria Math";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>⇾</span><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'> April 2016 || Permanent part-time<o:p></o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><i><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'>Inpatient and outpatient program for Parkinson’s Disease<o:p></o:p></span></i></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Grade 2 Speech
+                Pathologist – Peninsula Health<o:p></o:p></span></b></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Sep 2010 </span><span
+                style='font-size:11.0pt;font-family:"Cambria Math",serif;mso-bidi-font-family:
+                "Cambria Math";color:#262626;mso-themecolor:text1;mso-themetint:217'>⇾</span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'> April 2016 || Permanent full-time<o:p></o:p></span></p>
+                <p class=MsoNormal><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>Community rehab, subacute inpatient,
+                acute, residential care<o:p></o:p></span></i></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+                tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+                tab-stops:83.9pt'><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>Private Practice Speech Pathologist –
+                independent<o:p></o:p></span></b></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+                tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Dec 2014</span><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'> </span><span style='font-size:11.0pt;font-family:"Cambria Math",serif;
+                mso-bidi-font-family:"Cambria Math";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'>⇾</span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'> </span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>June 2016 || After hours<o:p></o:p></span></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+                tab-stops:83.9pt'><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Rehabilitation of patients with traumatic brain injury <o:p></o:p></span></i></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+                tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Grade 1 Speech
+                Pathologist – Peninsula Health<o:p></o:p></span></b></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'>Mar 2009 </span><span style='font-size:11.0pt;font-family:
+                "Cambria Math",serif;mso-bidi-font-family:"Cambria Math";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>⇾</span><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'> Sep 2010 || Permanent full-time<u><o:p></o:p></u></span></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+                tab-stops:83.9pt'><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>Sub-acute inpatient, acute &amp;
+                community rehab<o:p></o:p></span></i></p>
+                <p class=MsoNormal style='margin-left:35.4pt;mso-add-space:auto;text-align:
+                justify;text-justify:inter-ideograph;tab-stops:78.0pt'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Grade 1 Speech
+                Pathologist – Victorian Rehabilitation Centre<o:p></o:p></span></b></p>
+                <p class=MsoNormal style='tab-stops:83.2pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'>Nov 2008 </span><span style='font-size:11.0pt;font-family:
+                "Cambria Math",serif;mso-bidi-font-family:"Cambria Math";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>⇾</span><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#262626;mso-themecolor:text1;
+                mso-themetint:217'> Jan 2009 || Fixed term full-time<o:p></o:p></span></p>
+                <p class=MsoNormal style='tab-stops:83.9pt'><i style='mso-bidi-font-style:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'>Sub-acute inpatient</span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Awards
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal><span class=SpellE><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1;
+                mso-bidi-font-style:italic'>Tavistock</span></span><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1;
+                mso-bidi-font-style:italic'> Trust for Aphasia Student Prize - La Trobe
+                University 2020. </span><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Awarded for&nbsp;excellence&nbsp;in work relating
+                to&nbsp;aphasia.</span></i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Current Projects
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Aphasia Therapy Online – Vietnamese,
+                Mandarin, Greek<o:p></o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>M-MAT-tele<o:p></o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Communication Connect<o:p></o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Updating the Australian Aphasia
+                Rehabilitation Pathway.<o:p></o:p></span></i></p>
+                <p class=MsoNormal><i><s><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p><span style='text-decoration:none'>&nbsp;</span></o:p></span></s></i></p>
+                <p class=MsoNormal><i><s><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>CHAT Maintain<o:p></o:p></span></s></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Fatigue and distress<o:p></o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>What makes a video aphasia-accessible? An
+                international project.</span></i><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:black;mso-themecolor:text1'><o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Finch, E., Pierce, J. E., Breitenstein, C.
+                (University of Muenster), Dow-Richards, C. (Aphasia Recovery Connection), Matos,
+                A. (University of Aveiro), Pais, A. (Trinity College Dublin), Charalambous,
+                M. (University of Fribourg; Cyprus University of Technology), Wallace, S.
+                (University of Queensland), Reed, A. (Aphasia Recovery Connection).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Establishing consensus on implementation
+                priorities for post-stroke aphasia services.</span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> Shrubsole, K. (University of Queensland), Power, E.
+                (University of Technology Sydney), Lynch, E. (Flinders University), Wallace,
+                S. (University of Queensland).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Spontaneous swallowing rates in people with Parkinson's
+                compared to controls.</span></i><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:black;mso-themecolor:text1;mso-bidi-font-style:
+                italic'><br>
+                (Funded research).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J. E., Crouch,
+                H. (Monash Health), Vogel, A. (The University of Melbourne).</span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Grants & Scholarships
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Lanyon, L.,
+                Shiggins, C., <b>Pierce, J. E.</b>, <span class=SpellE>Rademaker</span>, B., <span
+                class=SpellE>Sayner</span>, A., Ermert, M., Ermert, K., Pettigrove, K., Rose,
+                M. (2023). </span><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Phase II investigation of the feasibility,
+                acceptability, and preliminary efficacy of a Hub-and-Spoke, Peer-Led
+                Community Aphasia Group program.</span></i><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1;
+                mso-bidi-font-style:italic'> Early and Early-Mid Career Researcher Seed Grant,
+                Stroke Foundation, Melbourne, VIC. ($80,000 – successful).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Finch, E.,
+                Kelly, E., Farrell, A., <span class=SpellE>Ownsworth</span>, T., Pinkham, M.,
+                Brownsett, B., Copland, D., Jones, A., Fleming, J., Doig, E., Jones, A., <b>Pierce,
+                J. E.</b>, McPhail, S., Turkington, L., Little, L. (2022). <span
+                class=SpellE>CanCommunicate</span>: Optimising communication for people with
+                brain cancer and their families. Metro South Health Study Education and
+                Research Trust Account (successful).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J.E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-style:italic'>, Copland, D., Godecke, E.,
+                Foster, A., Churilov, L., Nicholls, R., Tulloch, G., Barry, S., &amp; Rose,
+                M. (2022).</span><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> M-MAT Tele: Maximising aphasia recovery through a
+                group telehealth intervention.</span></i><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1;
+                mso-bidi-font-style:italic'> Early and Early-Mid Career Researcher Seed Grant,
+                Stroke Foundation, Melbourne, VIC. ($80,000 – <b>successful as CIA</b>).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J.E.
+                (2022). </span><i style='mso-bidi-font-style:normal'><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>Aphasia
+                Therapy Online - Vietnamese, Mandarin, Greek.</span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-style:italic'> Telematics Trust. ($50,000
+                – <b>successful as CIA</b>).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J.E.
+                (2022). </span><i style='mso-bidi-font-style:normal'><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>Enabling
+                clinical implementation of evidence-based aphasia intervention: M-MAT Tele.</span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-style:italic'> Speech Pathology Australia New
+                Researcher Grant. ($18,000 – <b>successful as CIA</b>).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J.E., Hill,
+                A., Wong, D. &amp; Rose, M. (2021). </span><i style='mso-bidi-font-style:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Addressing inequity in aphasia
+                rehabilitation: Adapting Multi-Modality Aphasia Therapy for telehealth</span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-style:italic'>. La Trobe University Theme
+                Grant, Melbourne, VIC. ($25,000 – <b>successful as CIA</b>).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J.E.,
+                Togher, L., Copland, D., Nickels, L., Godecke, E., Foster, A., Churilov, L.,
+                Nicholls, R., Hayward, K., Rose, M. (2021).</span><i style='mso-bidi-font-style:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'> Phase II exploration of Lower Intensity
+                Multi-Modality Aphasia Therapy (LIMMAT).</span></i><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1;
+                mso-bidi-font-style:italic'> Lady Marigold Southey Aphasia Research Grant,
+                Stroke Foundation, Melbourne, VIC. ($100,000 – unsuccessful).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Campbell, J., Dignam,
+                J., Copland, D., Hill, A., Rose, M., Hersh, D., Shrubsole, K., Pierce, J.E., Jamieson,
+                P. CHAT-Maintain: Maintaining language and quality of life gains with
+                low-dose technology-delivered aphasia therapy. Lady Marigold Southey Aphasia Research
+                Grant, Stroke Foundation, Melbourne, VIC. ($100,000 – <b>successful as CIH</b>).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J.E.,
+                Togher, L., Copland, D., Nickels, L., Godecke, E., Foster, A., Churilov, L., Nicholls,
+                R., Hayward, K., Rose, M. (2021).</span><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> Exploration of Lower Intensity Multi-Modality Aphasia
+                Therapy (LIMMAT).</span></i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'> CASS Foundation
+                Science Grant, CASS Foundation, Melbourne, VIC. ($65,000 – unsuccessful).<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J.E.
+                &amp; Vogel, A. (2019). </span><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Spontaneous swallowing rates in people with Parkinson's
+                compared to controls</span></i><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:black;mso-themecolor:text1;mso-bidi-font-style:
+                italic'>. Cabrini Foundation research grant, Melbourne, VIC. ($20,000 – <b>successful
+                as CIA</b>)<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Pierce, J.E.
+                &amp; Vogel, A. (2018). </span><i style='mso-bidi-font-style:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Spontaneous swallowing rates in people with Parkinson's
+                compared to controls</span></i><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:black;mso-themecolor:text1;mso-bidi-font-style:
+                italic'>. Cabrini Foundation research grant, Melbourne, VIC. (unsuccessful)<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Smart strokes
+                scholarship 2017 - travel scholarship.<br>
+                Melbourne, VIC. ($500 - <b>successful</b>)<o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Journal Articles
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal><a name="_Hlk100558922"><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>Harvey,
+                S., Rose, M. L., Brogan, E., <b>Pierce, J. E.</b>, </span></a><span
+                class=SpellE><span style='mso-bookmark:_Hlk100558922'><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>Godecke</span></span></span><span
+                style='mso-bookmark:_Hlk100558922'><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:black;mso-themecolor:text1'>, E., <span
+                class=SpellE>Brownsett</span>, S. L. E., <span class=SpellE>Churilov</span>,
+                L., Copland, D., Dickey, M. W., Dignam, J., <span class=SpellE>Lannin</span>,
+                N. A., Nickels, L., Bernhardt, J., &amp; Hayward, K. S. (2022). Examining
+                dose frameworks to improve aphasia rehabilitation research. <i>Archives of
+                Physical Medicine and Rehabilitation</i>, S0003999322017725. </span></span><span
+                style='mso-bookmark:_Hlk100558922'></span><a
+                href="https://doi.org/10.1016/j.apmr.2022.12.002"><span style='mso-bookmark:
+                _Hlk100558922'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>https://doi.org/10.1016/j.apmr.2022.12.002</span></span></a><span
+                style='mso-bookmark:_Hlk100558922'><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:black;mso-themecolor:text1'><o:p></o:p></span></span></p>
+                <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p>&nbsp;</o:p></span></span></p>
+                <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Rose, M., Nickels, L., Copland, D., Togher, L.,
+                Godecke, E., Meinzer, M., Rai, T., Cadilhac, D., Kim, J., Hurley, M., Foster,
+                A., Carragher, M., Wilcox, C., <b>Pierce, J. E</b>., Steel, G. (2022).
+                Results of the COMPARE trial of constraint-induced or multimodality aphasia
+                therapy compared with usual care in chronic poststroke aphasia. <i>Journal of
+                Neurology, Neurosurgery and Psychiatry, </i>93(6), 573-581. </span></span><span
+                style='mso-bookmark:_Hlk100558922'></span><a
+                href="https://doi.org/10.1136/jnnp-2021-328422"><span style='mso-bookmark:
+                _Hlk100558922'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>https://doi.org/10.1136/jnnp-2021-328422</span></span></a><span
+                style='mso-bookmark:_Hlk100558922'><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light"'><o:p></o:p></span></span></p>
+                <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'></span><a
+                href="https://www.youtube.com/watch?v=dT7Sic8Gimc"><span style='mso-bookmark:
+                _Hlk100558922'><span style='mso-ascii-font-family:"Times New Roman";
+                mso-hansi-font-family:"Times New Roman";color:windowtext;mso-no-proof:yes;
+                text-decoration:none;text-underline:none'><v:shape id="_x0000_i1055" type="#_x0000_t75"
+                 alt="" href="https://www.youtube.com/watch?v=dT7Sic8Gimc" style='width:8pt;
+                 height:8pt;visibility:visible;mso-wrap-style:square;mso-width-percent:0;
+                 mso-height-percent:0;mso-width-percent:0;mso-height-percent:0' o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
+                </v:shape></span></span><span style='mso-bookmark:_Hlk100558922'></span></a><span
+                style='mso-bookmark:_Hlk100558922'><span style='font-size:10.0pt'><span
+                style='mso-spacerun:yes'> </span></span></span><a
+                href="https://www.youtube.com/watch?v=dT7Sic8Gimc"><span style='mso-bookmark:
+                _Hlk100558922'><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video
+                abstract</span></i></span></a><span style='mso-bookmark:_Hlk100558922'><span
+                class=MsoHyperlink><i><span style='font-size:11.0pt'> <o:p></o:p></span></i></span></span></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0 width=659
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=165 valign=top style='width:123.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                  mso-themecolor:text1;mso-no-proof:yes'><v:shape id="Picture_x0020_30"
+                   o:spid="_x0000_i1054" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" />
+                  </v:shape></span></span><span style='mso-bookmark:_Hlk100558922'><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                  mso-themecolor:text1'><span style='mso-spacerun:yes'> </span><span
+                  class=SpellE>Altmetrics</span>: 55<i><o:p></o:p></i></span></span></p>
+                  </td>
+                  <span style='mso-bookmark:_Hlk100558922'></span>
+                  <td width=165 valign=top style='width:123.6pt;padding:0cm 5.4pt 0cm 5.4pt'><span
+                  style='mso-bookmark:_Hlk100558922'></span>
+                  <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><i><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                  mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></span></p>
+                  </td>
+                  <td width=165 valign=top style='width:123.65pt;padding:0cm 5.4pt 0cm 5.4pt'><span
+                  style='mso-bookmark:_Hlk100558922'></span>
+                  <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><i><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                  mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></span></p>
+                  </td>
+                  <span style='mso-bookmark:_Hlk100558922'></span>
+                  <td width=165 valign=top style='width:123.65pt;padding:0cm 5.4pt 0cm 5.4pt'><span
+                  style='mso-bookmark:_Hlk100558922'></span>
+                  <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><i><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                  mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></span></p>
+                  </td>
+                  <span style='mso-bookmark:_Hlk100558922'></span>
+                 </tr>
+                </table>
+                <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Menahemi-Falkov, M., Breitenstein, C., <b>Pierce,
+                J. E</b>., Hill, A. J., O'Halloran, R., &amp; Rose, M. L. (2021). A
+                systematic review of maintenance following intensive therapy programs in
+                chronic post-stroke aphasia: importance of individual response analysis<i>.
+                Disability and Rehabilitation, 1-16</i>. </span><span style='font-size:10.0pt'><a
+                href="https://doi.org/10.1080/09638288.2021.1955303"><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>https://doi.org/10.1080/09638288.2021.1955303</span></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> <o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><span
+                style='mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+                color:windowtext;mso-no-proof:yes;text-decoration:none;text-underline:none'><v:shape
+                 id="_x0000_i1053" type="#_x0000_t75"
+                 href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"
+                 style='width:8pt;height:8pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
+                 <o:lock v:ext="edit" aspectratio="f"/>
+                </v:shape></span></a><span style='mso-spacerun:yes'> </span><a
+                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video abstract</span></i></a></span><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p></o:p></span></i></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1;mso-no-proof:yes'><v:shape id="Picture_x0020_5"
+                   o:spid="_x0000_i1052" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" />
+                  </v:shape></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>18<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>8 citations<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>FWCI: 1.95<o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Rose, M. L., <b>Pierce, J. E., </b>Scharp,
+                V., Off, C., Babbitt, E., Griffin-<span class=SpellE>Musick</span>, J., &amp;
+                Cherney, L. (2021). Developments in the application of Intensive
+                Comprehensive Aphasia Programs: An international survey of practice. <i>Disability
+                and Rehabilitation</i>. </span><span style='font-size:10.0pt'><a
+                href="https://doi.org/10.1080/09638288.2021.1948621"><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>https://doi.org/10.1080/09638288.2021.1948621</span></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> <o:p></o:p></span></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1;mso-no-proof:yes'><v:shape id="Picture_x0020_4"
+                   o:spid="_x0000_i1051" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" />
+                  </v:shape></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>17<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>4 citations<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>FWCI: 1.62<o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Cited in ASHA’s Aphasia </span></b><span
+                style='font-size:10.0pt'><a
+                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/429ffb99-e67c-4037-8051-61dfcaadf87d"><b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>evidence map</span></b></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Harvey, S., Carragher, M., Dickey, M. W., <b>Pierce,
+                J. E</b>., &amp; Rose, M. L. (2020). Dose effects in behavioural treatment of
+                post-stroke aphasia: a systematic review and meta-analysis. <i>Disability and
+                Rehabilitation, 93</i>(1), 1–12. </span><span style='font-size:10.0pt'><a
+                href="https://doi.org/10.1080/09638288.2020.1843079"><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>https://doi.org/10.1080/09638288.2020.1843079</span></a></span><span
+                class=MsoHyperlink><span style='font-size:11.0pt'><o:p></o:p></span></span></p>
+                <p class=MsoNormal><span style='font-size:10.0pt;mso-no-proof:yes'><a
+                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><span
+                style='font-size:12.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;text-decoration:none;text-underline:none'><v:shape
+                 id="_x0000_i1050" type="#_x0000_t75" alt=""
+                 href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"
+                 style='width:8pt;height:8pt;visibility:visible;mso-wrap-style:square;
+                 mso-width-percent:0;mso-height-percent:0;mso-width-percent:0;
+                 mso-height-percent:0' o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
+                 <o:lock v:ext="edit" aspectratio="f"/>
+                </v:shape></span></a></span><span style='font-size:10.0pt'><span
+                style='mso-spacerun:yes'> </span><a
+                href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video abstract</span></i></a></span><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p></o:p></span></i></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'><span style='mso-no-proof:yes'><v:shape
+                   id="Picture_x0020_6" o:spid="_x0000_i1049" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
+                  </v:shape></span>56<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>8 citations <o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>FWCI: 4.82<o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Harvey, S. R., Carragher, M., Dickey, M.
+                W., <b>Pierce, J. E</b>., &amp; Rose, M. L. (2020). Treatment dose in
+                post-stroke aphasia: A systematic scoping review. <i>Neuropsychological
+                Rehabilitation</i>, 31(10), 1629-1660. </span><span style='font-size:10.0pt'><a
+                href="https://doi.org/10.1080/09602011.2020.1786412"><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>https://doi.org/10.1080/09602011.2020.1786412</span></a></span><span
+                class=MsoHyperlink><span style='font-size:11.0pt'><o:p></o:p></span></span></p>
+                <p class=MsoNormal><span style='font-size:10.0pt;mso-no-proof:yes'><a
+                href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top"><span
+                style='font-size:12.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;text-decoration:none;text-underline:none'><v:shape
+                 id="_x0000_i1048" type="#_x0000_t75" alt=""
+                 href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top"
+                 style='width:8pt;height:8pt;visibility:visible;mso-wrap-style:square;
+                 mso-width-percent:0;mso-height-percent:0;mso-width-percent:0;
+                 mso-height-percent:0' o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
+                 <o:lock v:ext="edit" aspectratio="f"/>
+                </v:shape></span></a></span><span style='font-size:10.0pt'><span
+                style='mso-spacerun:yes'> </span><a href="https://vimeo.com/437127608"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video abstract</span></i></a></span><span
+                class=MsoHyperlink><i><span style='font-size:11.0pt'><o:p></o:p></span></i></span></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'><span style='mso-no-proof:yes'><v:shape
+                   id="Picture_x0020_13" o:spid="_x0000_i1047" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
+                  </v:shape></span>189<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>11 citations<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>FWCI: 1.64<o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Cited in ASHA’s Aphasia </span></b><span
+                style='font-size:10.0pt'><a
+                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/8db4b3d6-d39c-40cc-8ae2-4f584b9226a9"><b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>evidence map</span></b></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>,&nbsp;O’Halloran, R., Menahemi-Falkov, M., Togher, L.,
+                &amp; Rose, M. (2020).&nbsp;Comparing higher and lower weekly treatment
+                intensity for chronic aphasia: A <i>systematic review and meta-analysis.
+                Neuropsychological</i> Rehabilitation, 31(8), 1289-1313. </span><span
+                style='font-size:10.0pt'><a
+                href="https://doi.org/10.1080/09602011.2020.1768127"><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>https://doi.org/10.1080/09602011.2020.1768127</span></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>&nbsp;<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:10.0pt;mso-no-proof:yes'><a
+                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><span
+                style='font-size:12.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;text-decoration:none;text-underline:none'><v:shape
+                 id="_x0000_i1046" type="#_x0000_t75" alt=""
+                 href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"
+                 style='width:8pt;height:8pt;visibility:visible;mso-wrap-style:square;
+                 mso-width-percent:0;mso-height-percent:0;mso-width-percent:0;
+                 mso-height-percent:0' o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
+                 <o:lock v:ext="edit" aspectratio="f"/>
+                </v:shape></span></a></span><span style='font-size:10.0pt'><span
+                style='mso-spacerun:yes'> </span><a href="https://vimeo.com/427783862"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video abstract –
+                standard</span></i></a></span><i><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:black;mso-themecolor:text1'> | </span></i><span
+                style='font-size:10.0pt'><a href="https://vimeo.com/427784453"><span
+                style='mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+                color:windowtext;mso-no-proof:yes;text-decoration:none;text-underline:none'><v:shape
+                 id="_x0000_i1045" type="#_x0000_t75" href="https://vimeo.com/427784453"
+                 style='width:9pt;height:9pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
+                 <o:lock v:ext="edit" aspectratio="f"/>
+                </v:shape></span></a><span style='mso-spacerun:yes'> </span><a
+                href="https://vimeo.com/427784453"><i><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light"'>Video abstract – aphasia friendly</span></i></a></span><span
+                class=MsoHyperlink><i><span style='font-size:11.0pt'><o:p></o:p></span></i></span></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'><span style='mso-no-proof:yes'><v:shape
+                   id="Picture_x0020_8" o:spid="_x0000_i1044" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
+                  </v:shape></span>47<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>10 citations<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>FWCI 4.1<o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Cited in ASHA’s Aphasia </span></b><span
+                style='font-size:10.0pt'><a
+                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/880e2f9c-1ab6-4bf8-80de-aac5afb5a20b"><b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>evidence map</span></b></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>., O’Halloran, R., Togher, L., &amp; Rose, M.
+                (2019).&nbsp;What Is Meant by “Multimodal Therapy” for Aphasia? American Journal
+                of Speech-Language Pathology. American Journal of Speech-Language Pathology,
+                28(2),&nbsp;</span><span style='font-size:10.0pt'><a
+                href="http://dx.doi.org/10.1044/2018_AJSLP-18-0157"><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>http://dx.doi.org/10.1044/2018_AJSLP-18-0157</span></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>&nbsp;<br>
+                </span><span style='font-size:10.0pt'><a
+                href="https://doi.org/10.23641/asha.7646717"><span style='mso-ascii-font-family:
+                "Times New Roman";mso-hansi-font-family:"Times New Roman";color:windowtext;
+                mso-no-proof:yes;text-decoration:none;text-underline:none'><v:shape id="Graphic_x0020_29"
+                 o:spid="_x0000_i1043" type="#_x0000_t75"
+                 href="https://doi.org/10.23641/asha.7646717" style='width:9pt;height:9pt;
+                 visibility:visible;mso-wrap-style:square' o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
+                 <o:lock v:ext="edit" aspectratio="f"/>
+                </v:shape></span></a></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><span style='mso-spacerun:yes'> </span></span><span
+                style='font-size:10.0pt'><a href="https://doi.org/10.23641/asha.7646717"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video abstract</span></i></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> (1526 views) <o:p></o:p></span></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'><span style='mso-no-proof:yes'><v:shape
+                   id="Picture_x0020_10" o:spid="_x0000_i1042" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
+                  </v:shape></span>10<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>9 citations<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>FWCI: 1.43<o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:#262626;mso-themecolor:text1;mso-themetint:217'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>, Menahemi-Falkov, M., O'Halloran,
+                R., Togher, L., &amp; Rose, M. L. (2017). <span style='mso-bidi-font-weight:
+                bold'>Constraint and multimodal approaches </span></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-weight:bold'>to therapy for chronic
+                aphasia: A systematic review and meta-analysis</span><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>.
+                <i style='mso-bidi-font-style:normal'>Neuropsychologi</i></span><i
+                style='mso-bidi-font-style:normal'><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:#262626;mso-themecolor:text1;mso-themetint:217'>cal
+                <span style='mso-bidi-font-style:italic'>Rehabilitation, </span></span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>29(7), 1–37. </span><span
+                style='font-size:10.0pt'><a
+                href="https://doi.org/10.1080/09602011.2017.1365730"><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>https://doi.org/10.1080/09602011.2017.1365730</span></a></span><span
+                class=MsoHyperlink><span style='font-size:11.0pt'><o:p></o:p></span></span></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'><span style='mso-no-proof:yes'><v:shape
+                   id="Picture_x0020_24" o:spid="_x0000_i1041" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
+                  </v:shape></span>26<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>13 citations<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Cited in ASHA’s Aphasia </span></b><span
+                style='font-size:10.0pt'><a
+                href="https://www2.asha.org/articlesummary.aspx?id=8589976214"><b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>evidence map</span></b></a></span><b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p></o:p></span></b></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>, Cotton, S., &amp; Perry, A. (2013). Alternating &amp;
+                sequential motion rates in older adults. <i>International Journal of Language
+                &amp; Communication Disorders, 48</i>(3): 257-264</span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>.&nbsp;</span><span style='font-size:
+                10.0pt'><a href="http://doi.org/10.1111/1460-6984.12001"><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>http://doi.org/10.1111/1460-6984.12001</span></a></span><span
+                class=MsoHyperlink><span style='font-size:11.0pt'><o:p></o:p></span></span></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'><span style='mso-no-proof:yes'><v:shape
+                   id="Picture_x0020_25" o:spid="_x0000_i1040" type="#_x0000_t75" alt="Altmetric | Crunchbase"
+                   style='width:15pt;height:14pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
+                  </v:shape></span>3<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'>22 citations<o:p></o:p></span></p>
+                  </td>
+                  <td width=159 valign=top style='width:118.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+        </div>
+        <div class="leftCol">
+            Book Chapters
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Rose, M. L., <b>Pierce, J. E.</b> &amp;
+                Harvey, S. (2022). Single-Case Experimental Designs in Health Research. In P.
+                Liamputtong (Ed.), <i>Research Methods in Health - Foundations for
+                Evidence-Based Practice</i> (4th ed.) Oxford University Press.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E. &amp; Vogel, A. (In Press). Chapter
+                7 - Questions about diagnosis: examples of appraisals from different health
+                professions, In Tammy Hoffmann, Sally Bennett, and Christopher Del Mar (Eds.)
+                Evidence-Based Practice across the Health Professions. Elsevier. 4th Edition.<o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Presentations 
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                Adikari, A., Hernandez, N., <span class=SpellE>Pallewala</span>, N.,
+                Alahakoon, D., Copland, D., Hill, A., Power, E., Ryan, B., Togher, L.,
+                Usherwood, T., Wong, D., Rose, M. (<span class=GramE>November,</span> 2022). <i>AI
+                in Aphasia - Past, <span class=GramE>present</span> and future.</i>
+                Aphasiology Symposium of Australasia, Melbourne, Australia. <o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                Alahakoon, D., Attard, M., Cadilhac, D., Churilov, L., Copland, D.,
+                Hernandez, N., Hill, A., Hill, K., Kneebone, I., Lanyon, L., Togher, L.,
+                Lindley, R., Power, E., Rietdijk, R., Ryan, B., Sheldrick, T., Shiggins, C., Usherwood,
+                T., Wong, D., Worrall, L., Rose, M. L. (<span class=GramE>August,</span>
+                2022). “The Big Black Hole” - Experiences of Communication Disability after
+                Stroke from Patient, Caregiver and Clinician Perspectives. Smart Strokes,
+                Sydney, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                Wallace, S., Harvey, S., Baker, C., Shiggins, C., Carragher, M., Rose, M. (<span
+                class=GramE>May,</span> 2022). <i>Creating a Video Abstract for your research</i>
+                [workshop]. Australasian Society for the Study of Brain Impairment
+                Conference, Perth, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                Pais, A., &amp; Finch, E. (2021, December). Aphasia-friendly video
+                project/how to create a research video for a person with aphasia. Collaboration
+                of Aphasia Trialists Virtual Event Week.<b><o:p></o:p></b></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E. </span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>(2021,
+                October). Low-moderate intensity aphasia intervention – a pilot trial of
+                Constraint Induced Aphasia Therapy and Multi-Modality Aphasia Therapy <b>[invited
+                speaker]</b>. Aphasia CRE Seminar, Melbourne, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>
+                (2021, October). <i>Closing the loop: Using Phase III trial data to guide a
+                basket Bayesian Optimal Phase <span class=SpellE>IIa</span> trial design</i> <b>[invited
+                speaker].</b> Stroke Society of Australasia, Perth, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                Togher, L., O'Halloran, R., Cadilhac, D., Copland, D., Foster, A., Godecke, E.,
+                Kim, J., Hurley, M., Nickels, L., Meinzer, M., Rai, T; Wilcox, C., Rose, M. L.
+                (2021, September). <i>Comparison of Constraint Induced Aphasia Therapy and
+                Multi-Modality Aphasia Therapy at a Low-Moderate Intensity – A <span
+                class=SpellE>Substudy</span> Randomised Controlled Trial. </i>British
+                Aphasiology Society Conference, Newcastle, United Kingdom.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                Togher, L., O'Halloran, R., Cadilhac, D., Copland, D., Foster, A., Godecke, E.,
+                Kim, J., Hurley, M., Nickels, L., Meinzer, M., Rai, T; Wilcox, C., Rose, M. L.
+                (2021, July). <i>Comparison of Constraint Induced Aphasia Therapy and
+                Multi-Modality Aphasia Therapy at a Low-Moderate Intensity – A <span
+                class=SpellE>Substudy</span> Randomised Controlled Trial. </i>6th Pacific Rim
+                Conference, Melbourne, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'> (2021, June). <i>Dysphagia
+                research updated</i> <b>[invited speaker]</b>. Parkinson’s Victoria – Speech
+                Pathology Community of Practice [online].<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>, Menahemi-Falkov, M., O'Halloran,
+                R., Togher, L., &amp; Rose, M. <span style='mso-spacerun:yes'> </span>(2021,
+                June). </span><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Looking
+                at the relationship between intense or <span class=GramE>spread out</span> therapy
+                – both can be positive.</span></i><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light"'> Australian Aphasia Association Conference [online].<i><o:p></o:p></i></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
+                mso-themecolor:text1;mso-themetint:217'>, Menahemi-Falkov, M., O'Halloran,
+                R., Togher, L., &amp; Rose, M. <span style='mso-spacerun:yes'> </span>(2021,
+                May). </span><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Review
+                of treatment intensity in chronic aphasia. </span></i><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>Speech Pathologists in Adult
+                Rehabilitation [online seminar].<b><o:p></o:p></b></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Rose,
+                M., Copland, D., Nickels, L., Togher, L., Meinzer, M., Rai, T., Kim, J.,
+                Cadilhac, D., Hurley, M., Wilcox, C., Foster, A., Carragher, M., <b>Pierce, J.
+                E.</b> &amp; Godecke, E. (2021, May). <i>Primary and secondary results of the
+                COMPARE randomized controlled trial of Constraint Induced Aphasia
+                Therapy-Plus, Multimodality Aphasia Therapy and usual care for chronic
+                post-stroke aphasia</i>. Clinical Aphasiology Conference [virtual].<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Rose,
+                M., Copland, D., <b>Pierce, J. E.</b>, Harvey, S., Brogan, E., Brownsett, S.,
+                Godecke, E., Carragher, M., &amp; Dickey, M. W. (2021, May). <i>Revisiting
+                concepts of treatment dose and intensity in aphasia rehabilitation. </i>Clinical
+                Aphasiology Conference [virtual].<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E. (2020, December). <i>Research Impact and Dissemination </i>[virtual
+                panel]. American Speech-Language Hearing Association. <b>Invited speaker.<o:p></o:p></b></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E., </span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>O'Halloran,
+                R., Togher, L., &amp; Rose, M. (2020). </span><span style='font-size:10.0pt'><a
+                href="https://www.youtube.com/watch?v=Tsa-xBBUKa0"><i><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light"'>Words Fail Me</span></i></a></span><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>. </span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Visualise Your
+                Thesis, La Trobe University, Australia.<b><o:p></o:p></b></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>
+                &amp; Vogel, A. (2019, October). <i>Investigating Spontaneous Swallowing
+                Frequency in Parkinson’s Disease.</i> Cabrini Research Week, Melbourne,
+                Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'> (2019, October).
+                <i>Treatment options for Parkinson’s</i> <b>[invited speaker]</b>.
+                Parkinson’s Victoria - Special Interest Group. Surrey Hills, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E. </span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>(2019,
+                June). <i>SMART goals may not be as smart as we thought.</i> Speech Pathology
+                Subacute Seminar, St Vincent's Hospital, Melbourne, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                O'Halloran, R., Togher, L., &amp; Rose, M. (2019, June). <i>Constraint-Induced
+                and Multimodal approaches to aphasia therapy – what are they and which one
+                leads to better outcomes?</i> Speech Pathology Subacute Seminar, St Vincent's
+                Hospital, Melbourne, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                O'Halloran, R., Togher, L., &amp; Rose, M.&nbsp;(2019, June). <i>A Systematic
+                Review of Intensity in Chronic Aphasia</i>.&nbsp;Speech Pathology Australia
+                Conference, Brisbane, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Reyes,
+                N., Krikheli, L., <span class=SpellE>McCaskie</span>, D., <b>Pierce, J. E.</b>,
+                <span class=SpellE>Brusco</span>, N., Frawley, H., <span class=SpellE>Keage</span>,
+                M. (2019, June). <i>Does the implementation of an e-learning package to
+                medical and nursing staff improve adherence to dysphagia screening?</i> Speech
+                Pathology Australia Conference, Brisbane, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>, O'Halloran, R., Togher, L., &amp; Rose, M. (2018,
+                October). </span><span style='font-size:10.0pt'><a
+                href="https://youtu.be/LqxNaY0tVCY"><i><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#82B9A4'>What do speech pathologists
+                mean by&nbsp;‘multimodal therapy’ for aphasia?</span></i></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> Aphasiology Symposium of Australia, Sunshine Coast, Queensland,
+                Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Pierce, J. E</span></b><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>. (2018,
+                October). </span><span style='font-size:10.0pt'><a
+                href="https://youtu.be/vf8CIHYjAQ4?t=47"><i><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:#82B9A4'>Cognitive-communication
+                assessments - what else is out there?</span></i></a></span><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-weight:bold'> </span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-weight:bold'>[online webinar].</span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> Australian Catholic University speed sessions.<o:p></o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>, O'Halloran, R., Togher, L., &amp; Rose, M. (2018,
+                June). <i><span style='mso-bidi-font-weight:bold'>Update on intensity and
+                dose in aphasia rehabilitation.</span></i> <span style='mso-bidi-font-style:
+                italic'>Speech Pathologists in Adult Rehabilitation, Bundoora, Australia.<o:p></o:p></span></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> (2017, June). <i>Words fail me.</i> Three Minute Thesis,
+                La Trobe University, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>, O'Halloran, R., Togher, L., &amp; Rose, M. (2017,
+                October). <i>Revisiting the case for single case research.</i> <span
+                style='mso-bidi-font-style:italic'>Cabrini Research week, </span>Melbourne, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J</span></b><b style='mso-bidi-font-weight:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>. E.</span></b><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>,
+                Nickels, L., Togher, L., Meinzer, M., Rai, T., Godecke, E., Kim, J.,
+                Cadilhac, D., Foster, A., Hurley, M., Copland, D., O’Halloran, R., and Rose,
+                M. (2017, August). <i>Treatment for people with chronic aphasia –
+                investigation of high and low intensity, <span class=GramE>constraint</span>
+                and multimodal treatments</i>. Smart Strokes Conference, Gold Coast, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J</span></b><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>.<b
+                style='mso-bidi-font-weight:normal'> E.</b>, O'Halloran, R., Togher, L.,
+                &amp; Rose, M. (2017, June). <i>Revisiting the case for single case research.</i>
+                Australasian Society for the Study of Brain Impairment Conference,<i
+                style='mso-bidi-font-style:normal'> </i>Melbourne, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J</span></b><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>.<b
+                style='mso-bidi-font-weight:normal'> E.</b>, O’Halloran, R., Togher, L.,
+                &amp; Rose, M. (2016, October). <i>What is constraint therapy? What is
+                multimodal therapy? What is the difference?<b> </b></i><span
+                style='mso-bidi-font-style:italic'>Australian Aphasia Association National Conference,
+                Adelaide, Australia.<o:p></o:p></span></span></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Pierce, J. E.</span></b><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'> (2016,
+                May). <i>Atypical Parkinson’s – A focus on communication, swallowing and
+                secretions.</i> <span style='mso-bidi-font-style:italic'>Managing Atypical
+                Parkinson’s, Melbourne, Australia. <o:p></o:p></span></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Panel member. (2015, September).<i
+                style='mso-bidi-font-style:normal'> Parkinson’s Victoria <span class=GramE>Education
+                day</span></i>, Melbourne, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Pierce, J. E. </span></b><span style='font-size:10.0pt'><a
+                href="https://youtu.be/4yQilRWa7E4"><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:#82B9A4'>Speech pathology is ok... really.</span></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> (2015, March). <i style='mso-bidi-font-style:normal'>St
+                Vincent's Speech Pathology Sub Acute Seminar</i>, Melbourne, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Pierce, J. E. </span></b><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>(2013,
+                June). <i>Alternating and sequential motion rates in older adults.</i> Speech
+                Pathology Australia National Conference, Gold Coast, Australia.<o:p></o:p></span></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></b></p>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> (2011, March). <span class=SpellE><i>Citeulike</i></span><i>
+                – helping make articles shareable, <span class=GramE>manageable</span> and
+                retrievable.</i> <span style='mso-bidi-font-style:italic'>St Vincent’s Speech
+                Pathology Subacute Seminar, Melbourne, Australia.</span><o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Conference Posters
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                Harvey, S., Dickey, M., Cadilhac, D., Carragher, M., Copland, D., Foster, A.,
+                Godecke, E., Kim, J., Hurley, M., Nickels, L., Meinzer, M., Rai, T., Togher,
+                L., Wilcox, C., Rose, M L. (<span class=GramE>June,</span> 2022). </span><span
+                style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EdP48lzhOrFMmss_AOi1jFABD7-gaFwpX3hDG7aP-yKxQw?e=NRtl60"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Fatigue Levels
+                Across 30 Hours of Intensive Treatment - an Analysis of 144 Participants from
+                the COMPARE Trial</span></i></a></span><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light"'> [poster]. International Aphasia Research
+                Conference, Philadelphia, USA.<b><o:p></o:p></b></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.2pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EdP48lzhOrFMmss_AOi1jFABD7-gaFwpX3hDG7aP-yKxQw?e=NRtl60"><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-no-proof:yes;text-decoration:none;text-underline:
+                none'><v:shape id="Picture_x0020_28" o:spid="_x0000_i1039" type="#_x0000_t75"
+                 alt="Calendar&#10;&#10;Description automatically generated with medium confidence"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EdP48lzhOrFMmss_AOi1jFABD7-gaFwpX3hDG7aP-yKxQw?e=NRtl60"
+                 style='width:62pt;height:35pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image008.png" o:title="Calendar&#10;&#10;Description automatically generated with medium confidence"/>
+                </v:shape></span></a></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-no-proof:yes'><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:11;height:11.2pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.2pt'>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
+                J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
+                Harvey, S., Dickey, M., Cadilhac, D., Carragher, M., Copland, D., Foster, A.,
+                Godecke, E., Kim, J., Hurley, M., Nickels, L., Meinzer, M., Rai, T., Togher,
+                L., Wilcox, C., Rose, M L. (<span class=GramE>May,</span> 2022). </span><span
+                style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EQf72o4MLURPmHHQ5Fb9zOsBsYHj2OzFd4a8YlYI5aenWA?e=TzVe6w"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>How Fatiguing is
+                High Intensity Treatment for People with Aphasia? An Analysis of 144
+                Participants from the COMPARE Trial</span></i></a></span><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>.</span></i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'> [poster]. <span
+                style='color:black;mso-themecolor:text1'>Australasian Society for the Study
+                of Brain Impairment Conference,<i style='mso-bidi-font-style:normal'> </i>Perth,
+                Australia.</span><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.2pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EQf72o4MLURPmHHQ5Fb9zOsBsYHj2OzFd4a8YlYI5aenWA?e=TzVe6w"><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-no-proof:yes;text-decoration:none;text-underline:
+                none'><v:shape id="Picture_x0020_14" o:spid="_x0000_i1038" type="#_x0000_t75"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EQf72o4MLURPmHHQ5Fb9zOsBsYHj2OzFd4a8YlYI5aenWA?e=TzVe6w"
+                 style='width:62pt;height:35pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image009.emz" o:title=""/>
+                </v:shape></span></a></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-no-proof:yes'><span
+                style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:12;height:11.2pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.2pt'>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>, <span class=SpellE>Flitman</span>, S., Rennie, K. and
+                Williams, C. (2019, June). </span><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EX217C8sssRAuD8fv3p5f6gB4x0gwxyLlyt6TGU668zXJg?e=hSSUiz"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Dark Grape for
+                Managing Thick Secretions - An Exploratory Study of Patient Perception</span></i></a></span><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>.</span></i><span style='font-size:11.0pt;font-family:
+                "Helvetica Neue Light";color:black;mso-themecolor:text1'> Speech Pathology
+                Australia Conference, Brisbane, Australia.</span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.2pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EX217C8sssRAuD8fv3p5f6gB4x0gwxyLlyt6TGU668zXJg?e=5PabHA"><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-no-proof:yes;text-decoration:none;text-underline:
+                none'><v:shape id="Picture_x0020_12" o:spid="_x0000_i1037" type="#_x0000_t75"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EX217C8sssRAuD8fv3p5f6gB4x0gwxyLlyt6TGU668zXJg?e=5PabHA"
+                 style='width:43pt;height:61pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image010.png" o:title=""/>
+                </v:shape></span></a></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:13;height:11.0pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Reyes, N. A., Krikheli, L., <span
+                class=SpellE>McCaskie</span>, D., <b>Pierce, J. E.</b>, <span class=SpellE>Brusco</span>,
+                N., Frawley, H., <span class=SpellE>Keage</span> M. (2019, April). </span><span
+                style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EZdblJPQLTBBr--AiB2owwcBGVX4R6qbMa5jQ9ZFt1jp2g?e=2cygov"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Does the
+                implementation of an e-learning package to medical and nursing staff improve
+                adherence to dysphagia screening?</span></i></a></span><span
+                class=MsoHyperlink><span style='font-size:11.0pt'> </span></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>Victorian Allied Health Research Conference, Melbourne,
+                Australia.</span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EZdblJPQLTBBr--AiB2owwcBGVX4R6qbMa5jQ9ZFt1jp2g?e=wkMjPS"><span
+                style='font-size:11.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;mso-no-proof:yes;text-decoration:none;
+                text-underline:none'><v:shape id="Picture_x0020_19" o:spid="_x0000_i1036"
+                 type="#_x0000_t75"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EZdblJPQLTBBr--AiB2owwcBGVX4R6qbMa5jQ9ZFt1jp2g?e=wkMjPS"
+                 style='width:62pt;height:32pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image011.png" o:title=""/>
+                </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:14;height:11.0pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Rose, M. L., Carragher, M., Nickels, L.,
+                Togher, L., Meinzer, M., Rai, T., Godecke, E., Kim, J., Cadilhac, D. A.,
+                Foster, A., <b>Pierce, J. E.</b>, Hurley, M., &amp; Copland, D.&nbsp;(2018,
+                May). </span><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EcbyRaGrVWlLlpMxoJkqDHYBFrJQaFFAmCBmDk6YLJ3sTw?e=Fme5WJ"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Methods of
+                monitoring fidelity in trials of complex behavioural interventions: The
+                COMPARE fidelity protocol.</span></i></a></span><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>&nbsp;European
+                Stroke Organisation Conference, Gothenburg, Sweden.</span><span
+                style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EcbyRaGrVWlLlpMxoJkqDHYBFrJQaFFAmCBmDk6YLJ3sTw?e=vHU0Av"><span
+                style='font-size:11.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;mso-no-proof:yes;text-decoration:none;
+                text-underline:none'><v:shape id="Picture_x0020_7" o:spid="_x0000_i1035"
+                 type="#_x0000_t75"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EcbyRaGrVWlLlpMxoJkqDHYBFrJQaFFAmCBmDk6YLJ3sTw?e=vHU0Av"
+                 style='width:45pt;height:62pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image012.png" o:title=""/>
+                </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:15;height:11.0pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Rose, M., Nickels, L., Togher, L., Copland,
+                D., Meinzer, M., Rai, T., Godecke, E., Kim, J., <span class=SpellE>Cadhilac</span>,
+                D., Foster, A., Hurley, M., O’Halloran, R., &amp; <b>Pierce, J. E.</b> (2017,
+                October). </span><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ESvLPeNoX1xHuV7vUFOaERIBA7yx7QjI3JapQdJ2Zk8uMw?e=63TKwQ"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>The COMPARE Trial
+                - a national RCT for individuals with chronic post-stroke aphasia.</span></i></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> La Trobe Research Week, Melbourne, Australia.</span><span
+                style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ESvLPeNoX1xHuV7vUFOaERIBA7yx7QjI3JapQdJ2Zk8uMw?e=01HDYZ"><span
+                style='font-size:11.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;mso-no-proof:yes;text-decoration:none;
+                text-underline:none'><v:shape id="Picture_x0020_20" o:spid="_x0000_i1034"
+                 type="#_x0000_t75"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ESvLPeNoX1xHuV7vUFOaERIBA7yx7QjI3JapQdJ2Zk8uMw?e=01HDYZ"
+                 style='width:44pt;height:63pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image013.png" o:title=""/>
+                </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:16;height:11.0pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Rose, M., Foster, A., Copland, D., Nickels,
+                L., Togher, L., Meinzer, M., Rai, T., Hurley, M., <b>Pierce, J. E.</b>,
+                Godecke, E., Cadilhac, D., Kim, J., &amp; Godecke, E. (2017, May). </span><span
+                style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:i:/g/personal/jpierce_ltu_edu_au/EXFDneZKcrdOoB-Gh4xaDPkBTjomdopgJlUMZRnG2OV29A?e=JcDMBp"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Embedding
+                Measures of Therapy Fidelity in “Compare”: A Randomised Controlled Trial of
+                Complex Behavioural Interventions for Post-Stroke Aphasia.</span></i></a></span><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>&nbsp;</span></i><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>European
+                Stroke Organisation Conference, Prague, Czech Republic.</span><span
+                style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:i:/g/personal/jpierce_ltu_edu_au/EXFDneZKcrdOoB-Gh4xaDPkBTjomdopgJlUMZRnG2OV29A?e=8cyodf"><span
+                style='font-size:11.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;mso-no-proof:yes;text-decoration:none;
+                text-underline:none'><v:shape id="Picture_x0020_9" o:spid="_x0000_i1033"
+                 type="#_x0000_t75" alt="A picture containing text&#10;&#10;Description automatically generated"
+                 href="https://latrobeuni-my.sharepoint.com/:i:/g/personal/jpierce_ltu_edu_au/EXFDneZKcrdOoB-Gh4xaDPkBTjomdopgJlUMZRnG2OV29A?e=8cyodf"
+                 style='width:45pt;height:62pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image014.jpg" o:title="A picture containing text&#10;&#10;Description automatically generated"/>
+                </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:17;height:11.0pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>, O’Halloran, R., Togher, L., &amp; Rose, M. (2016,
+                September). </span><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ERruViRUrWNAni9Bv-ib7rAB0pot8g8apDbwG05Cqd2Dtw?e=CUpTBQ"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Intensity of
+                aphasia therapy - How intensive does therapy need to be in chronic aphasia?</span></i></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> La Trobe Research Showcase, Melbourne, Australia.</span><span
+                style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ERruViRUrWNAni9Bv-ib7rAB0pot8g8apDbwG05Cqd2Dtw?e=ekj1ro"><span
+                style='font-size:11.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;mso-no-proof:yes;text-decoration:none;
+                text-underline:none'><v:shape id="Picture_x0020_21" o:spid="_x0000_i1032"
+                 type="#_x0000_t75"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ERruViRUrWNAni9Bv-ib7rAB0pot8g8apDbwG05Cqd2Dtw?e=ekj1ro"
+                 style='width:45pt;height:61pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image015.png" o:title=""/>
+                </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:18;height:11.0pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Pierce, J. E.</span></b><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'>, O’Halloran, R., Togher, L., &amp; Rose, M. (2016,
+                September).&nbsp;</span><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EeFJw0xYomdHtCE3PDq3HMYBF951eQOlbQtWQD3QTVvV5Q?e=w5RxSJ"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Are multi-modal
+                methods as effective as constraint in aphasia treatment?</span></i></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> Cabrini Research Week, Melbourne, Australia.</span><span
+                style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.0pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EWWsnr8-FWRDvLHV8snk4fkB5ciXd7nwByeTKJnifkbEOQ?e=7rgORb"><span
+                style='font-size:11.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;mso-no-proof:yes;text-decoration:none;
+                text-underline:none'><v:shape id="Picture_x0020_11" o:spid="_x0000_i1031"
+                 type="#_x0000_t75"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EWWsnr8-FWRDvLHV8snk4fkB5ciXd7nwByeTKJnifkbEOQ?e=7rgORb"
+                 style='width:44pt;height:62pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image016.png" o:title=""/>
+                </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+               </tr>
+               <tr style='mso-yfti-irow:19;height:90.25pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:90.25pt'>
+                <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Rose, M., Foster, A., <b>Pierce, J. E.</b>,
+                Menahemi-Falkov, M., Sekhon, J., Erickson, S., Hill, A., O’Halloran, R.,
+                &amp; Worrall, L.&nbsp;(2015, November). </span><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EXu7O7Jlo61MgYmRdnC2GWQBLHIERqreggw31O1fsw784A?e=h3f1fz"><i><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Service provision
+                for post-stroke aphasia in acute and sub-acute settings: Solutions for
+                addressing the evidence-practice gap.</span></i></a></span><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1'> 11<sup>th</sup> Clinical National Allied Health
+                Conference, Melbourne, Australia.</span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+                <td width=110 colspan=2 valign=top style='width:82.2pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:90.25pt'>
+                <p class=MsoNormal><span style='font-size:10.0pt'><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EXu7O7Jlo61MgYmRdnC2GWQBLHIERqreggw31O1fsw784A?e=Tylt6t"><span
+                style='font-size:11.0pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+                "Times New Roman";color:windowtext;mso-no-proof:yes;text-decoration:none;
+                text-underline:none'><v:shape id="Picture_x0020_22" o:spid="_x0000_i1030"
+                 type="#_x0000_t75"
+                 href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EXu7O7Jlo61MgYmRdnC2GWQBLHIERqreggw31O1fsw784A?e=Tylt6t"
+                 style='width:63pt;height:32pt;visibility:visible;mso-wrap-style:square'
+                 o:button="t">
+                 <v:fill o:detectmouseclick="t"/>
+                 <v:imagedata src="Curriculum%20Vitae.fld/image017.png" o:title=""/>
+                </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                </td>
+               </tr>
+        </div>
+        <div class="leftCol">
+            Memberships
+        </div>
+        <div class="rightCol">
+                        <p class=MsoNormal style='margin-bottom:6.0pt;text-align:justify;text-justify:
+            inter-ideograph;tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";mso-fareast-font-family:Calibri;color:black;
+            mso-themecolor:text1;mso-fareast-language:EN-US'>Collaboration of Aphasia
+            Trialists, Workgroup 4<o:p></o:p></span></p>
+            <p class=MsoNormal style='margin-bottom:6.0pt;text-align:justify;text-justify:
+            inter-ideograph;tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";mso-fareast-font-family:Calibri;color:black;
+            mso-themecolor:text1;mso-fareast-language:EN-US'>Centre for Research
+            Excellence in Aphasia Recovery and Rehabilitation<o:p></o:p></span></p>
+            <p class=MsoNormal style='margin-bottom:6.0pt;text-align:justify;text-justify:
+            inter-ideograph;tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";mso-fareast-font-family:Calibri;color:black;
+            mso-themecolor:text1;mso-fareast-language:EN-US'>Aphasia CRE Post Doc and PhD
+            Students Group<o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Student Supervision
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal style='margin-bottom:6.0pt;text-align:justify;text-justify:
+            inter-ideograph;tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";mso-fareast-font-family:Calibri;color:black;
+            mso-themecolor:text1;mso-fareast-language:EN-US'>Currently co-supervising two
+            full time PhD candidates (Melbourne), one part time PhD candidate (Spain).<o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Teaching
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal align=right style='margin-bottom:5.0pt;text-align:right'><b
+                style='mso-bidi-font-weight:normal'><span style='font-size:13.0pt;font-family:
+                "Adobe Garamond Pro",serif;color:#82B9A4'>Teaching<o:p></o:p></span></b></p>
+                </td>
+                <td width=507 colspan=3 valign=top style='width:379.9pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:51.0pt'>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-style:italic'>Aphasia intervention (2022).
+                Class delivered to PhD neuropsychology students by invitation, Monash
+                University.<o:p></o:p></span></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-style:italic'>Creation of lectures, <span
+                class=GramE>tutorials</span> and online content for three-week unit on
+                dysphagia – HCS2ICR (2020). Short-term contract delivered on time and to
+                budget for La Trobe University and University of Adelaide.<o:p></o:p></span></p>
+                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+                mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
+                inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Writing and
+                restructuring of online subject Critical Implementation of Evidence – HCS5CIE
+                (2020 S2). Short-term contract delivered on time and on budget for La Trobe
+                University and University of Adelaide. </span><b><i style='mso-bidi-font-style:
+                normal'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1'>Received highest student feedback score for
+                the subject to date, increasing from an average of 3.33/5 in 2018-19 to 4.42/5
+                in 2020.</span></i></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'><o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
+                inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Marking of
+                assignments – HCS2CSL. 2020 S1<o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
+                inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Delivered
+                lectures and skills classes on aphasia intervention– HCS5AIA. Two-hour
+                lecture, 2 x two-hour skills classes. 2019 S2<o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
+                inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Facilitator –
+                Cabrini Medical Mystery session (clinical case for medical, <span
+                class=GramE>nursing</span> and allied health students). 2019 x2<o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
+                inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Marking –
+                HCS5ASP. Marking of submissions for six assignments. 2019<o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
+                inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Marking –
+                HCS2CSL. Marking of submissions for all assignments. 2019 S1<o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
+                inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Marking –
+                HCS5CIE. Marking of submissions for all assignments and oral seminars. 2018
+                S2<o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
+                inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Marking –
+                HCS2CSL. Marking of submissions for all assignments. 2018 S1<o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1;
+                mso-bidi-font-style:italic'>Instance coordinator – HCS5CIE. Responsibilities
+                included forum posts, LMS management, gradebooks, marking group, individual
+                and oral presentation assignments. 2017 S2 </span><span style='font-size:
+                11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'><o:p></o:p></span></p>
+        </div>
+        <div class="leftCol" style="display: none;">
+            Recent Professional Development
+        </div>
+        <div class="rightCol" style="display: none;">
+            
+        </div>
+        <div class="leftCol">
+            Certifications
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>Lee Silverman
+                Voice Treatment – certified clinician.<o:p></o:p></span></p>
+                <p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>Clinical
+                Good Practice accreditation.<o:p></o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Research Impact
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt;
+                font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>Two
+                papers in ASHA evidence map for aphasia<o:p></o:p></span></p>
+                <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
+                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 0cm;mso-border-insideh:
+                 none;mso-border-insidev:none'>
+                 <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:34.45pt'>
+                  <td width=51 valign=top style='width:38.0pt;padding:0cm 5.4pt 0cm 0cm;
+                  height:34.45pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt;mso-no-proof:yes'><v:shape
+                   id="Picture_x0020_2" o:spid="_x0000_i1029" type="#_x0000_t75" alt="Logo Twitter Circle Image PNG Transparent Background, Free Download #47449  - FreeIconsPNG"
+                   style='width:28pt;height:28pt;visibility:visible;mso-wrap-style:square'>
+                   <v:imagedata src="Curriculum%20Vitae.fld/image018.png" o:title="Logo Twitter Circle Image PNG Transparent Background, Free Download #47449  - FreeIconsPNG"/>
+                  </v:shape></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
+                  </td>
+                  <td width=230 valign=top style='width:172.65pt;padding:0cm 5.4pt 0cm 0cm;
+                  height:34.45pt'>
+                  <p class=MsoNormal><span style='font-size:10.0pt'><a
+                  href="http://www.twitter.com/JohnPierce85"><span style='font-size:11.0pt;
+                  font-family:"Helvetica Neue Light";mso-fareast-font-family:Calibri;
+                  mso-fareast-language:EN-US'>Twitter handle</span></a></span><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";mso-fareast-font-family:
+                  Calibri;color:#82BAA4;mso-fareast-language:EN-US'><o:p></o:p></span></p>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;
+                  mso-fareast-language:EN-US'>1,970 followers<o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                 <tr style='mso-yfti-irow:1;height:34.6pt'>
+                  <td width=51 valign=top style='width:38.0pt;padding:0cm 5.4pt 0cm 0cm;
+                  height:34.6pt'>
+                  <p class=MsoNormal><span style='font-size:11.0pt'><span style='mso-no-proof:
+                  yes'><v:shape id="Picture_x0020_3" o:spid="_x0000_i1028" type="#_x0000_t75"
+                   style='width:28pt;height:28pt;visibility:visible;mso-wrap-style:square'>
+                   <v:imagedata src="Curriculum%20Vitae.fld/image019.png" o:href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/YouTube_social_red_circle_%282017%29.svg/1024px-YouTube_social_red_circle_%282017%29.svg.png"/>
+                  </v:shape></span><o:p></o:p></span></p>
+                  </td>
+                  <td width=230 valign=top style='width:172.65pt;padding:0cm 5.4pt 0cm 0cm;
+                  height:34.6pt'>
+                  <p class=MsoNormal><span style='font-size:10.0pt'><a
+                  href="https://www.youtube.com/channel/UCtigAXfJSqqiDUhNlohcVcA/featured"><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";mso-fareast-font-family:
+                  Calibri;mso-fareast-language:EN-US'>YouTube Channel</span></a></span><span
+                  class=MsoHyperlink><span style='font-size:11.0pt;mso-fareast-font-family:
+                  Calibri;mso-fareast-language:EN-US'> (tutorials)</span></span><u><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";mso-fareast-font-family:
+                  Calibri;color:#82BAA4;mso-fareast-language:EN-US'><o:p></o:p></span></u></p>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;
+                  mso-fareast-language:EN-US'>2050 subscribers<o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                 <tr style='mso-yfti-irow:2;mso-yfti-lastrow:yes;height:34.6pt'>
+                  <td width=51 valign=top style='width:38.0pt;padding:0cm 5.4pt 0cm 0cm;
+                  height:34.6pt'>
+                  <p class=MsoNormal><span style='font-size:10.0pt'><span style='mso-no-proof:
+                  yes'><v:shape id="Picture_x0020_1" o:spid="_x0000_i1027" type="#_x0000_t75"
+                   alt="ResearchGate and copyright - WUR" style='width:28pt;height:28pt;
+                   visibility:visible;mso-wrap-style:square'>
+                   <v:imagedata src="Curriculum%20Vitae.fld/image020.png" o:href="https://www.wur.nl/upload_mm/2/8/5/9f59698c-e156-4f33-9520-405cb7f4d9c6_researchgate_56f72ad6_490x330.png"
+                    cropleft="10404f" cropright="10404f"/>
+                  </v:shape></span><o:p></o:p></span></p>
+                  </td>
+                  <td width=230 valign=top style='width:172.65pt;padding:0cm 5.4pt 0cm 0cm;
+                  height:34.6pt'>
+                  <p class=MsoNormal><span style='font-size:10.0pt'><a
+                  href="https://www.researchgate.net/profile/John-Pierce/"><span
+                  style='font-size:11.0pt;font-family:"Helvetica Neue Light";mso-fareast-font-family:
+                  Calibri;mso-fareast-language:EN-US'>ResearchGate</span></a></span><span
+                  class=MsoHyperlink><span style='font-size:11.0pt;mso-fareast-font-family:
+                  Calibri;mso-fareast-language:EN-US'><o:p></o:p></span></span></p>
+                  <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+                  mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;
+                  mso-fareast-language:EN-US'>80,000 paper reads</span><span
+                  style='font-size:10.0pt'><o:p></o:p></span></p>
+                  </td>
+                 </tr>
+                </table>
+        </div>
+        <div class="leftCol">
+            Service
+        </div>
+        <div class="rightCol">
+            <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+            tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;mso-fareast-language:
+            EN-US'>Set up </span><span style='font-size:10.0pt'><a
+            href="https://rbcavanaugh.github.io/aphasia-tech-map/"><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light";mso-fareast-font-family:
+            Calibri;mso-fareast-language:EN-US'>Technology in Aphasia Map</span></a></span><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light";mso-fareast-font-family:
+            Calibri;color:black;mso-themecolor:text1;mso-fareast-language:EN-US'> with
+            Miranda Rose and Rob Cavanaugh – An international map of <span class=GramE>technology
+            based</span> research projects in aphasia.<o:p></o:p></span></p>
+            <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+            tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;mso-fareast-language:
+            EN-US'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+            tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;mso-fareast-language:
+            EN-US'>Organising committee member for the Aphasiology Symposium of
+            Australasia, Nov 2022.<o:p></o:p></span></p>
+            <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+            tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;mso-fareast-language:
+            EN-US'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+            tab-stops:83.9pt'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;mso-fareast-language:
+            EN-US'>Volunteer in Collaboration of Aphasia Trialists, Facebook team
+            2021-Present<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            mso-fareast-font-family:Calibri;color:black;mso-themecolor:text1;mso-fareast-language:
+            EN-US'>Produced free guide: </span><span style='font-size:10.0pt'><a
+            href="https://www.aphasiatrials.org/aphasia-friendly-video-abstract-project/"><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Developing an
+            aphasia-friendly video abstract – a how-to guide</span></a></span><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+            mso-themecolor:text1'>. Created with funding from the <span class=SpellE>Tavistock</span>
+            Trust for Aphasia.<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Facilitator – Aphasia CRE Seminars, 2021-2022.<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Update of the Australian Aphasia
+            Rehabilitation Pathway, 2021.<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Designed &amp; coded free therapy website </span><span
+            style='font-size:10.0pt'><a href="http://www.aphasiatherapyonline.com"><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#82B9A4'>www.aphasiatherapyonline.com</span></a></span><span
+            class=MsoHyperlink><span style='font-size:11.0pt;color:#82B9A4'><o:p></o:p></span></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Maintained from 2013 – present. Estimated 1500
+            hours of service.<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Currently working with volunteers to
+            translate into:<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Arabic <b>(complete)</b><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Greek<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Hindi<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Mandarin<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Malay<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Slovenian<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>European Portuguese <b>(complete)</b><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Brazilian Portuguese
+            <b>(complete)</b><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Spanish <b>(complete)</b><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Vietnamese<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Urdu <b>(complete)</b><o:p></o:p></span></p>
+            <p class=MsoNormal><b><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>45,000</span></i></b><i><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+            mso-themecolor:text1'> unique visitors per year<o:p></o:p></span></i></p>
+            <p class=MsoNormal><span class=MsoHyperlink><span style='font-size:11.0pt;
+            color:#82B9A4'><o:p><span style='text-decoration:none'>&nbsp;</span></o:p></span></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Published speech pathology </span><span
+            style='font-size:10.0pt'><a
+            href="https://www.youtube.com/channel/UCtigAXfJSqqiDUhNlohcVcA/featured"><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#82B9A4'>tutorials</span></a></span><span
+            style='font-size:11.0pt;color:black;mso-themecolor:text1'> </span><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+            mso-themecolor:text1'>on YouTube<o:p></o:p></span></p>
+            <p class=MsoNormal><b><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>102,000</span></i></b><i><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
+            mso-themecolor:text1'> combined views<o:p></o:p></span></i></p>
+            <p class=MsoNormal><i><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Published </span><span style='font-size:
+            10.0pt'><a href="https://www.youtube.com/watch?v=W7PmQt-B3Nc"><span
+            style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>video guide to
+            aphasia therapy software</span></a></span><span style='font-size:11.0pt;
+            font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'> on
+            YouTube for people with aphasia<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Peer review:<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Aphasiology<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Archives of Physical
+            Medicine and Rehabilitation<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Folia <span
+            class=SpellE>Phoniatrica</span> et <span class=SpellE>Logopedica</span> (by
+            invitation)<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>International
+            Journal of Speech-Language Pathology<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>International
+            Journal of Language and Communication Disorders (by invitation)<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Journal of Digital
+            Health<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>American Journal of
+            Speech-Language Pathology (2)<o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Journal of
+            Communication Disorders (by invitation) <o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpLast style='text-indent:-18.0pt;mso-list:l4 level1 lfo36'><![if !supportLists]><span
+            style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+            mso-bidi-font-family:Symbol;color:black;mso-themecolor:text1'><span
+            style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span></span></span><![endif]><span style='font-size:11.0pt;font-family:
+            "Helvetica Neue Light";color:black;mso-themecolor:text1'>Journal of
+            Neurology, Neurosurgery and Psychiatry<o:p></o:p></span></p>
+            <p class=MsoNormal style='margin-left:8.65pt'><span style='font-size:11.0pt;
+            font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Presented at Parkinson’s Disease fundraising
+            event, Caulfield. 2018.<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Presented to Aphasia CRE Postdoc group on
+            creating video abstracts. 2019.<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Presented to ABI Communication Lab on creating
+            video abstracts. 2020.<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'>Presented at Collaboration of Aphasia
+            Trialists workshop on creating video abstracts. 2021.<o:p></o:p></span></p>
+            <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
+            color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
+        </div>
+        <div class="leftCol">
+            Collaboration (Published papers)
+        </div>
+        <div class="rightCol">
+            
+        </div>
+    </div>
+    </div>
 </body>

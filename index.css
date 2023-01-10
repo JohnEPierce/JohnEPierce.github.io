@@ -9,6 +9,7 @@
 body {
     background: rgb(142,142,142);
     background: linear-gradient(325deg, rgb(100, 100, 150) 0%, rgb(140, 130, 160) 49%, rgb(100, 100, 150) 100%);
+    background-size:cover;
     font-family: Quicksand, Calibri, Arial, Helvetica, sans-serif;
     max-width: 60vw;
     margin: auto;
@@ -25,7 +26,6 @@ body {
 #profileimg {
     border-radius: 50%;
     max-width: 50%;
-    min-width: none;
     max-height: 20vh;
 }
 
@@ -39,7 +39,7 @@ body {
 
 .externalLinks a {
     color: var(--primary-color);
-
+    transition: all 0.2s ease;
 }
 .externalLinks a svg {
 
@@ -48,7 +48,11 @@ body {
     max-height: 2rem;
 }
 .externalLinks a:hover {
-    transition: all 0.2s;
+    transition: all 0.2s ease;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 0,0.45));
+    /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0,0.45);
+    background: rgb(54, 54, 54); */
 }
 #twitter:hover {
     color: #1DA1F2;
@@ -57,7 +61,7 @@ body {
     color: #FF0000;
 }
 #aphasiatherapyonline:hover {
-    color: rgb(68, 208, 7);
+    color: rgb(82, 187, 82);
 }
 #emaila:hover {
     color:#fddb00;
@@ -76,8 +80,8 @@ body {
 }
 .bioParagraph p {
     /* background-color: var(--soft-primary-color); */
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 1rem 0;
+    font-size: 1.2rem;
     font-weight: 500;
     border-radius: 1rem;
     margin: 0;
@@ -104,6 +108,14 @@ body {
 }
 .focus {
     color: var(--focus-color)!important;
+}
+
+/* WORDCLOUD */
+.wordcloud {
+    overflow-wrap: break-word;
+}
+.wordcloud span {
+    margin: auto 0.3rem;
 }
 
 /* CONTENT LINKS */

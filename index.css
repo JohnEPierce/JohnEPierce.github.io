@@ -16,6 +16,9 @@ body {
     margin: auto;
     height: max-content;
 }
+a {
+    text-decoration: none;
+}
 
 /* PROFILE */
 .profileContainer {
@@ -55,6 +58,10 @@ body {
     /* filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 0,0.45)); */
     /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0,0.45);
     background: rgb(54, 54, 54); */
+}
+.externalLinks *:hover {
+
+    cursor: pointer;
 }
 #twitter:hover {
     color: #1DA1F2;
@@ -130,20 +137,34 @@ body {
 }
 
 /* CONTENT LINKS */
-.contentlinks > div {
+.contentlinks > div a {/* card */
     transition: all 0.2s;
     color: var(--primary-color);
     border-radius: 0.5rem;
-    padding: 1rem;
     margin: 0.5rem 0;
     background-color: var(--soft-primary-color);
     display: flex;
     flex-direction: row;
     vertical-align: middle;
+    overflow: hidden;
 }
 
-.contentlinks img {
-    max-height: 6rem;
+.contentlinks div a div {
+    padding: 0 1rem;
+    height: 6rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.cardColumnLeft {
+    display: block;
+    position: relative;
+}
+
+.cardColumnRight {
+    justify-content:flex-end;
 }
 
 .hidden {

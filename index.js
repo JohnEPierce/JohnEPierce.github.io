@@ -36,7 +36,7 @@ toplinks.forEach(function(element){
 })
 
 //Wordcloud
-var elements = Array.from(document.querySelector(".contentlinks").querySelectorAll('*'));
+var elements = Array.from(document.querySelector(".contentlinks").querySelectorAll(".contentlinks > div"));
 const wordcloud = document.querySelector(".wordcloud");
 var classCounts = elements.reduce((acc, curr) => {
     curr.classList.forEach(className => {

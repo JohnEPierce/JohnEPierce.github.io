@@ -42,12 +42,36 @@
         //https://api.elsevier.com/metrics/metrics?metrics=ScholarlyOutput%2CCitedPublications&authors=57209304655&includeSelfCitations=true&byYear=true&includedDocs=AllPublicationTypes&journalImpactType=CiteScore&showAsFieldWeighted=false&indexType=hIndex&apiKey=82f43dfad55c686aeadb39347e41084c
 
         //strip word styling
-        var wordStyling = ["class=MsoNormal", "mso-bidi-font-weight:normal","font-size:11.0pt;",'font-family:"Helvetica Neue Light";',"mso-themecolor:text1","mso-themetint:217","color:#262626;",'Helvetica Neue Light','font-family','MsoNormal',"11.0pt","10.0pt", "-18.0pt;"];
+        var wordStyling = ["class=MsoNormal", "mso-bidi-font-weight:normal","font-size:11.0pt;",'font-family:"Helvetica Neue Light";',"mso-themecolor:text1","mso-themetint:217","color:#262626;",'Helvetica Neue Light','font-family','MsoNormal',"11.0pt","10.0pt", "-18.0pt;","padding:0cm 5.4pt 0cm 5.4pt","width:297.7pt;","height:11.2pt","width:82.2pt;",'width="397','width="110'];
         for (var str of wordStyling) {
             document.body.innerHTML = document.body.innerHTML.replaceAll(str, '');
         }
 
+        //Twitter followers
+        //https://api.twitter.com/2/users/johnpierce85?user.fields=public_metrics
+
+        //Sticky scroll headers
+        // // When the user scrolls the page, execute myFunction
+        // window.onscroll = function() {stick()};
+
+        // // Get the header
+        // var header = document.getElementById("education");
+
+        // // Get the offset position of the navbar
+        // var sticky = header.offsetTop;
+
+        // // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        // function stick() {
+        // if (window.pageYOffset > sticky) {
+        //     header.classList.add("sticky");
+        // } else {
+        //     header.classList.remove("sticky");
+        // }
+        // } 
+
     }
+
+    
     </script>
     <div id="header">
         <h1>John E. Pierce, PhD</h1>
@@ -77,12 +101,12 @@
         <p>
             <span><span id="yearsPost">1</span> year post PhD</span>
             <span><span>$291k</span> funding | <span>$191k</span> as CIA </span>
-            <span><span>8</span> articles </span>
+            <span><span>10</span> articles </span>
             <span><span>80</span> citations</span>
         </p>
     </div>
     <div id="content">
-        <div class="leftCol">Education</div>
+        <div class="leftCol" id="education">Education</div>
         <div class="rightCol">
             <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
                 style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:#262626;
@@ -547,8 +571,8 @@
                  alt="" href="https://www.youtube.com/watch?v=dT7Sic8Gimc" style='width:8pt;
                  height:8pt;visibility:visible;mso-wrap-style:square;mso-width-percent:0;
                  mso-height-percent:0;mso-width-percent:0;mso-height-percent:0' o:button="t">
-                 <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
+                 <v:fill o:detectmouseclick="t"/></a>
+                 <img class="inlineicon" src="images/image006.png" o:title=""/>
                 </v:shape></span></span><span style='mso-bookmark:_Hlk100558922'></span></a><span
                 style='mso-bookmark:_Hlk100558922'><span style='font-size:10.0pt'><span
                 style='mso-spacerun:yes'> </span></span></span><a
@@ -561,7 +585,7 @@
                  mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
                  none;mso-border-insidev:none'>
                  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
-                  <td width=165 valign=top style='width:123.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+                  <td width=165 valign=top style='width:100%;padding:0cm 5.4pt 0cm 5.4pt'>
                   <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><span
                   style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
                   mso-themecolor:text1;mso-no-proof:yes'><v:shape id="Picture_x0020_30"
@@ -619,9 +643,9 @@
                  href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"
                  style='width:8pt;height:8pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
-                 <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
-                 <o:lock v:ext="edit" aspectratio="f"/>
+                 <v:fill o:detectmouseclick="t"/></a>
+                 <img class="inlineicon" src="images/image006.png" o:title=""/>
+                 
                 </v:shape></span></a><span style='mso-spacerun:yes'> </span><a
                 href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><i><span
                 style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video abstract</span></i></a></span><i><span
@@ -713,9 +737,9 @@
                  style='width:8pt;height:8pt;visibility:visible;mso-wrap-style:square;
                  mso-width-percent:0;mso-height-percent:0;mso-width-percent:0;
                  mso-height-percent:0' o:button="t">
-                 <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
-                 <o:lock v:ext="edit" aspectratio="f"/>
+                 <v:fill o:detectmouseclick="t"/></a>
+                 <img class="inlineicon" src="images/image006.png" o:title=""/>
+                 
                 </v:shape></span></a></span><span style='font-size:10.0pt'><span
                 style='mso-spacerun:yes'> </span><a
                 href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top"><i><span
@@ -764,9 +788,8 @@
                  style='width:8pt;height:8pt;visibility:visible;mso-wrap-style:square;
                  mso-width-percent:0;mso-height-percent:0;mso-width-percent:0;
                  mso-height-percent:0' o:button="t">
-                 <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
-                 <o:lock v:ext="edit" aspectratio="f"/>
+                 <v:fill o:detectmouseclick="t"/></a>
+                 <img class="inlineicon" src="images/image006.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:10.0pt'><span
                 style='mso-spacerun:yes'> </span><a href="https://vimeo.com/437127608"><i><span
                 style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video abstract</span></i></a></span><span
@@ -824,9 +847,9 @@
                  style='width:8pt;height:8pt;visibility:visible;mso-wrap-style:square;
                  mso-width-percent:0;mso-height-percent:0;mso-width-percent:0;
                  mso-height-percent:0' o:button="t">
-                 <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
-                 <o:lock v:ext="edit" aspectratio="f"/>
+                 <v:fill o:detectmouseclick="t"/></a>
+                 <img class="inlineicon" src="images/image006.png" o:title=""/>
+                 
                 </v:shape></span></a></span><span style='font-size:10.0pt'><span
                 style='mso-spacerun:yes'> </span><a href="https://vimeo.com/427783862"><i><span
                 style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Video abstract –
@@ -838,9 +861,9 @@
                  id="_x0000_i1045" type="#_x0000_t75" href="https://vimeo.com/427784453"
                  style='width:9pt;height:9pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
-                 <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
-                 <o:lock v:ext="edit" aspectratio="f"/>
+                 <v:fill o:detectmouseclick="t"/></a>
+                 <img class="inlineicon" src="images/image006.png" o:title=""/>
+                 
                 </v:shape></span></a><span style='mso-spacerun:yes'> </span><a
                 href="https://vimeo.com/427784453"><i><span style='font-size:11.0pt;
                 font-family:"Helvetica Neue Light"'>Video abstract – aphasia friendly</span></i></a></span><span
@@ -895,9 +918,9 @@
                  o:spid="_x0000_i1043" type="#_x0000_t75"
                  href="https://doi.org/10.23641/asha.7646717" style='width:9pt;height:9pt;
                  visibility:visible;mso-wrap-style:square' o:button="t">
-                 <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image006.png" o:title=""/>
-                 <o:lock v:ext="edit" aspectratio="f"/>
+                 <v:fill o:detectmouseclick="t"/></a>
+                 <img class="inlineicon" src="images/image006.png" o:title=""/>
+                 
                 </v:shape></span></a></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
                 color:black;mso-themecolor:text1'><span style='mso-spacerun:yes'> </span></span><span
                 style='font-size:10.0pt'><a href="https://doi.org/10.23641/asha.7646717"><i><span
@@ -1320,7 +1343,11 @@
         <div class="leftCol">
             Conference Posters
         </div>
-        <div class="rightCol">
+        <div class="rightCol" id="posters">
+            <table style="width: 100%;">
+            <tr style='mso-yfti-irow:11;height:11.2pt'>
+                <td width=397 valign=top style='width:297.7pt;padding:15.6pt 2.85pt 0cm 5.65pt;
+                height:11.2pt'>
             <p class=MsoNormal><b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>Pierce,
                 J. E.</span></b><span style='font-size:11.0pt;font-family:"Helvetica Neue Light"'>,
                 Harvey, S., Dickey, M., Cadilhac, D., Carragher, M., Copland, D., Foster, A.,
@@ -1346,7 +1373,7 @@
                  style='width:62pt;height:35pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image008.png" o:title="Calendar&#10;&#10;Description automatically generated with medium confidence"/>
+                 <img src="images/image008.png" o:title="Calendar&#10;&#10;Description automatically generated with medium confidence"/>
                 </v:shape></span></a></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
                 color:black;mso-themecolor:text1;mso-no-proof:yes'><o:p></o:p></span></p>
                 </td>
@@ -1381,7 +1408,7 @@
                  style='width:62pt;height:35pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image009.emz" o:title=""/>
+                 <img src="images/image009.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
                 color:black;mso-themecolor:text1;mso-no-proof:yes'><span
                 style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
@@ -1414,7 +1441,7 @@
                  style='width:43pt;height:61pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image010.png" o:title=""/>
+                 <img src="images/image010.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
                 color:black;mso-themecolor:text1'><o:p></o:p></span></p>
                 </td>
@@ -1448,7 +1475,7 @@
                  style='width:62pt;height:32pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image011.png" o:title=""/>
+                 <img src="images/image011.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
                 </td>
                </tr>
@@ -1480,7 +1507,7 @@
                  style='width:45pt;height:62pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image012.png" o:title=""/>
+                 <img src="images/image012.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
                 </td>
                </tr>
@@ -1511,7 +1538,7 @@
                  style='width:44pt;height:63pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image013.png" o:title=""/>
+                 <img src="images/image013.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
                 </td>
                </tr>
@@ -1545,7 +1572,7 @@
                  style='width:45pt;height:62pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image014.jpg" o:title="A picture containing text&#10;&#10;Description automatically generated"/>
+                 <img src="images/image014.jpg" o:title="A picture containing text&#10;&#10;Description automatically generated"/>
                 </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
                 </td>
                </tr>
@@ -1576,7 +1603,7 @@
                  style='width:45pt;height:61pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image015.png" o:title=""/>
+                 <img src="images/image015.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
                 </td>
                </tr>
@@ -1607,7 +1634,7 @@
                  style='width:44pt;height:62pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image016.png" o:title=""/>
+                 <img src="images/image016.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
                 </td>
                </tr>
@@ -1638,10 +1665,11 @@
                  style='width:63pt;height:32pt;visibility:visible;mso-wrap-style:square'
                  o:button="t">
                  <v:fill o:detectmouseclick="t"/>
-                 <v:imagedata src="Curriculum%20Vitae.fld/image017.png" o:title=""/>
+                 <img src="images/image017.png" o:title=""/>
                 </v:shape></span></a></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
                 </td>
                </tr>
+            </table>
         </div>
         <div class="leftCol">
             Memberships
@@ -1676,13 +1704,7 @@
         <div class="leftCol">
             Teaching
         </div>
-        <div class="rightCol">
-            <p class=MsoNormal align=right style='margin-bottom:5.0pt;text-align:right'><b
-                style='mso-bidi-font-weight:normal'><span style='font-size:13.0pt;font-family:
-                "Adobe Garamond Pro",serif;color:#82B9A4'>Teaching<o:p></o:p></span></b></p>
-                </td>
-                <td width=507 colspan=3 valign=top style='width:379.9pt;padding:15.6pt 2.85pt 0cm 5.65pt;
-                height:51.0pt'>
+        <div class="rightCol" id="teaching">
                 <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
                 style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
                 mso-themecolor:text1;mso-bidi-font-style:italic'>Aphasia intervention (2022).
@@ -1690,16 +1712,10 @@
                 University.<o:p></o:p></span></p>
                 <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
                 style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
-                mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
-                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
                 mso-themecolor:text1;mso-bidi-font-style:italic'>Creation of lectures, <span
                 class=GramE>tutorials</span> and online content for three-week unit on
                 dysphagia – HCS2ICR (2020). Short-term contract delivered on time and to
                 budget for La Trobe University and University of Adelaide.<o:p></o:p></span></p>
-                <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
-                mso-themecolor:text1;mso-bidi-font-style:italic'><o:p>&nbsp;</o:p></span></p>
                 <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;text-justify:
                 inter-ideograph'><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
                 color:black;mso-themecolor:text1;mso-bidi-font-style:italic'>Writing and
@@ -1769,24 +1785,24 @@
         <div class="leftCol">
             Research Impact
         </div>
-        <div class="rightCol">
+        <div class="rightCol" id="researchImpact">
             <p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt;
                 font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'>Two
                 papers in ASHA evidence map for aphasia<o:p></o:p></span></p>
                 <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
-                 style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 style='width:16rem;fit-content;border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
                  mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 0cm;mso-border-insideh:
                  none;mso-border-insidev:none'>
                  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:34.45pt'>
-                  <td width=51 valign=top style='width:38.0pt;padding:0cm 5.4pt 0cm 0cm;
+                  <td valign=top style='padding:0cm 5.4pt 0cm 0cm;
                   height:34.45pt'>
                   <p class=MsoNormal><span style='font-size:11.0pt;mso-no-proof:yes'><v:shape
                    id="Picture_x0020_2" o:spid="_x0000_i1029" type="#_x0000_t75" alt="Logo Twitter Circle Image PNG Transparent Background, Free Download #47449  - FreeIconsPNG"
-                   style='width:28pt;height:28pt;visibility:visible;mso-wrap-style:square'>
-                   <v:imagedata src="Curriculum%20Vitae.fld/image018.png" o:title="Logo Twitter Circle Image PNG Transparent Background, Free Download #47449  - FreeIconsPNG"/>
+                   style='height:28pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/image018.png" o:title="Logo Twitter Circle Image PNG Transparent Background, Free Download #47449  - FreeIconsPNG"/>
                   </v:shape></span><span style='font-size:11.0pt'><o:p></o:p></span></p>
                   </td>
-                  <td width=230 valign=top style='width:172.65pt;padding:0cm 5.4pt 0cm 0cm;
+                  <td valign=top style='padding:0cm 5.4pt 0cm 0cm;
                   height:34.45pt'>
                   <p class=MsoNormal><span style='font-size:10.0pt'><a
                   href="http://www.twitter.com/JohnPierce85"><span style='font-size:11.0pt;
@@ -1800,15 +1816,15 @@
                   </td>
                  </tr>
                  <tr style='mso-yfti-irow:1;height:34.6pt'>
-                  <td width=51 valign=top style='width:38.0pt;padding:0cm 5.4pt 0cm 0cm;
+                  <td valign=top style='padding:0cm 5.4pt 0cm 0cm;
                   height:34.6pt'>
                   <p class=MsoNormal><span style='font-size:11.0pt'><span style='mso-no-proof:
                   yes'><v:shape id="Picture_x0020_3" o:spid="_x0000_i1028" type="#_x0000_t75"
-                   style='width:28pt;height:28pt;visibility:visible;mso-wrap-style:square'>
-                   <v:imagedata src="Curriculum%20Vitae.fld/image019.png" o:href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/YouTube_social_red_circle_%282017%29.svg/1024px-YouTube_social_red_circle_%282017%29.svg.png"/>
+                   style='height:28pt;visibility:visible;mso-wrap-style:square'>
+                   <img src="images/image019.png" o:href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/YouTube_social_red_circle_%282017%29.svg/1024px-YouTube_social_red_circle_%282017%29.svg.png"/>
                   </v:shape></span><o:p></o:p></span></p>
                   </td>
-                  <td width=230 valign=top style='width:172.65pt;padding:0cm 5.4pt 0cm 0cm;
+                  <td valign=top style='padding:0cm 5.4pt 0cm 0cm;
                   height:34.6pt'>
                   <p class=MsoNormal><span style='font-size:10.0pt'><a
                   href="https://www.youtube.com/channel/UCtigAXfJSqqiDUhNlohcVcA/featured"><span
@@ -1830,7 +1846,7 @@
                   yes'><v:shape id="Picture_x0020_1" o:spid="_x0000_i1027" type="#_x0000_t75"
                    alt="ResearchGate and copyright - WUR" style='width:28pt;height:28pt;
                    visibility:visible;mso-wrap-style:square'>
-                   <v:imagedata src="Curriculum%20Vitae.fld/image020.png" o:href="https://www.wur.nl/upload_mm/2/8/5/9f59698c-e156-4f33-9520-405cb7f4d9c6_researchgate_56f72ad6_490x330.png"
+                   <img src="images/image020.png" o:href="https://www.wur.nl/upload_mm/2/8/5/9f59698c-e156-4f33-9520-405cb7f4d9c6_researchgate_56f72ad6_490x330.png"
                     cropleft="10404f" cropright="10404f"/>
                   </v:shape></span><o:p></o:p></span></p>
                   </td>

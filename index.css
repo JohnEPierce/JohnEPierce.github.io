@@ -1,14 +1,15 @@
 :root {
-    --primary-color: white;
-    --secondary-color: rgb(5,5,5);
+    --primary-color: rgb(55, 50, 46);
+    --secondary-color: #f0f1f1;
     --soft-primary-color: rgba(255,255,255,0.5);
     --focus-color: rgb(0,150,0);
   }
   
 
 body {
-    background: rgb(142,142,142);
-    background: linear-gradient(325deg, rgb(100, 100, 150) 0%, rgb(140, 130, 160) 49%, rgb(100, 100, 150) 100%);
+    /* background: rgb(142,142,142); */
+    /* background: linear-gradient(325deg, rgb(100, 100, 150) 0%, rgb(140, 130, 160) 49%, rgb(100, 100, 150) 100%); */
+    background-color: #f0f1f1;
     background-size:cover;
     font-family: Quicksand, Calibri, Arial, Helvetica, sans-serif;
     max-width: 60vw;
@@ -27,6 +28,7 @@ body {
     border-radius: 50%;
     max-width: 50%;
     max-height: 20vh;
+    box-shadow: 0 3.5vh 40px 0 rgba(0, 0, 0, 0.09);
 }
 
 /* EXTERNAL LINKS */
@@ -50,7 +52,7 @@ body {
 .externalLinks a:hover {
     transition: all 0.2s ease;
     transform: scale(1.2);
-    filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 0,0.45));
+    /* filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 0,0.45)); */
     /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0,0.45);
     background: rgb(54, 54, 54); */
 }
@@ -85,6 +87,7 @@ body {
     font-weight: 500;
     border-radius: 1rem;
     margin: 0;
+    color: var(--primary-color);
 }
 
 /* TOP LINKS */
@@ -113,19 +116,34 @@ body {
 /* WORDCLOUD */
 .wordcloud {
     overflow-wrap: break-word;
+    background-color: var(--soft-primary-color);
+    padding: 0.5rem 1rem 1rem 1rem;
+    border-radius: 0.5rem;
+    color: rgba(var(--primary-color),0.7);
 }
 .wordcloud span {
     margin: auto 0.3rem;
+}
+#learnAbout {
+    font-size: 1.5rem;
+    color: var(--primary-color);
 }
 
 /* CONTENT LINKS */
 .contentlinks > div {
     transition: all 0.2s;
-    color: var(--secondary-color);
-    border-radius: 1rem;
+    color: var(--primary-color);
+    border-radius: 0.5rem;
     padding: 1rem;
     margin: 0.5rem 0;
     background-color: var(--soft-primary-color);
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+}
+
+.contentlinks img {
+    max-height: 6rem;
 }
 
 .hidden {

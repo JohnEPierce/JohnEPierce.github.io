@@ -9,6 +9,7 @@
 body {
     /* background: rgb(142,142,142); */
     /* background: linear-gradient(325deg, rgb(100, 100, 150) 0%, rgb(140, 130, 160) 49%, rgb(100, 100, 150) 100%); */
+    background: linear-gradient(180deg, rgba(240,241,241,0) 0%, rgba(230,230,230,1) 100%);
     background-color: #f0f1f1;
     background-size:cover;
     font-family: Quicksand, Calibri, Arial, Helvetica, sans-serif;
@@ -37,7 +38,7 @@ a {
 /* EXTERNAL LINKS */
 .externalLinks {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-around;
     padding: 0 20vw;
 }
@@ -59,10 +60,20 @@ a {
     /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0,0.45);
     background: rgb(54, 54, 54); */
 }
+.externalLinks a:hover > .externalLinkLabel {
+    visibility:visible;
+}
 .externalLinks *:hover {
 
     cursor: pointer;
 }
+.externalLinkLabel {
+    font-size: 0.8rem;
+    text-align: center;
+    visibility: hidden;
+    transition: in 0.2s ease;
+}
+
 #twitter:hover {
     color: #1DA1F2;
 }
@@ -70,10 +81,10 @@ a {
     color: #FF0000;
 }
 #aphasiatherapyonline:hover {
-    color: rgb(82, 187, 82);
+    color: rgb(71, 117, 62);
 }
 #emaila:hover {
-    color:#fddb00;
+    color:#ff8300;
 }
 #latrobe:hover {
     color: #e22333;
@@ -82,16 +93,16 @@ a {
 
 /* BIO PARAGRAPH */
 .bioParagraph {
-    margin: 1rem auto;
+    margin: 1rem auto 2rem auto;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 .bioParagraph p {
-    /* background-color: var(--soft-primary-color); */
-    padding: 1rem 0;
-    font-size: 1.2rem;
-    font-weight: 500;
+    background-color: var(--soft-primary-color);
+    padding: 1rem;
+    font-size: 1.3rem;
+    font-weight: 400;
     border-radius: 1rem;
     margin: 0;
     color: var(--primary-color);
@@ -123,10 +134,10 @@ a {
 /* WORDCLOUD */
 .wordcloud {
     overflow-wrap: break-word;
-    background-color: var(--soft-primary-color);
+    background-color: var(--primary-color);
     padding: 0.5rem 1rem 1rem 1rem;
-    border-radius: 0.5rem;
-    color: rgba(var(--primary-color),0.7);
+    border-radius: 0.5rem 0.5rem 0 0 ;
+    color: var(--secondary-color);
 }
 .wordcloud span {
     margin: auto 0.3rem;
@@ -140,6 +151,8 @@ a {
 .contentlinks {
     font-weight: 600;
     font-size: 1.2rem;
+    background-color: var(--primary-color);
+    padding: 0.5rem 1rem 1rem 1rem;
 }
 
 .contentlinks > div a {/* card */
@@ -151,6 +164,15 @@ a {
     display: grid;
     flex-direction: row;
     align-items: center;
+    overflow: hidden;
+}
+.contentlinks a:hover {
+    transition: all 0.2s ease;
+    transform: scale(1.01);
+    box-shadow: 0 3.5vh 40px 0 rgba(0, 0, 0, 0.09);
+    /* filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 0,0.45)); */
+    /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0,0.45);
+    background: rgb(54, 54, 54); */
 }
 
 .contentlinks div a div {
@@ -169,8 +191,6 @@ a {
 }
 
 .cardColumnRight {
-    justify-content:flex-end;
-    grid-column: 2/3;
 }
 
 .contentlinks p {
@@ -181,6 +201,18 @@ a {
     height: 0;
     display: none;
 }
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
 
 @media (orientation: portrait) {
     body {

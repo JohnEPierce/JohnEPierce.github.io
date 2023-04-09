@@ -34,7 +34,7 @@
         let now = Date.now();
         console.log(now);
         const Phd = 1628204400000;
-        let elapsed = Math.round((now - Phd)/31556736000);
+        let elapsed = ((now - Phd)/31556736000).toFixed(1);
         document.getElementById("yearsPost").innerHTML = elapsed;
 
         //Scopus details
@@ -51,23 +51,23 @@
         //https://api.twitter.com/2/users/johnpierce85?user.fields=public_metrics
 
         //Sticky scroll headers
-        // // When the user scrolls the page, execute myFunction
-        // window.onscroll = function() {stick()};
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {stick()};
 
-        // // Get the header
-        // var header = document.getElementById("education");
+        // Get the header
+        var header = document.getElementById("education");
 
-        // // Get the offset position of the navbar
-        // var sticky = header.offsetTop;
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
 
-        // // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-        // function stick() {
-        // if (window.pageYOffset > sticky) {
-        //     header.classList.add("sticky");
-        // } else {
-        //     header.classList.remove("sticky");
-        // }
-        // } 
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function stick() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+        } 
 
     }
 
@@ -99,7 +99,7 @@
     </div>
     <div id="details">
         <p>
-            <span><span id="yearsPost">1</span> year post PhD</span>
+            <span><span id="yearsPost">1</span> years post PhD</span>
             <span><span>$291k</span> funding | <span>$191k</span> as CIA </span>
             <span><span>10</span> articles </span>
             <span><span>80</span> citations</span>
@@ -595,7 +595,7 @@
                   </v:shape></span></span><span style='mso-bookmark:_Hlk100558922'><span
                   style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
                   mso-themecolor:text1'><span style='mso-spacerun:yes'> </span><span
-                  class=SpellE>Altmetrics</span>: 55<i><o:p></o:p></i></span></span></p>
+                  class=SpellE>Altmetrics</span>: 55<i></i></span></span></p>
                   </td>
                   <span style='mso-bookmark:_Hlk100558922'></span>
                   <td width=165 valign=top style='width:123.6pt;padding:0cm 5.4pt 0cm 5.4pt'><span
@@ -620,9 +620,7 @@
                   <span style='mso-bookmark:_Hlk100558922'></span>
                  </tr>
                 </table>
-                <p class=MsoNormal><span style='mso-bookmark:_Hlk100558922'><i><span
-                style='font-size:11.0pt;font-family:"Helvetica Neue Light";color:black;
-                mso-themecolor:text1'><o:p>&nbsp;</o:p></span></i></span></p>
+                
                 <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";
                 color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
                 <p class=MsoNormal><span style='font-size:11.0pt;font-family:"Helvetica Neue Light";

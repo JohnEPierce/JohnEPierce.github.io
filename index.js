@@ -94,3 +94,6 @@ const sortedSpans = Array.from(spanElements).sort((a, b) => {
 
 // Append the sorted span elements to the wordcloud div
 sortedSpans.forEach(span => wordcloud.appendChild(span));
+
+//Remove underscores
+spanElements.forEach(item => {item.innerHTML = item.innerHTML.replace(/_/g, " ");});

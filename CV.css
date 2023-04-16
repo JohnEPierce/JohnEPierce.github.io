@@ -102,6 +102,15 @@ svg {
     color: var(--secondary-color);
     min-width: 30%;
 }
+    .rightCol table {
+        width: 100%;
+    }
+    .rightCol ul {
+        list-style-type: "-  ";
+    }
+    .rightCol > img {
+        width: 100%;
+    }
 
 .sticky {
     position: fixed;

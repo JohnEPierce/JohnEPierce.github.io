@@ -32,7 +32,6 @@
 
         //Years post PhD
         let now = Date.now();
-        console.log(now);
         const Phd = 1628204400000;
         let elapsed = ((now - Phd)/31556736000).toFixed(1);
         document.getElementById("yearsPost").innerHTML = elapsed;
@@ -48,32 +47,108 @@
         }
 
         //Twitter followers
-        //https://api.twitter.com/2/users/johnpierce85?user.fields=public_metrics
+        const apiKey = "HtcNYyswFqWP4xiF31n2egJsF";
+        const apiSecretKey = "TRxgg5CMqCHqsNtjqBo6xBJsPmHoWW1oD76V1frHLclgIWIXiX";
+        const accessToken = "215458867-48cr3vdNJjbgTdDzeZBPCd62EVtpBgkt2HkKgyZp";
+        const accessTokenSecret = "ArRxSgq8VoMzRWkynM6ic6ePDxNQM6G36R6kKEVMRPZn7";
 
+        const handle = "johnpierce85";
+
+        const url = `https://api.twitter.com/1.1/users/show.json?screen_name=${handle}`;
+
+        const headers = new Headers();
+        headers.append("Authorization", `Bearer ${accessToken}`);
+        headers.append("Content-Type", "application/json");
+
+        const requestOptions = {
+        method: "GET",
+        headers: headers,
+        redirect: "follow",
+        };
+
+        fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log("Number of followers:", result.followers_count);
+        })
+        .catch((error) => console.log("error", error));
+
+
+
+
+        
         //Sticky scroll headers
-        // When the user scrolls the page, execute myFunction
-        window.onscroll = function() {stick()};
+        // Get the divs you want to make sticky
+        var divsArray = Array.from(document.querySelectorAll('.leftCol div'));
 
-        // Get the headers
+        // Loop through the divs and get their offsetTop values
+        var stickyTops = divsArray.map(function(div) {
+        return div.offsetTop;
+        });
+
+        // Get starting point offset positions
         const header = document.getElementById("education");
-
-        // Get the offset position of the navbar
         var sticky = header.offsetTop;
         var stickyinset = header.offsetLeft;
         var stickywidth = header.offsetWidth;
+        var homeArrowTrigger = document.getElementById("ProfessionalExperience").offsetTop;
 
-        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-        function stick() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("sticky");
-            header.style.left = stickyinset+"px";
-            header.style.width = stickywidth+"px";
-        } else {
-            header.classList.remove("sticky");
+        // Function to check which element should be sticky
+        function updateSticky() {
+        var scrollPosition = window.pageYOffset;
+
+        // Loop through the stickyTops array in reverse order
+        for (var i = stickyTops.length - 1; i >= 0; i--) {
+            if (scrollPosition+10 >= stickyTops[i]) {
+                //remove other stickies so they don't accumulate
+                divsArray.forEach(function(div) {
+                div.classList.remove('sticky');
+                });
+            // Make the corresponding div sticky if it's not already sticky
+            if (!divsArray[i].classList.contains('sticky')) {
+                divsArray[i].classList.add('sticky');
+                divsArray[i].style.left = stickyinset+"px";
+                divsArray[i].style.width = stickywidth+"px";
+                break;
+            }
+            break;
+            } else {
+            // Remove the sticky class from all divs
+            divsArray[i].classList.remove('sticky');
+            }
         }
-        } 
+        };
 
-    }
+        // When the user scrolls the page, execute
+        window.onscroll = function() {
+        if (window.pageYOffset > sticky) {
+            updateSticky();
+        } else {
+            // Remove the sticky class from all divs if the user scrolls back up to the top
+            divsArray.forEach(function(div) {
+            div.classList.remove('sticky');
+            });
+        }
+        //show or hide home arrow
+        homeArrow = document.getElementById("homeArrow");
+        if(window.pageYOffset > homeArrowTrigger){
+            homeArrow.style.opacity = 1;
+            homeArrow.style.height = "auto";
+        } else {
+            homeArrow.style.opacity = 0;
+            homeArrow.style.height = 0;
+        }
+        };
+
+
+        // if (window.pageYOffset > sticky) {
+        //     header.classList.add("sticky");
+        //     header.style.left = stickyinset+"px";
+        //     header.style.width = stickywidth+"px";
+        // } else {
+        //     header.classList.remove("sticky");
+        // }
+        } 
 
     
     </script>
@@ -154,6 +229,11 @@
                 color:#262626;mso-themecolor:text1;mso-themetint:217'>La Trobe University
                 2008 || Member of Golden Key Society<o:p></o:p></span></p>
         </div>
+        <a id="homeArrow" href="#header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+              </svg>
+            </a>
         <div class="leftCol">
             <div id="ProfessionalExperience">Professional Experience</div>
         </div>
@@ -1767,12 +1847,12 @@
                 and oral presentation assignments. 2017 S2 </span><span style='font-size:
                 11.0pt;font-family:"Helvetica Neue Light";color:black;mso-themecolor:text1'><o:p></o:p></span></p>
         </div>
-        <div class="leftCol" style="display: none;">
+        <!-- <div class="leftCol" style="display: none;">
             <div>Recent Professional Development</div>
         </div>
         <div class="rightCol" style="display: none;">
             
-        </div>
+        </div> -->
         <div class="leftCol">
             <div id="certifications">Certifications</div>
         </div>

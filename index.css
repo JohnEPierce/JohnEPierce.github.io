@@ -4,7 +4,24 @@
     --soft-primary-color: rgba(255,255,255,0.5);
     --focus-color: rgb(0,150,0);
   }
-  
+
+body::before {
+    position: fixed;
+    right: 0;
+    top: 0; 
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 20%;
+    background: #eeefef;
+    filter: url(#noiseFilter2);
+    pointer-events: none;
+}
+.svgNoise {
+    position: absolute;
+  z-index: 2;
+}
 
 body {
     /* background: rgb(142,142,142); */
@@ -16,6 +33,7 @@ body {
     max-width: 60vw;
     margin: auto;
     height: max-content;
+    line-height: 1.3;
 }
 a {
     text-decoration: none;
@@ -39,6 +57,7 @@ a {
 .externalLinks {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: min-content;
     align-items: baseline;
     justify-items: center;
     /* padding: 0 20vw; */
@@ -69,6 +88,7 @@ a {
 
     cursor: pointer;
 }
+
 .externalLinkLabel {
     font-size: 0.8rem;
     text-align: center;
@@ -168,7 +188,7 @@ a {
     transition: all 0.2s;
     color: var(--primary-color);
     border-radius: 0.5rem;
-    background-color: white;
+    background-color: var(--secondary-color);
     overflow: hidden;
 }
 
@@ -248,7 +268,7 @@ a {
         }
   }
 
-@media (max-aspect-ratio: 975/762) {
+@media (max-width: 40rem) {
     
     .externalLinks {
         padding: 0;

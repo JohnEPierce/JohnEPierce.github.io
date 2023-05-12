@@ -45,37 +45,6 @@
         for (var str of wordStyling) {
             document.body.innerHTML = document.body.innerHTML.replaceAll(str, '');
         }
-
-        //Twitter followers
-        const apiKey = "HtcNYyswFqWP4xiF31n2egJsF";
-        const apiSecretKey = "TRxgg5CMqCHqsNtjqBo6xBJsPmHoWW1oD76V1frHLclgIWIXiX";
-        const accessToken = "215458867-48cr3vdNJjbgTdDzeZBPCd62EVtpBgkt2HkKgyZp";
-        const accessTokenSecret = "ArRxSgq8VoMzRWkynM6ic6ePDxNQM6G36R6kKEVMRPZn7";
-
-        const handle = "johnpierce85";
-
-        const url = `https://api.twitter.com/1.1/users/show.json?screen_name=${handle}`;
-
-        const headers = new Headers();
-        headers.append("Authorization", `Bearer ${accessToken}`);
-        headers.append("Content-Type", "application/json");
-
-        const requestOptions = {
-        method: "GET",
-        headers: headers,
-        redirect: "follow",
-        };
-
-        fetch(url, requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-            console.log("Number of followers:", result.followers_count);
-        })
-        .catch((error) => console.log("error", error));
-
-
-
-
         
         //Sticky scroll headers
         // Get the divs you want to make sticky
@@ -91,7 +60,7 @@
         var sticky = header.offsetTop;
         var stickyinset = header.offsetLeft;
         var stickywidth = header.offsetWidth;
-        var homeArrowTrigger = document.getElementById("ProfessionalExperience").offsetTop;
+        var topArrowTrigger = document.getElementById("ProfessionalExperience").offsetTop;
 
         // Function to check which element should be sticky
         function updateSticky() {
@@ -130,13 +99,13 @@
             });
         }
         //show or hide home arrow
-        homeArrow = document.getElementById("homeArrow");
-        if(window.pageYOffset > homeArrowTrigger){
-            homeArrow.style.opacity = 1;
-            homeArrow.style.height = "auto";
+        topArrow = document.getElementById("topArrow");
+        if(window.pageYOffset > topArrowTrigger){
+            topArrow.style.opacity = 1;
+            topArrow.style.height = "auto";
         } else {
-            homeArrow.style.opacity = 0;
-            homeArrow.style.height = 0;
+            topArrow.style.opacity = 0;
+            topArrow.style.height = 0;
         }
         };
 
@@ -152,6 +121,11 @@
 
     
     </script>
+    <a id="homeArrow" href="index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+          </svg>
+    </a>
     <div id="header">
         <h1>John E. Pierce, PhD</h1>
         <p>
@@ -229,7 +203,7 @@
                 color:#262626;mso-themecolor:text1;mso-themetint:217'>La Trobe University
                 2008 || Member of Golden Key Society<o:p></o:p></span></p>
         </div>
-        <a id="homeArrow" href="#header">
+        <a id="topArrow" href="#header">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
               </svg>

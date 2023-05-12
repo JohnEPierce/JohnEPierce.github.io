@@ -25,14 +25,14 @@ body > div {
     padding-right: 10vw;
 }
 
-@media screen and (max-width: 768px) {
-    body > div {
-        padding-left: 1vw;
-        padding-right: 1vw;
-    }
+/* Header */
+#homeArrow {
+    position: absolute;
+left: 1rem;
+top: 1rem;
+rotate: -90deg;
 }
 
-/* Header */
 #header {
     text-align: center;
     background: var(--lowlight-color);
@@ -120,6 +120,15 @@ svg {
     padding-top: 102px;
   }
 
+#topArrow {
+    position: fixed;
+    opacity: 0;
+    height: 0;
+    left: 1rem;
+    top: 0;
+    transition: visibility 0s linear 0.8s, opacity 0.8s linear;
+}
+
 .rightCol p {
     margin: 0 auto;
 }
@@ -157,4 +166,20 @@ svg {
 
 #teaching p {
     margin: 0 auto 1rem auto;
+}
+
+@media screen and (max-width: 768px) {
+    body > div {
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+    #topArrow {
+        left: 0.1rem!important;
+    }
+    .leftCol {
+        padding-right: 0.4rem;
+    }
+    .rightCol {
+        padding-left: 0.4rem;
+    }
 }

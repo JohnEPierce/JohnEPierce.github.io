@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>John E Pierce, Speech Pathologist & Researcher</title>
+    <title>John E Pierce; Speech Pathologist, Researcher</title>
     <link rel="stylesheet" href="index.css">
     <link href='https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800&display=swap' rel='stylesheet'>
     <script src="index.js" defer></script>
@@ -26,15 +26,7 @@
             stitchTiles='stitch'/>
         </filter>
       </svg>
-    <!-- <div id="grainy">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 700 700" width="700" height="700" opacity="0.23"><defs><filter id="nnnoise-filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
-            <feTurbulence type="turbulence" baseFrequency="0.2" numOctaves="4" seed="15" stitchTiles="stitch" x="0%" y="0%" width="100%" height="100%" result="turbulence"></feTurbulence>
-            <feSpecularLighting surfaceScale="5" specularConstant="0.4" specularExponent="20" lighting-color="#bcbcbc" x="0%" y="0%" width="100%" height="100%" in="turbulence" result="specularLighting">
-                    <feDistantLight azimuth="3" elevation="47"></feDistantLight>
-              </feSpecularLighting>
-          
-        </filter></defs><rect width="700" height="700" fill="transparent"></rect><rect width="700" height="700" fill="#bcbcbc" filter="url(#nnnoise-filter)"></rect></svg>
-    </div> -->
+    
 <!-- Profile -->
     <div class="profileContainer">
         <img alt="Profile photograph of John Pierce" src="images/profile.jpg" id="profileimg"/>
@@ -48,7 +40,15 @@
             <div class="externalLinkLabel">twitter</div> -->
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <clipPath id="the-object">
+                    <linearGradient id="twitterGradient" x1="0%" y1="0%" x2="100%" y2="100%"  >
+                        <stop offset="40%" style="stop-color:#1DA1F2;stop-opacity:1.00" />
+                        <stop offset="80%" style="stop-color:#0681ec;stop-opacity:1.00" />
+                  </linearGradient> 
+                  <mask id="twitterIcon">
+                    <path filter="url(#noise)" width="16" height="16" clip-path="url(#the-object)" fill="white" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z">
+                    </path>
+                  </mask> 
+                  <!-- <clipPath id="the-object">
                     <path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z">
                 </path>
                   </clipPath>
@@ -56,82 +56,116 @@
                         <feTurbulence type="fractalNoise" baseFrequency="5" result="noisy" />
                         <feColorMatrix type="saturate" values="0"/>
                         <feBlend in="SourceGraphic" in2="noisy" mode="multiply" opacity=".01"/>
-                  </filter>
+                  </filter> -->
                   
                 </defs>
-                <g>
-                <path filter="url(#noise)" clip-path="url(#the-object)" fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z">
-                </path>
-                </g>
+                <g mask="url(#twitterIcon)">
+                    <rect x="0" y="0" width="16" height="16" fill="currentColor" />
+                    <rect id="svgBase" x="0" y="0" width="16" height="16" fill="url(#twitterGradient)" />
+                  </g>
               </svg>
               <div class="externalLinkLabel">twitter</div>
         </a>
         <a href="https://www.youtube.com/@johnepierce" id="youtube" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-youtube" viewBox="0 0 16 16">
+                <defs>
+                    <linearGradient id="youtubeGradient" x1="0%" y1="0%" x2="100%" y2="100%"  >
+                        <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1.00" />
+                        <stop offset="88%" style="stop-color:rgb(221,1,1);stop-opacity:1.00" />
+                  </linearGradient>
+                  <mask id="youtubeIcon">
+                    <path fill="white" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                    </mask>
+                </defs>
+                <g mask="url(#youtubeIcon)">
+                    <rect x="0" y="0" width="16" height="16" fill="currentColor" />
+                    <rect id="svgBase" x="0" y="0" width="16" height="16" fill="url(#youtubeGradient)" />
+                  </g>
               </svg>
               <div class="externalLinkLabel">youtube</div>
         </a>
         <a href="http://www.aphasiatherapyonline.com" id="aphasiatherapyonline" target="_blank">
-            <svg id="a" xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 655.39 734.2"><line x1="447.31" y1="150.42" x2="359.17" y2="140.08" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="13"/><g><polyline points="202.6 94.78 168.12 172.58 110.02 239.55 196.19 262.69" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/><polyline points="474.89 275 458.64 237.08 359.17 140.08 284.82 169.13 168.12 172.58 262.27 275 359.17 294.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/><polyline points="244.44 108.08 284.82 172.09 359.66 226.25 458.64 239.55" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/><line x1="333.07" y1="82.47" x2="262.27" y2="136.34" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/><polyline points="351.54 344.43 364.59 223.79 267.09 267.12 206.53 380.37" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/><line x1="110.02" y1="304.05" x2="152.36" y2="254.32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/><line x1="191.76" y1="310.45" x2="201.6" y2="213.45" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/><line x1="273.49" y1="411.39" x2="247.34" y2="304.05" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/></g><circle cx="333.07" cy="84.93" r="15.26" fill="currentColor"/><circle cx="202.6" cy="94.78" r="13.29" fill="currentColor"/><circle cx="244.44" cy="109.4" r="15.98" fill="currentColor"/><circle cx="447.31" cy="150.42" r="15.76" fill="currentColor"/><circle cx="359.66" cy="141.53" r="16.24" fill="currentColor"/><circle cx="112.02" cy="236.12" r="16.97" fill="currentColor"/><circle cx="283.6" cy="173.2" r="23.39" fill="currentColor"/><circle cx="359.66" cy="226.25" r="20.68" fill="currentColor"/><circle cx="458.64" cy="237.08" r="19.2" fill="currentColor"/><circle cx="475.89" cy="280.19" r="13.29" fill="currentColor"/><circle cx="357.17" cy="294.2" r="16.73" fill="currentColor"/><circle cx="352.76" cy="345.89" r="13.04" fill="currentColor"/><circle cx="105.6" cy="303.08" r="13.05" fill="currentColor"/><circle cx="191.76" cy="311.45" r="13.05" fill="currentColor"/><circle cx="273.49" cy="411.39" r="13.05" fill="currentColor"/><circle cx="205.53" cy="382.34" r="18.69" fill="currentColor"/><circle cx="265.75" cy="269.99" r="23.49" fill="currentColor"/><circle cx="204.53" cy="221.14" r="15.58" fill="currentColor"/><circle cx="191.76" cy="261.95" r="15.58" fill="currentColor"/><path d="m646.47,402.89l-50.25-81c-5.25-5.25-5.8-11.88-2.25-15.75s26.62-15.38-23.6-139.96C517.62,35.36,380.34,8.47,380.34,8.47c0,0-210.04-49.71-323.66,91.73-113.63,141.44-21.3,300.83-21.3,300.83,35.64,64.7,59.67,66.18,74.64,106.92,37.22,101.29-4.42,187.01-4.42,187.01,0,0-5.51,10.55-10.76,22.55s.38,14.14.38,14.14c0,0,341.25,5.73,343.87,0s6.38-36.27,9.38-69.64,37.27-24.37,37.27-24.37c0,0,42.61,10.5,73.73,6,61.32-8.87,43.5-59.25,36.75-78s-4.5-20.25,8.62-31.12c13.12-10.88,3.75-16.87,2.25-18.75s-10.5-6.75-10.5-6.75c21.37-5.62,23.25-12.75,17.62-31.12-5.62-18.38-3.38-20.62,26.25-34.12s6-40.87,6-40.87Zm-233.06-.15c-2.23,19.55-1.39,66.59,52.13,90.71,0,0-104.87,8.16-150.78-62.27-9.94,1-20.06,1.52-30.34,1.52-133.13,0-241.06-86.48-241.06-193.15S151.28,46.39,284.41,46.39s241.06,86.48,241.06,193.15c0,68.66-44.71,128.94-112.07,163.19Z" fill="currentColor"/></svg>
+        <svg id="a" xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 16 16">
+            <defs>
+                <linearGradient id="aphasiatherapyonlineGradient" x1="0%" y1="0%" x2="100%" y2="100%"  >
+                    <stop offset="30%" style="stop-color:rgb(64, 121, 53);stop-opacity:1.00" />
+                    <stop offset="70%" style="stop-color:rgb(40, 85, 31);stop-opacity:1.00" />
+              </linearGradient>
+              <mask id="aphasiatherapyonlineIcon">
+                <g>
+                    <polyline points="16 .02 16 16.02 0 16.02 0 .02"/><line x1="10.68" y1="3.27" x2="8.78" y2="3.05" style="fill:none; stroke:#fff; stroke-miterlimit:10; stroke-width:.28px;"/><polyline points="5.41 2.07 4.67 3.75 3.42 5.19 5.28 5.68" style="fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round; stroke-width:.28px;"/><polyline points="11.27 5.95 10.92 5.13 8.78 3.05 7.18 3.67 4.67 3.75 6.7 5.95 8.78 6.36" style="fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round; stroke-width:.28px;"/><polyline points="6.31 2.36 7.18 3.73 8.79 4.9 10.92 5.19" style="fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round; stroke-width:.28px;"/><line x1="8.22" y1="1.81" x2="6.7" y2="2.97" style="fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round; stroke-width:.28px;"/><polyline points="8.62 7.44 8.9 4.85 6.8 5.78 5.5 8.21" style="fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round; stroke-width:.28px;"/><line x1="3.42" y1="6.57" x2="4.33" y2="5.5" style="fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round; stroke-width:.28px;"/><line x1="5.18" y1="6.71" x2="5.39" y2="4.62" style="fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round; stroke-width:.28px;"/><line x1="6.94" y1="8.88" x2="6.38" y2="6.57" style="fill:none; stroke:#fff; stroke-linecap:round; stroke-linejoin:round; stroke-width:.28px;"/><circle cx="8.22" cy="1.86" r=".33" style="fill:#fff;"/><circle cx="5.41" cy="2.07" r=".29" style="fill:#fff;"/><circle cx="6.31" cy="2.39" r=".34" style="fill:#fff;"/><circle cx="10.68" cy="3.27" r=".34" style="fill:#fff;"/><circle cx="8.79" cy="3.08" r=".35" style="fill:#fff;"/><circle cx="3.47" cy="5.11" r=".37" style="fill:#fff;"/><circle cx="7.16" cy="3.76" r=".5" style="fill:#fff;"/><circle cx="8.79" cy="4.9" r=".44" style="fill:#fff;"/><circle cx="10.92" cy="5.13" r=".41" style="fill:#fff;"/><circle cx="11.29" cy="6.06" r=".29" style="fill:#fff;"/><circle cx="8.74" cy="6.36" r=".36" style="fill:#fff;"/><circle cx="8.64" cy="7.47" r=".28" style="fill:#fff;"/><circle cx="3.33" cy="6.55" r=".28" style="fill:#fff;"/><circle cx="5.18" cy="6.73" r=".28" style="fill:#fff;"/><circle cx="6.94" cy="8.88" r=".28" style="fill:#fff;"/><circle cx="5.48" cy="8.26" r=".4" style="fill:#fff;"/><circle cx="6.77" cy="5.84" r=".51" style="fill:#fff;"/><circle cx="5.46" cy="4.79" r=".34" style="fill:#fff;"/><circle cx="5.18" cy="5.67" r=".34" style="fill:#fff;"/><path d="m14.96,8.7l-1.08-1.74c-.11-.11-.12-.26-.05-.34s.57-.33-.51-3.01C12.19.79,9.24.21,9.24.21c0,0-4.52-1.07-6.96,1.97-2.44,3.04-.46,6.47-.46,6.47.77,1.39,1.28,1.42,1.61,2.3.8,2.18-.1,4.02-.1,4.02,0,0-.12.23-.23.49s0,.3,0,.3c0,0,7.34.12,7.4,0s.14-.78.2-1.5.8-.52.8-.52c0,0,.92.23,1.59.13,1.32-.19.94-1.27.79-1.68s-.1-.44.19-.67c.28-.23.08-.36.05-.4s-.23-.15-.23-.15c.46-.12.5-.27.38-.67-.12-.4-.07-.44.56-.73s.13-.88.13-.88h0Zm-5.01,0c-.05.42-.03,1.43,1.12,1.95,0,0-2.26.18-3.24-1.34-.21.02-.43.03-.65.03-2.86,0-5.19-1.86-5.19-4.15S4.31,1.03,7.17,1.03s5.19,1.86,5.19,4.15c0,1.48-.96,2.77-2.41,3.51h0Z" style="fill:#fff;"/>
+                </g>
+              </mask>
+            </defs>
+                <g mask="url(#aphasiatherapyonlineIcon)">
+                    <rect x="0" y="0" width="16" height="16" fill="currentColor" />
+                    <rect id="svgBase" x="0" y="0" width="16" height="16" fill="url(#aphasiatherapyonlineGradient)" />
+                </g>
+            </svg>
             <div class="externalLinkLabel">aphasia therapy<br>online</div>
         </a>
         <a href="https://scholars.latrobe.edu.au/jpierce" id="latrobe" target="_blank">
-            <svg viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" />
+            <svg viewBox="0 0 16 16">
+                <defs>
+                    <linearGradient id="latrobeGradient" x1="0%" y1="0%" x2="80%" y2="100%"  >
+                        <stop offset="20%" style="stop-color:#b70817;stop-opacity:1.00" />
+                        <stop offset="70%" style="stop-color:#e22333;stop-opacity:1.00" />
+                    </linearGradient>
+                  <mask id="latrobeIcon">
+                    <path d="m8.01,1.21L0,5.58l8.01,4.37,6.55-3.57v5.03h1.46v-5.82m-13.11,3.04v2.91l5.1,2.78,5.1-2.78v-2.91l-5.1,2.78-5.1-2.78Z" style="fill:#fff;"/>
+                  </mask>
+                </defs>
+                <g mask="url(#latrobeIcon)">
+                    <rect x="0" y="0" width="16" height="16" fill="currentColor" />
+                    <rect id="svgBase" x="0" y="0" width="16" height="16" fill="url(#latrobeGradient)" />
+                </g>
             </svg>
             <div class="externalLinkLabel">La Trobe<br>University profile</div>
         </a>
         <a href="CV.html" id="cv" target="">
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700.000000 700.000000" preserveAspectRatio="xMidYMid meet">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                 <metadata>
                 Created by potrace 1.12, written by Peter Selinger 2001-2015
                 </metadata>
-                <g transform="translate(0.000000,700.000000) scale(0.100000,-0.100000)" fill="currentcolor" stroke="none">
-                <path d="M1515 6789 c-147 -18 -297 -82 -412 -176 -113 -93 -215 -254 -256
-                -405 l-22 -83 0 -2625 0 -2625 22 -83 c67 -250 261 -460 499 -542 147 -51 99
-                -50 2154 -50 2054 0 2007 -1 2154 50 127 43 274 148 353 251 62 81 119 194
-                145 289 l23 85 0 2625 0 2625 -23 85 c-88 320 -343 538 -677 579 -110 13
-                -3852 13 -3960 0z m2135 -1044 c104 -25 197 -64 278 -118 170 -114 279 -263
-                344 -467 20 -65 23 -94 22 -220 0 -131 -3 -153 -28 -230 -33 -99 -62 -159
-                -122 -253 -24 -37 -44 -69 -44 -71 0 -2 33 -22 74 -45 303 -166 561 -483 675
-                -828 44 -134 57 -221 42 -287 -13 -59 -24 -72 -91 -107 l-45 -24 -1275 -3
-                c-1445 -3 -1330 -9 -1400 79 -52 66 -56 102 -26 229 56 239 134 399 289 594
-                110 138 294 284 453 358 68 32 73 38 49 58 -28 23 -108 161 -132 228 -71 193
-                -70 421 1 601 102 256 326 447 596 507 79 17 262 17 340 -1z m1562 -3285 c182
-                -51 182 -339 0 -390 -51 -14 -3373 -14 -3424 0 -177 49 -185 324 -11 385 32
-                12 321 14 1718 15 1126 0 1692 -4 1717 -10z m-12 -821 c98 -22 156 -104 148
-                -208 -6 -75 -32 -127 -81 -159 l-41 -27 -1726 0 -1726 0 -41 27 c-51 33 -83
-                99 -83 168 0 108 57 180 160 201 58 11 3339 10 3390 -2z"></path>
-                <path d="M3323 5330 c-104 -37 -187 -113 -240 -218 -25 -52 -28 -67 -28 -167
-                0 -103 2 -114 32 -177 64 -136 191 -224 336 -235 180 -14 330 73 410 237 30
-                61 32 72 31 170 0 92 -3 112 -27 163 -51 112 -135 190 -243 227 -75 26 -198
-                26 -271 0z"></path>
-                <path d="M3294 4105 c-237 -44 -437 -153 -600 -328 -65 -70 -186 -254 -177
-                -269 7 -13 1883 -10 1883 3 0 18 -59 118 -112 191 -68 93 -200 214 -295 271
-                -201 120 -477 172 -699 132z"></path>
-                </g>
+                <defs>
+                    <linearGradient id="CVGradient" x1="0%" y1="50%" x2="100%" y2="50%"  >
+                        <stop offset="10%" style="stop-color:hsl(273,48%,53%);stop-opacity:1.00" />
+                        <stop offset="100%" style="stop-color:hsl(273,58%,42%);stop-opacity:1.00" />
+                  </linearGradient>
+                  <mask id="CVIcon">
+                    <path d="m3.2.02c-.36.04-.72.2-1,.43-.27.22-.52.61-.62.98l-.05.2v12.69l.05.2c.16.6.63,1.11,1.21,1.31.36.12.24.12,5.2.12s4.85,0,5.2-.12c.31-.1.66-.36.85-.61.15-.2.29-.47.35-.7l.06-.21V1.63l-.06-.21c-.21-.77-.83-1.3-1.64-1.4C12.51,0,3.46,0,3.2.02Zm5.16,2.52c.25.06.48.15.67.29.41.28.67.64.83,1.13.05.16.06.23.05.53,0,.32,0,.37-.07.56-.08.24-.15.38-.29.61-.06.09-.11.17-.11.17s.08.05.18.11c.73.4,1.36,1.17,1.63,2,.11.32.14.53.1.69-.03.14-.06.17-.22.26l-.11.06h-3.08c-3.49.01-3.21.03-3.38-.18-.13-.16-.14-.25-.06-.55.14-.58.32-.96.7-1.44.27-.33.71-.69,1.09-.87.16-.08.18-.09.12-.14-.07-.06-.26-.39-.32-.55-.17-.47-.17-1.02,0-1.45.25-.62.79-1.08,1.44-1.23.19-.04.63-.04.82,0Zm3.77,7.94c.44.12.44.82,0,.94-.12.03-8.15.03-8.27,0-.43-.12-.45-.78-.03-.93.08-.03.78-.03,4.15-.04,2.72,0,4.09,0,4.15.02Zm-.03,1.98c.24.05.38.25.36.5-.01.18-.08.31-.2.38l-.1.07H3.83l-.1-.07c-.12-.08-.2-.24-.2-.41,0-.26.14-.43.39-.49.14-.03,8.07-.02,8.19,0Z" style="fill:#fff;"/><path d="m7.57,3.55c-.25.09-.45.27-.58.53-.06.13-.07.16-.07.4s0,.28.08.43c.15.33.46.54.81.57.43.03.8-.18.99-.57.07-.15.08-.17.07-.41,0-.22,0-.27-.07-.39-.12-.27-.33-.46-.59-.55-.18-.06-.48-.06-.65,0Z" style="fill:#fff;"/><path d="m7.5,6.51c-.57.11-1.06.37-1.45.79-.16.17-.45.61-.43.65.02.03,4.55.02,4.55,0,0-.04-.14-.29-.27-.46-.16-.22-.48-.52-.71-.65-.49-.29-1.15-.42-1.69-.32Z" style="fill:#fff;"/>
+                  </mask>
+                </defs>
+                <g mask="url('#CVIcon')">
+                    <rect x="0" y="0" width="16" height="16" fill="currentColor" />
+                    <rect id="svgBase" x="0" y="0" width="16" height="16" fill="url(#CVGradient)" />
+                </g>              
                 </svg>
             <div class="externalLinkLabel">CV</div>
         </a>
         <a href="mailto:cvrepr.wbua.r@tznvy.pbz" id="emaila" target="_blank">
             <?xml version="1.0" encoding="UTF-8"?>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" " style="transform: scale(0.76);">
-                <g>
-                    <path d="M31.1,2l-1.9,1.7l-8.1,7.4l8.1,7.3l1.9,1.7v0c0.2-0.4,0.3-0.9,0.3-1.4V3.3C31.4,2.8,31.3,2.4,31.1,2L31.1,2z"/>
-                    <path d="M19.5,12.6l-1.2,1.1c-0.6,0.6-1.4,0.9-2.2,0.9s-1.6-0.3-2.2-0.9l-1.2-1.1l-8,7.2l-2.1,1.9C2.9,21.9,3.4,22,3.9,22h24.2
-                        c0.5,0,1-0.1,1.4-0.3l-2.1-1.9L19.5,12.6z"/>
-                    <path d="M10.9,11.1L2.8,3.7L0.9,1.9C0.7,2.3,0.6,2.8,0.6,3.3v15.4c0,0.5,0.1,1,0.3,1.4l1.9-1.7L10.9,11.1z"/>
-                    <path d="M15.3,12.1c0.2,0.2,0.5,0.3,0.7,0.3c0.3,0,0.5-0.1,0.7-0.3L29.6,0.4h0c-0.5-0.2-1-0.4-1.5-0.4H3.9c-0.5,0-1,0.1-1.5,0.3
-                        l2,1.9L15.3,12.1z"/>
-                </g>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" " style="transform: scale(0.76);">
+                <defs>
+                    <linearGradient id="emailGradient" x1="0%" y1="0%" x2="0%" y2="100%"  >
+                        <stop offset="10%" style="stop-color:hsl(0, 0%, 70%);stop-opacity:1.00" />
+                        <stop offset="100%" style="stop-color:hsl(0, 0%, 53%);stop-opacity:1.00" />
+                  </linearGradient>
+                  <mask id="emailIcon">
+                    <path d="m15.83,3.34l-1,.91-4.2,3.83,4.2,3.76.97.87h0c.11-.22.17-.47.17-.72v-7.97c0-.23-.05-.46-.14-.68h0Z" style="fill:#fff;"/><path d="m9.79,8.84l-.64.58c-.32.29-.73.45-1.16.45s-.84-.16-1.16-.45l-.63-.58-4.12,3.71-1.08.97c.22.11.47.17.72.17h12.53c.26,0,.51-.06.75-.18l-1.08-.96-4.14-3.71Z" style="fill:#fff;"/><path d="m5.37,8.07L1.17,4.2l-.97-.9c-.11.22-.17.47-.17.72v7.97c0,.26.06.51.18.75l.96-.87,4.2-3.79Z" style="fill:#fff;"/><path d="m7.61,8.58c.1.1.24.15.39.15s.28-.06.39-.15l6.67-6.08h0c-.25-.13-.52-.19-.79-.2H1.74c-.26,0-.52.06-.75.18l1.05.96,5.58,5.14Z" style="fill:#fff;"/>
+                  </mask>
+                </defs>
+                <g mask="url('#emailIcon')">
+                    <rect x="0" y="0" width="16" height="16" fill="currentColor" />
+                    <rect id="svgBase" x="0" y="0" width="16" height="16" fill="url(#emailGradient)" />
+                </g>    
                 </svg>
             <div class="externalLinkLabel">email me</div>
         </a>
     </div>
 <!-- Bio paragraph -->
     <div class="bioParagraph">
-        <p>I'm <b>John Pierce</b>, a speech pathologist and researcher. I work on research, tools for speech pathologists, and technology to make life better for people with aphasia.</p>
+        <p>I'm Dr <b>John Pierce</b>, a speech pathologist and researcher. I work on research, tools for speech pathologists, and technology to make life better for people with aphasia.</p>
     </div>
 <!-- TOP LINKS -->
     <div class="toplinkContainer" style="display: none;">
@@ -174,7 +208,7 @@
                 </div>
                 <div class="cardLower">
                     Pilot study of lower intensity treatments
-                    <span>What happens when people receive low-moderate intensity <span style="color: #60ae46;">Constraint Induced Aphasia Therapy</span> or <span style="color:#2491b0;">Multi-Modal Aphasia Therapy</span>?</span>
+                    <span>Distributing 30h of <span style="color: #60ae46;">Constraint Induced Aphasia Therapy</span> & <span style="color:#2491b0;">Multi-Modal Aphasia Therapy</span> over 5 weeks</span>
                 </div>
             </a>
         </div>
@@ -187,8 +221,8 @@
                 <div class="cardLower">
                     COMPARE trial results
                     <span style="font-size: 1rem;font-weight: 400;">
-                        Is <span style="color: #60ae46;">Constraint Induced Aphasia Therapy</span>, <span style="color:#2491b0;">Multi-Modal Aphasia Therapy</span>, or usual care more effective?
-                        A randomised controlled trial of <span style="font-weight: 800;color:rebeccapurple">216</span> people.
+                        <span style="color: #60ae46;">Constraint Induced Aphasia Therapy</span> vs <span style="color:#2491b0;">Multi-Modal Aphasia Therapy</span> vs usual care
+                        <br>RCT of <span style="font-weight: 800;color:rebeccapurple">216</span> people.
                     </span>
                 </div>
             </a>

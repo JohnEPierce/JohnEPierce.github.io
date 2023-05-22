@@ -76,7 +76,7 @@ a {
 }
 .externalLinks a:hover {
     transition: all 0.2s ease;
-    transform: scale(1.2);
+    transform: scale(1.3);
     /* filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 0,0.45)); */
     /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0,0.45);
     background: rgb(54, 54, 54); */
@@ -97,24 +97,31 @@ a {
     max-width: 100%;
 }
 
-#twitter:hover {
+#twitter:hover div {
     color: #1DA1F2;
 }
-#youtube:hover {
+#youtube:hover div {
     color: #FF0000;
 }
-#aphasiatherapyonline:hover {
+#aphasiatherapyonline:hover div {
     color: rgb(71, 117, 62);
 }
-#latrobe:hover {
+#latrobe:hover div {
     color: #e22333;
 }
-#cv:hover {
+#cv:hover div {
     color:#9022ea;
 }
-#emaila:hover {
-    color:#ff8300;
+#emaila:hover div {
+    color:hsl(0, 0%, 43%);
 }
+#svgBase {
+    opacity: 0.0;
+    transition: all 0.3s ease;
+  }
+  .externalLinks a:hover #svgBase {
+    opacity: 1.0;
+  }
 
 
 
@@ -180,9 +187,8 @@ a {
     font-size: 1.2rem;
     background-color: var(--primary-color);
     padding: 0.5rem 1rem 1rem 1rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    columns: 2;
+    column-gap: 1rem;
 }
 .contentlinks > div {/* card */
     transition: all 0.2s;
@@ -190,7 +196,11 @@ a {
     border-radius: 0.5rem;
     background-color: var(--secondary-color);
     overflow: hidden;
+    margin-top: 1rem;
 }
+    .contentlinks > div:first-child {
+        margin-top: 0;
+    }
 
 .contentlinks > div a {
     /* transition: all 0.2s;
@@ -209,6 +219,10 @@ a {
     /* box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0,0.45);
     background: rgb(54, 54, 54); */
 }
+.contentlinks a:hover > .cardUpper {
+    transition: all 0.2s ease;
+    filter: none;
+}
 
 .contentlinks div a div {
     display: grid;
@@ -219,6 +233,8 @@ a {
     height: 5rem;
     overflow: hidden;
     justify-items: center;
+    transition: all 0.6s ease;
+    filter: brightness(80%);
 }
 
 .cardLower {
@@ -274,7 +290,7 @@ a {
         padding: 0;
     }
     .contentlinks {
-        grid-template-columns: 1fr; 
+        columns: 1;
     }
 }
 

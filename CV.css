@@ -133,6 +133,16 @@ svg {
     margin: 0 auto;
 }
 
+.rightCol * td {
+    padding-bottom: 1rem;
+}
+.JournalArticles table {
+    width: fit-content;
+}
+.JournalArticles * td {
+    padding-right: 3rem;
+}
+
 #content a {
     color: var(--highlight-color);
     

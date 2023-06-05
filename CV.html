@@ -46,77 +46,20 @@
             document.body.innerHTML = document.body.innerHTML.replaceAll(str, '');
         }
         
-        //Sticky scroll headers
-        // Get the divs you want to make sticky
-        var divsArray = Array.from(document.querySelectorAll('.leftCol div'));
-
-        // Loop through the divs and get their offsetTop values
-        var stickyTops = divsArray.map(function(div) {
-        return div.offsetTop;
-        });
-
-        // Get starting point offset positions
-        const header = document.getElementById("education");
-        var sticky = header.offsetTop;
-        var stickyinset = header.offsetLeft;
-        var stickywidth = header.offsetWidth;
+        //show or hide home arrow
         var topArrowTrigger = document.getElementById("ProfessionalExperience").offsetTop;
 
-        // Function to check which element should be sticky
-        function updateSticky() {
-        var scrollPosition = window.pageYOffset;
-
-        // Loop through the stickyTops array in reverse order
-        for (var i = stickyTops.length - 1; i >= 0; i--) {
-            if (scrollPosition+10 >= stickyTops[i]) {
-                //remove other stickies so they don't accumulate
-                divsArray.forEach(function(div) {
-                div.classList.remove('sticky');
-                });
-            // Make the corresponding div sticky if it's not already sticky
-            if (!divsArray[i].classList.contains('sticky')) {
-                divsArray[i].classList.add('sticky');
-                divsArray[i].style.left = stickyinset+"px";
-                divsArray[i].style.width = stickywidth+"px";
-                break;
-            }
-            break;
-            } else {
-            // Remove the sticky class from all divs
-            divsArray[i].classList.remove('sticky');
-            }
-        }
-        };
-
-        // When the user scrolls the page, execute
         window.onscroll = function() {
-        if (window.pageYOffset > sticky) {
-            updateSticky();
-        } else {
-            // Remove the sticky class from all divs if the user scrolls back up to the top
-            divsArray.forEach(function(div) {
-            div.classList.remove('sticky');
-            });
-        }
-        //show or hide home arrow
-        topArrow = document.getElementById("topArrow");
-        if(window.pageYOffset > topArrowTrigger){
-            topArrow.style.opacity = 1;
-            topArrow.style.height = "auto";
-        } else {
-            topArrow.style.opacity = 0;
-            topArrow.style.height = 0;
-        }
-        };
-
-
-        // if (window.pageYOffset > sticky) {
-        //     header.classList.add("sticky");
-        //     header.style.left = stickyinset+"px";
-        //     header.style.width = stickywidth+"px";
-        // } else {
-        //     header.classList.remove("sticky");
-        // }
+            //
+            topArrow = document.getElementById("topArrow");
+            if(window.pageYOffset > topArrowTrigger){
+                topArrow.style.opacity = 1;
+                topArrow.style.height = "auto";
+            } else {
+                topArrow.style.opacity = 0;
+                topArrow.style.height = 0;
+            }
+            };
         } 
 
     

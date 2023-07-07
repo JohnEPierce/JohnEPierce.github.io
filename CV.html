@@ -60,7 +60,23 @@
                 topArrow.style.height = 0;
             }
             };
-        } 
+
+        //Show or hide sections
+        const leftCols = document.querySelectorAll(".leftCol")
+        leftCols.forEach(leftCol => {
+            const childDiv = leftCol.querySelector('div div');
+
+        leftCol.addEventListener('click', () => {
+            const rightCol = leftCol.nextElementSibling;
+            rightCol.classList.toggle("rightColHidden")
+            const mask = rightCol.querySelector(".rightColMask")
+            mask.style.opacity = mask.style.opacity === "1" ? "0" : "1";
+            // rightCol.style.display = rightCol.style.display === 'none' ? 'block' : 'none';
+            // childDiv.textContent = rightCol.style.display === 'none' ? '+' : '-';
+        });
+        });
+
+    }
 
     
     </script>
@@ -108,6 +124,7 @@
             </div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p><b><span>Doctor of Philosophy</span></b></p>
                 <p><span>La Trobe University Aug
                 2021</span></p>
@@ -138,6 +155,7 @@
             <div id="ProfessionalExperience">Professional Experience</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p><span><b
                ><span>Post Doctoral</span></b></span><b><span> Research Fellow – Centre of Research
                 Excellence in Aphasia Recovery and Rehabilitation</span></b></p>
@@ -198,6 +216,9 @@
             <div id="Awards">Awards</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
+            <p>Collaboration of Aphasia Trialists Resources and Recruitment Award - CATS 10 year anniversary awards 2023.</p>
+            <p><span>&nbsp;</span></p>
             <p><span><span>Tavistock</span></span><span> Trust for Aphasia Student Prize - La Trobe
                 University 2020. </span><i><span
                 >Awarded for&nbsp;excellence&nbsp;in work relating
@@ -207,6 +228,7 @@
             Current Projects
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p><i><span >Aphasia Therapy Online – Vietnamese,
                 Mandarin, Greek</span></i></p>
                 <p><i><span >&nbsp;</span></i></p>
@@ -247,6 +269,7 @@
             <div id="GrantsScholarships">Grants & Scholarships</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
 
             <p><span>Lanyon, L.,
                 Shiggins, C., <b>Pierce, J. E.</b>, <span>Rademaker</span>, B., <span>Sayner</span>, A., Ermert, M., Ermert, K., Pettigrove, K., Rose,
@@ -323,6 +346,7 @@
             <div id="JournalArticles">Peer Reviewed Publications</div>
         </div>
         <div class="rightCol JournalArticles">
+            <div class="rightColMask"></div>
             <p>
                 Adikari, A., Hernandez, N., Alahakoon, D., Rose, M. L., & <b>Pierce, J. E.</b> (2023). From concept to practice: a scoping review of the application of AI to aphasia diagnosis and management. <i>Disability and Rehabilitation</i>, 1-10. <a href="https://doi.org/10.1080/09638288.2023.2199463">https://doi.org/10.1080/09638288.2023.2199463</a>
             </p>
@@ -653,6 +677,7 @@
             <div id="BookChapters">Book Chapters</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p><span >Rose, M. L., <b>Pierce, J. E.</b> &amp;
                 Harvey, S. (2022). Single-Case Experimental Designs in Health Research. In P.
                 Liamputtong (Ed.), <i>Research Methods in Health - Foundations for
@@ -667,6 +692,7 @@
             <div id="Presentations">Presentations</div> 
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p><b><span >Pierce,
                 J. E.</span></b><span >,
                 Adikari, A., Hernandez, N., <span>Pallewala</span>, N.,
@@ -887,6 +913,7 @@
             <div id="Posters">Conference Posters</div>
         </div>
         <div class="rightCol" id="posters">
+            <div class="rightColMask"></div>
             <table style="width: 100%;">
             <tr>
                 <td width=397 valign=top>
@@ -1084,8 +1111,11 @@
             <div id="Memberships">Memberships</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p><span>Collaboration of Aphasia
             Trialists, Workgroup 4</span></p>
+            <p><span>Collaboration of Aphasia
+            Trialists, Mulitlingual Aphasia Practice Group</span></p>
             <p><span>Centre for Research
             Excellence in Aphasia Recovery and Rehabilitation</span></p>
             <p><span>Aphasia CRE Post Doc and PhD
@@ -1095,12 +1125,14 @@
             <div id="StudentSupervision">Student Supervision</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p>Currently co-supervising two full time PhD candidates, two honours students, one novice clinician researcher</p>
         </div>
         <div class="leftCol">
             <div id="teaching">Teaching</div>
         </div>
         <div class="rightCol" id="teaching">
+            <div class="rightColMask"></div>
                 <p ><span>Aphasia intervention (2022).
                 Class delivered to PhD neuropsychology students by invitation, Monash
                 University.</span></p>
@@ -1139,21 +1171,22 @@
         <div class="rightCol" style="display: none;">
             
         </div> -->
-        <div class="leftCol">
+        <!-- <div class="leftCol">
             <div id="certifications">Certifications</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p><span >Lee Silverman
                 Voice Treatment – certified clinician.</span></p>
                 <p><span >Clinical
                 Good Practice accreditation.</span></p>
-        </div>
+        </div> -->
         <div class="leftCol">
             <div id="researchimpactheader">Research Impact</div>
         </div>
         <div class="rightCol" id="researchImpact">
-            <p><span >Two
-                papers in ASHA evidence map for aphasia</span></p>
+            <div class="rightColMask"></div>
+            <p><span >Two papers in ASHA evidence map for aphasia</span></p>
                 <table>
                  <tr>
                   <td valign=top>
@@ -1200,6 +1233,7 @@
             <div id="service">Service</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <p>Organising committee member for the Aphasiology Symposium of Australasia, Nov 2023.</p>
             <p><span>Set up </span><span><a
             href="https://rbcavanaugh.github.io/aphasia-tech-map/"><span
@@ -1235,7 +1269,7 @@
                     <li>Arabic <b>(complete)</b></li>
                     <li>Greek</li>
                     <li>Hindi</li>
-                    <li>Mandarin</li>
+                    <li>Mandarin <b>(complete)</b></li>
                     <li>Malay</li>
                     <li>Slovenian</li>
                     <li>European Portuguese <b>(complete)</b></li>
@@ -1286,6 +1320,7 @@
             <div id="collaboration">Collaboration (Published papers)</div>
         </div>
         <div class="rightCol">
+            <div class="rightColMask"></div>
             <img src="images/world.svg" />
             <img src="images/national.svg" />
         </div>

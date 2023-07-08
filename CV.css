@@ -193,6 +193,9 @@ svg {
 #researchImpact td {
     vertical-align: middle;
 }
+#researchImpact table {
+    width: auto;
+}
 
 #teaching p {
     margin: 0 auto 1rem auto;

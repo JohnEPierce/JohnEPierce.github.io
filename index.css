@@ -20,7 +20,7 @@ body::before {
 }
 .svgNoise {
     position: absolute;
-  z-index: 2;
+  z-index: -2;
 }
 
 body {
@@ -39,20 +39,6 @@ a {
     text-decoration: none;
 }
 
-/* PROFILE */
-.profileContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10vh 0 3vh 0;
-}
-#profileimg {
-    border-radius: 50%;
-    max-width: 50%;
-    max-height: 20vh;
-    box-shadow: 0 3.5vh 40px 0 rgba(0, 0, 0, 0.09);
-}
-
 /* EXTERNAL LINKS */
 .externalLinks {
     display: grid;
@@ -60,7 +46,7 @@ a {
     grid-auto-rows: min-content;
     align-items: baseline;
     justify-items: center;
-    /* padding: 0 20vw; */
+    margin-top: 1rem;
 }
 
 .externalLinks a {
@@ -123,6 +109,22 @@ a {
     opacity: 1.0;
   }
 
+
+
+
+/* PROFILE */
+.profileContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10vh 0 3vh 0;
+}
+#profileimg {
+    border-radius: 50%;
+    max-width: 50%;
+    max-height: 20vh;
+    box-shadow: 0 3.5vh 40px 0 rgba(0, 0, 0, 0.09);
+}
 
 
 /* BIO PARAGRAPH */

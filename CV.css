@@ -123,6 +123,10 @@ svg {
 .rightColHidden {
     max-height: 1.1rem;
 }
+.rightColMask-container {
+    width: 100%;
+    position: relative;
+  }
 .rightColMask {
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.3) 100%);
     position: absolute; 

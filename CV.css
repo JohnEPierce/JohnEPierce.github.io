@@ -82,6 +82,10 @@ svg {
  }
 
 /* Content */
+.bi-arrow-up-circle {
+    width: 2rem;
+}
+
 #content {
     display: grid;
     grid-template-columns: 1fr 7fr;

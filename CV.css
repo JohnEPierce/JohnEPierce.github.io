@@ -15,6 +15,10 @@ body {
     font-weight: 300;
 }
 
+p {
+    margin: 0 auto 1rem auto;
+}
+
 a:hover {
     filter: brightness(120%);
     color: rgb(80,80,80);
@@ -157,18 +161,21 @@ svg {
     transition: visibility 0s linear 0.8s, opacity 0.8s linear;
 }
 
-.rightCol p {
+/* .rightCol p {
     margin: 0 auto;
-}
+} */
 
 .rightCol * td {
     padding-bottom: 1rem;
 }
-.JournalArticles table {
+#JournalArticles table {
     width: fit-content;
 }
-.JournalArticles * td {
+#JournalArticles * td {
     padding-right: 3rem;
+}
+#JournalArticles p, #researchImpact p {
+    margin-bottom: auto;
 }
 
 #content a {
@@ -207,6 +214,10 @@ svg {
 
 #teaching p {
     margin: 0 auto 1rem auto;
+}
+
+#Collaboration img {
+    margin-top: -12%;
 }
 
 @media screen and (max-width: 768px) {

@@ -97,3 +97,14 @@ sortedSpans.forEach(span => wordcloud.appendChild(span));
 
 //Remove underscores
 spanElements.forEach(item => {item.innerHTML = item.innerHTML.replace(/_/g, " ");});
+
+
+//Random card height
+var divs = document.querySelectorAll('.cardUpper');
+
+for (var i = 0; i < divs.length; i++) {
+    var height = Math.random() * 4 + 5;
+
+    // Set the height of the div
+    divs[i].style.height = height + 'rem';
+}

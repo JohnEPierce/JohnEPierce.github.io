@@ -232,7 +232,8 @@ a {
 }
 
 .cardUpper {
-    height: 5rem;
+    /* height: 5rem; */
+    height: calc(5rem + (4rem * random()));
     overflow: hidden;
     justify-items: center;
     transition: all 0.6s ease;

@@ -237,6 +237,7 @@ a {
     overflow: hidden;
     justify-items: center;
     transition: all 0.6s ease;
+    background-color: white;
     filter: brightness(80%);
 }
 

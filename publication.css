@@ -88,3 +88,12 @@ p {
     background-color: var(--dark-color);
     color: var(--light-color);
 }
+
+.skew1 {
+    transform: skewY(-1.3deg);
+    margin-bottom: -1rem;
+}
+.skew-1 {
+    transform: skewY(1.3deg);
+    padding: 0;
+}

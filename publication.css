@@ -56,7 +56,7 @@ h3 {
     font-size: 1.5rem;
 }
 
-#paperbutton {
+.paperbutton {
     background-color: var(--dark-color);
     color: white;
     padding: 1rem;
@@ -69,6 +69,13 @@ align-items: center;
 display: inline-flex;
 justify-content: center;
 }
+    .paperbutton_light {
+        background-color: var(--light-color);
+        color: var(--dark-color);
+    }
+    .paperbutton_light img {
+        fill: var(--dark-color);
+    }
 
 .pdfsvg {
     width: 1rem;
@@ -77,6 +84,12 @@ justify-content: center;
 }
 
 p {
+    font-size: 1.4rem;
+    text-align: justify;
+}
+
+ul,ol {
+    text-align: left;
     font-size: 1.4rem;
 }
 

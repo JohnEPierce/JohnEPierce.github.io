@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <title>AI-generated images for aphasia therapy and assessments</title>
+    <link rel="stylesheet" href="publication.css">
+    <link href='https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800&display=swap' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <style>
+        #typed {
+            animation: typing 4s steps(40) infinite;
+            overflow: hidden;
+        }
+        #dalleImage {
+            opacity: 0;
+        }
+        .show {
+            animation-duration: .5s;
+            animation-name: animate-fade;
+            animation-delay: 0.5s;
+            animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+            opacity: 1;
+        }
+        h3 {
+            text-align: left;
+            font-weight: 600;
+        }
+        .gallery img {
+            max-width: 20vw;
+            padding: 1rem;
+        }
+        
+        @keyframes animate-fade {
+        0% { 
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+         }
+        100% { 
+            opacity: 1;
+            transform: scale(1, 1);
+         }
+        }
+    </style>
+</head>
+<body>
+    <div class="dark">    
+        <a id="homeArrow" href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+              </svg>
+        </a>
+        <h1>A farewell to line drawings? Exploring AI-generated images for aphasia therapy and assessments.</h1>
+        <h3>John E. Pierce</h3>
+        <div style="text-align: center;">
+            <a href="http://dx.doi.org/10.1044/2023_AJSLP-23-00142" div class="paperbutton_light paperbutton">
+                <img class="pdfsvg" src="images/pdf_dark.svg">doi.org/10.1044/2023_AJSLP-23-00142
+            </a>
+        </div>
+        <div style="width: 70%; display: grid;grid-template-columns: 1fr min-content;grid-gap: 1rem; margin: auto;">
+            <div style=""><p style="font-family: OCR A Std, 'Courier New', Courier, monospace; font-size: 1.8rem;color: rgb(201, 255, 75);">
+                Prompt:<br><span id="typed"></span>
+            </p></div>
+            <img src="images/shoe_apple.png" alt="Four AI-generated images of shoes and apples in various positions" style="grid-column: 2/3;max-width: 25vw; align-self: center; justify-self: center;" id="dalleImage">
+        </div>
+        <p style="text-align: justify;margin-bottom: 3rem; margin-top: 5rem;">Images are a key part of aphasia assessment and treatment (and plenty of other areas of practice!). But it can be really difficult and/or expensive to find high quality images. Artificial Intelligence can now generate high quality images from a text prompt - I was interested in whether this might be useful to create customised images <b>quickly</b> and <b>affordably</b>.</p>
+    </div>
+    <div class="mid">
+            <h2>Method</h2>
+            <p>I selected 80 nouns, 80 verbs and 40 sentences at random from aphasia assessments and treatment software. Then I entered text prompts into <a href="https://openai.com/dall-e-2" style="color:rgb(131, 182, 10);text-decoration:underline">DALL-E 2</a> to try to create a suitable image for each target. I entered up to six prompts and stopped if I judged that the image represented the target.</p>
+
+    </div>
+    <div class="light" style="text-align: center;">
+        <h2>Results</h2>
+        <p>You can view <i>all</i> of the prompts and images on <a href="https://johnepierce.github.io/AI-images-for-aphasia/" style="color:rgb(77, 111, 0);text-decoration:underline">this page</a> (takes a while to load them all).</p>
+        <ul>
+            <li>Successful images were generated for 94.5% of targets <i>('successful' admittedly being a subjective decision)</i></li>
+            <li>Nouns were the most successful, followed by verbs and then sentences.</li>
+            <li>The process was rapid - a mean of 2.3 minutes per target</li>
+            <li>The average cost was $0.31 USD per target</li>
+        </ul>
+        <h3>Some of the good images</h3>
+        <div class="gallery">
+             <img loading="lazy" src="./images/AIimages/beg.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/bone.jpg" alt="sample"> 
+             <img loading="lazy" src="./images/AIimages/hair.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/juice.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/kneel.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/policepainting.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/smell.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/waterfall.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/bell.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/chicken.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/house.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/king.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/paint.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/push.jpg" alt="sample">
+             <img loading="lazy" src="./images/AIimages/tractor.jpg" alt="sample">          
+        </div>
+        <h3>Some of the passable, but flawed, images</h3>
+        <p>❗️Even though many images represented the target word, they looked a bit off.</p>
+        <div class="gallery">
+            <img loading="lazy" src="./images/AIimages/lock.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/eat.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/work.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/playrecords.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/restaurant.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/curtsy.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/smoke.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/cut.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/smell.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/lasso.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/cry.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/crown.jpg" alt="sample">
+        </div>
+
+        <h3>Some of the frankly bizarre images</h3>
+        <p>Obviously, these were not considered successful. But they are funny. <br>
+            See the full set of strange images <a href="https://labs.openai.com/c/X3vPwJmq9G3CrK416OJRlmFm" style="color:rgb(131, 182, 10);text-decoration:underline">here</a>.</p>
+        <div class="gallery">
+
+        </div>
+    </div>
+    <div class="dark">
+        <h2>Discussion</h2>
+
+    </div>
+</body>
+
+
+<script >
+    const textToType = "Closeup of a shoe squashing an apple, stock photograph";
+    const textElement = document.getElementById("typed");
+    let currentIndex = 0;
+
+    function typeCharacter() {
+        if (currentIndex < textToType.length) {
+            // Append the next character to the textElement
+            textElement.textContent += textToType.charAt(currentIndex);
+            currentIndex++;
+            setTimeout(typeCharacter, 40);  // Adjust the 100 to change typing speed
+        }
+        else{
+            document.getElementById("dalleImage").classList.add('show');
+        }
+    }
+
+    typeCharacter();
+</script>

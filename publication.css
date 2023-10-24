@@ -32,6 +32,11 @@ body > * {
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
+body div * {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
 a {
     text-decoration: none;
     color: var(--light-color);
@@ -68,6 +73,7 @@ width: max-content;
 align-items: center;
 display: inline-flex;
 justify-content: center;
+transition: 0.1s all;
 }
     .paperbutton_light {
         background-color: var(--light-color);
@@ -75,6 +81,9 @@ justify-content: center;
     }
     .paperbutton_light img {
         fill: var(--dark-color);
+    }
+    .paperbutton:hover {
+        scale: 1.05;
     }
 
 .pdfsvg {
@@ -84,13 +93,13 @@ justify-content: center;
 }
 
 p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     text-align: justify;
 }
 
 ul,ol {
     text-align: left;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .mid {

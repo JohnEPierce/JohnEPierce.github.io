@@ -17,16 +17,32 @@
             animation-name: animate-fade;
             animation-delay: 0.5s;
             animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+            animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
             opacity: 1;
+        }
+        h2 {
+            font-size: 2rem;
         }
         h3 {
             text-align: left;
             font-weight: 600;
         }
         .gallery img {
-            max-width: 20vw;
+            width: 280px;
             padding: 1rem;
+        }
+        a {
+            text-decoration: underline;
+        }
+        td {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        td i {
+            font-size: 1rem;
+        }
+        .light a {
+            color: rgb(77, 111, 0);
         }
         
         @keyframes animate-fade {
@@ -49,7 +65,8 @@
               </svg>
         </a>
         <h1>A farewell to line drawings? Exploring AI-generated images for aphasia therapy and assessments.</h1>
-        <h3>John E. Pierce</h3>
+        <h3 style="text-align: center;">John E. Pierce</h3>
+        <p style="text-align: center; font-weight: normal;"><i>With thanks to Jon Hunt and Robin Keech from <a href="http://cuespeak.com">Cuespeak</a> for their input</i></p>
         <div style="text-align: center;">
             <a href="http://dx.doi.org/10.1044/2023_AJSLP-23-00142" div class="paperbutton_light paperbutton">
                 <img class="pdfsvg" src="images/pdf_dark.svg">doi.org/10.1044/2023_AJSLP-23-00142
@@ -61,7 +78,7 @@
             </p></div>
             <img src="images/shoe_apple.png" alt="Four AI-generated images of shoes and apples in various positions" style="grid-column: 2/3;max-width: 25vw; align-self: center; justify-self: center;" id="dalleImage">
         </div>
-        <p style="text-align: justify;margin-bottom: 3rem; margin-top: 5rem;">Images are a key part of aphasia assessment and treatment (and plenty of other areas of practice!). But it can be really difficult and/or expensive to find high quality images. Artificial Intelligence can now generate high quality images from a text prompt - I was interested in whether this might be useful to create customised images <b>quickly</b> and <b>affordably</b>.</p>
+        <p style="text-align: justify;margin-bottom: 3rem; margin-top: 5rem; font-size: 1.4rem;">Images are a key part of aphasia assessment and treatment (and plenty of other areas of practice!). But it can be really difficult and/or expensive to find high quality images. Artificial Intelligence can now generate high quality images from a text prompt - I was interested in whether this might be useful to create customised images <b>quickly</b> and <b>affordably</b>.</p>
     </div>
     <div class="mid">
             <h2>Method</h2>
@@ -73,8 +90,8 @@
         <p>You can view <i>all</i> of the prompts and images on <a href="https://johnepierce.github.io/AI-images-for-aphasia/" style="color:rgb(77, 111, 0);text-decoration:underline">this page</a> (takes a while to load them all).</p>
         <ul>
             <li>Successful images were generated for 94.5% of targets <i>('successful' admittedly being a subjective decision)</i></li>
-            <li>Nouns were the most successful, followed by verbs and then sentences.</li>
-            <li>The process was rapid - a mean of 2.3 minutes per target</li>
+            <li>Nouns were the most successful (99%), followed by verbs (98%) and then sentences (80%).</li>
+            <li>The process was efficient - a mean of 2.3 minutes per target</li>
             <li>The average cost was $0.31 USD per target</li>
         </ul>
         <h3>Some of the good images</h3>
@@ -96,7 +113,7 @@
              <img loading="lazy" src="./images/AIimages/tractor.jpg" alt="sample">          
         </div>
         <h3>Some of the passable, but flawed, images</h3>
-        <p>❗️Even though many images represented the target word, they looked a bit off.</p>
+        <p>❗️Even though many images represented the target word, they looked a bit off. These imperfections could be distracting or unsettling for users.</p>
         <div class="gallery">
             <img loading="lazy" src="./images/AIimages/lock.jpg" alt="sample">
             <img loading="lazy" src="./images/AIimages/eat.jpg" alt="sample">
@@ -106,7 +123,7 @@
             <img loading="lazy" src="./images/AIimages/curtsy.jpg" alt="sample">
             <img loading="lazy" src="./images/AIimages/smoke.jpg" alt="sample">
             <img loading="lazy" src="./images/AIimages/cut.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/smell.jpg" alt="sample">
+            <img loading="lazy" src="./images/AIimages/saw.jpg" alt="sample">
             <img loading="lazy" src="./images/AIimages/lasso.jpg" alt="sample">
             <img loading="lazy" src="./images/AIimages/cry.jpg" alt="sample">
             <img loading="lazy" src="./images/AIimages/crown.jpg" alt="sample">
@@ -116,12 +133,173 @@
         <p>Obviously, these were not considered successful. But they are funny. <br>
             See the full set of strange images <a href="https://labs.openai.com/c/X3vPwJmq9G3CrK416OJRlmFm" style="color:rgb(131, 182, 10);text-decoration:underline">here</a>.</p>
         <div class="gallery">
-
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.49.34---A-singing-man-photographs-a-soldier.jpg" alt="sample">
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.49.56---A-diver-enters-the-water-with-a-splash,-wide-shot,-Olympic-Games.jpg" alt="sample">
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.12---a-maid-on-a-stool-milking-a-cow,-painting.jpg" alt="sample">
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.20---a-man-proposes-to-a-smiling,-happy-woman-on-one-knee,-stock-photograph,-studio-lighting.jpg" alt="sample">
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.30---An-older-man-lowers-himself-into-an-armchair,-studio-lighting.jpg" alt="sample">
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.43---stock-photography-of-a-smiling-woman-carrying-a-box-while-walking,-studio-lighting,-wide-shot.jpg" alt="sample">
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.48---a-brass-trumpet-being-played,-studio-stock-photograph,-high-detail.jpg" alt="sample">
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.51.07---Portrait-of-a-regal-king-wearing-a-crown.jpg" alt="sample">
+            <img src="./images/AIimages/DALL·E-2023-10-21-16.51.24---a-ballerina-running-away-from-a-policeman,-high-speed-shutter.jpg" alt="sample">
         </div>
     </div>
-    <div class="dark">
-        <h2>Discussion</h2>
+    <div class="dark" style="background-color: rgb(35, 41, 22);">
+        <h2>Why is this work important?</h2>
+        <p>If you're a clinician, you can probably just use Google image search without thinking about copyright. But if you're creating anything that will be published, such as assessments, treatment materials or aphasia-friendly information, finding the right images is hard.</p>
+        <p>This brief exploration shows that AI image generation is likely to become a <b>low cost</b>, <b>rapid</b> source of copyright-free images that can be heavily customised. This is a very new technology that will only get better. In fact, in the short time since I ran this test, Dall-E and many other generators have improved substantially. <b>Combining</b> AI images and manual editing (e.g. Dall-E 2 + photoshop) is likely to become the new normal.</p>
+        <h3>Current Limitations:</h3>
+        <p>Unfortunately, the most complex and low frequency items were the most difficult to generate. It's easy to find an image of a glass of juice from the internet but very hard to find an image of 'the cat chases the dog'. Yet AI seems not to be very successful at the latter, at present.</p>
+        <p>Part of the difficulty with more complex scenes was that Dall-E 2 was not accurately parsing the syntax. Prepositions and adjectives were inconsistently applied and often to the wrong noun.            </p>
+            <span style="display: block; margin-top: 2rem; font-style: italic;">Results of prompt, “A ballerina runs behind a policeman, high speed shutter”. The preposition is not consistently applied to the correct noun.</span>
+            <div style="display: flex; justify-content: center; width: 100%;gap: 1rem;">
+                <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase1.jpg" alt="sample">
+                <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase2.jpg" alt="sample">
+                <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase3.jpg" alt="sample">
+                <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase4.jpg" alt="sample">
+            </div>
 
+        <p>Dall-E 2 produced a diverse range of races without prompting, <b>but</b> it has been intentionally programmed to do so because early models defaulted to white-looking people. AI is not biased <i>itself</i> but reflects and exaggerates the human-generated data used to train it. Most AI image generators were trained on English-language, Western culture images and captions, meaning generating images for <a href="https://restofworld.org/2023/ai-image-stereotypes/">other cultures</a> may be substantially less accurate and efficient.</p>
+        <h3>What's next?</h3>
+        <p>We need to see what people think about these images - I plan to investigate the acceptability and accuracy of AI-generated images compared to 'human generated' images.</p>
+        <p style="margin-top: 6rem; text-align: center;">Pierce, J. E. (2023). AI-generated images for speech pathology—An exploratory application to aphasia assessment and intervention materials. <i>American Journal of Speech-Language Pathology. </i>https://doi.org/10.1044/2023_AJSLP-23-00142
+        </p>
+    </div>
+    <div class="light" style="box-shadow: inset 0px 10px 20px -10px rgba(0, 0, 0, 0.5);">
+        <p>If you'd like to try using Dall-E 2 yourself, I recommend this <a href="https://dallery.gallery/the-dalle-2-prompt-book/">excellent prompt guide</a>.</p>
+        <p>You may also want to compare <a href="https://johnepierce.github.io/AI-images-for-aphasia/">my prompts</a> with the results.</p>
+        <p>Below, I have summarised what I learned about prompts. Note that each AI image generator (Dall-E, Midjourney, Photoshop, Stable Diffusion...) will have its own quirks. Dall-E 2 is not a free generator.</p>
+        <table class=MsoTableGrid width="91%"
+        style='width:91.14%;background:#D9D9D9;mso-background-themecolor:background1;
+        mso-background-themeshade:217;border-collapse:collapse;border:none;mso-border-alt:
+        solid windowtext .5pt;mso-yfti-tbllook:1184;border-radius: 1rem;text-align: left;'>
+        <tbody>
+            <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+            <td width="100%" valign=top style='width:100.0%;
+            mso-border-alt:solid windowtext .5pt;'>
+            <p class=MsoNormal style='text-indent:0cm;line-height:normal'><b><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            color:black;mso-color-alt:windowtext;mso-fareast-language:EN-GB'>Tips for
+            enhancing results in DALL-E 2</span></b><b><span style='mso-ascii-font-family:
+            "Times New Roman";mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:
+            "Times New Roman";mso-bidi-font-family:"Times New Roman";mso-fareast-language:
+            EN-GB'><o:p></o:p></span></b></p>
+            <p class=MsoListParagraphCxSpFirst style='line-height:
+            normal;mso-list:l8 level1 lfo1'><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";color:black;mso-color-alt:windowtext;
+            mso-fareast-language:EN-GB'>Expect randomness – the same prompt will produce
+            better and worse results across multiple attempts. </span><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='line-height:
+            normal;mso-list:l8 level1 lfo1'><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";color:black;mso-color-alt:windowtext;
+            mso-fareast-language:EN-GB'>Picture the type of result you want before creating
+            the prompt. This encourages a more specific prompt.</span><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='line-height:
+            normal;mso-list:l8 level1 lfo1'><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";color:black;mso-color-alt:windowtext;
+            mso-fareast-language:EN-GB'>Prompt as if you are captioning an existing image
+            in a newspaper. Read stock photograph descriptions to get a feel for wording
+            and style as DALL-E 2 was trained on image-caption pairs. Present tense seems
+            to work best.</span><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='line-height:
+            normal;mso-list:l8 level1 lfo1'><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";color:black;mso-color-alt:windowtext;
+            mso-fareast-language:EN-GB'>Multiple clauses can be used to specify
+            additional requirements:</span><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='margin-left:3rem;mso-add-space:
+            auto;line-height:normal;mso-list:l8 level2 lfo1'><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            color:black;mso-color-alt:windowtext;mso-fareast-language:EN-GB'>Medium<br>
+            <i>A ballpoint pen lying on a desk, <b>stock photograph</b><br>
+            Portrait of a king wearing a golden crown, head and shoulders,<b> renaissance
+            <span class=GramE>painting</span></b></i></span><span style='mso-ascii-font-family:
+            "Times New Roman";mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:
+            "Times New Roman";mso-bidi-font-family:"Times New Roman";mso-fareast-language:
+            EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='margin-left:3rem;mso-add-space:
+            auto;line-height:normal;mso-list:l8 level2 lfo1'><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            color:black;mso-color-alt:windowtext;mso-fareast-language:EN-GB'>Source<i><br>
+            An astronaut spacesuit in a museum, <b>tourist's photograph<br>
+            </b><span class=SpellE>Photograph</span> of a family listening to the record
+            player, wide shot, <b>life magazine <span class=GramE>1970</span></b></i></span><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='margin-left:3rem;mso-add-space:
+            auto;line-height:normal;mso-list:l8 level2 lfo1'><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            color:black;mso-color-alt:windowtext;mso-fareast-language:EN-GB'>Lighting<br>
+            <i>A whole green cucumber and slices, <b>studio lighting<br>
+            </b>A croquet game on a green lawn, <b>warm outdoor photograph</b>, calm</i></span><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='margin-left:3rem;mso-add-space:
+            auto;line-height:normal;mso-list:l8 level2 lfo1'><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            color:black;mso-color-alt:windowtext;mso-fareast-language:EN-GB'>Camera attributes<br>
+            <i>Closeup of a wooden lattice, garden visible in background, <b>shallow
+            depth of field</b><br>
+            A man bowling at a <span class=GramE>ten pin</span> bowling alley, <b>action
+            shot</b></i></span><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='line-height:
+            normal;mso-list:l8 level1 lfo1'><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";color:black;mso-color-alt:windowtext;
+            mso-fareast-language:EN-GB'>Specify camera zoom and angle as DALL-E 2 often
+            defaults to closeups<br>
+            <b><i>Wide shot</i></b><i> of a restaurant, diners and wait staff visible<br>
+            <b>Full shot</b> of a man in fireman's uniform and hat, studio lighting,
+            stock photograph<br>
+            Chicken schnitzel <span class=GramE><b>closeup</b></span></i></span><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpMiddle style='line-height:
+            normal;mso-list:l8 level1 lfo1'><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";color:black;mso-color-alt:windowtext;
+            mso-fareast-language:EN-GB'>Adjectives can be very effective but are not
+            consistently applied to the correct noun.</span><span style='mso-ascii-font-family:
+            "Times New Roman";mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:
+            "Times New Roman";mso-bidi-font-family:"Times New Roman";mso-fareast-language:
+            EN-GB'><o:p></o:p></span></p>
+            <p class=MsoListParagraphCxSpLast style='line-height:
+            normal;page-break-after:avoid;mso-list:l8 level1 lfo1'><span
+            style='mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+            mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
+            color:black;mso-color-alt:windowtext;mso-fareast-language:EN-GB'>Duplication
+            has been reported to be effective at focusing on a particular description and
+            improving its quality, e.g. A smiling girl is tickled, laughing, bright
+            lighting, happy</span><span style='mso-ascii-font-family:"Times New Roman";
+            mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+            mso-bidi-font-family:"Times New Roman";mso-fareast-language:EN-GB'><o:p></o:p></span></p>
+            </td>
+            </tr>
+        </tbody>
+        </table>
     </div>
 </body>
 

@@ -125,6 +125,10 @@ a {
     max-height: 20vh;
     box-shadow: 0 3.5vh 40px 0 rgba(0, 0, 0, 0.09);
 }
+#nameLabel {
+    text-align: center;
+    font-size: 2rem;
+}
 
 
 /* BIO PARAGRAPH */
@@ -179,8 +183,9 @@ a {
     margin: auto 0.3rem;
 }
 #learnAbout {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--primary-color);
+    opacity: 0.9;
 }
 
 /* CONTENT LINKS */
@@ -188,9 +193,10 @@ a {
     font-weight: 600;
     font-size: 1.2rem;
     background-color: var(--primary-color);
-    padding: 0.5rem 1rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
     columns: 2;
     column-gap: 1rem;
+    border-radius: 1rem;
 }
 .contentlinks > div {/* card */
     transition: all 0.2s;

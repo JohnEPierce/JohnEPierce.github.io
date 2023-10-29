@@ -28,9 +28,40 @@
             font-weight: 600;
         }
         .gallery img {
+            width: 100%;
+        }
+        .image-container {
             width: 280px;
             padding: 1rem;
+        position: relative;
+        display: inline-block;
         }
+
+        .caption {
+            visibility: hidden;
+            position: absolute;
+                bottom: 1rem;
+                left: 1rem;
+                width: calc(100%-2rem);
+                color: white;
+                padding: 10px;
+                font-size: 1rem;
+                text-align: center;
+                text-shadow: 2px 2px 1.6px black;
+                font-weight: 600;
+        }
+
+        .image-container:hover .caption {
+                visibility: visible;
+                
+            }
+
+        @media (pointer: coarse) {
+            .caption {
+                visibility: visible;
+            }
+        }
+
         a {
             text-decoration: underline;
         }
@@ -64,12 +95,16 @@
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
               </svg>
         </a>
-        <h1>A farewell to line drawings? Exploring AI-generated images for aphasia therapy and assessments.</h1>
+        <h1>AI-Generated Images for Speech Pathology — An Exploratory Application to Aphasia Assessment & Intervention Materials</h1>
         <h3 style="text-align: center;">John E. Pierce</h3>
         <p style="text-align: center; font-weight: normal;"><i>With thanks to Jon Hunt and Robin Keech from <a href="http://cuespeak.com">Cuespeak</a> for their input</i></p>
         <div style="text-align: center;">
             <a href="http://dx.doi.org/10.1044/2023_AJSLP-23-00142" div class="paperbutton_light paperbutton">
-                <img class="pdfsvg" src="images/pdf_dark.svg">doi.org/10.1044/2023_AJSLP-23-00142
+                <img class="pdfsvg" src="images/pdf_dark.svg">Author PDF
+            </a>
+            <a href="http://dx.doi.org/10.1044/2023_AJSLP-23-00142" div class="paperbutton_light paperbutton">
+                <img class="pdfsvg" src="images/pdf_dark.svg" style="width: 1px;height: calc(1rem*4/3);">
+                doi.org/10.1044/2023_AJSLP-23-00142
             </a>
         </div>
         <div style="width: 70%; display: grid;grid-template-columns: 1fr min-content;grid-gap: 1rem; margin: auto;">
@@ -82,93 +117,200 @@
     </div>
     <div class="mid">
             <h2>Method</h2>
-            <p>I selected 80 nouns, 80 verbs and 40 sentences at random from aphasia assessments and treatment software. Then I entered text prompts into <a href="https://openai.com/dall-e-2" style="color:rgb(131, 182, 10);text-decoration:underline">DALL-E 2</a> to try to create a suitable image for each target. I entered up to six prompts and stopped if I judged that the image represented the target.</p>
+            <p>I selected 80 nouns, 80 verbs and 40 sentences at random from aphasia assessments and treatment software. I used <a href="https://openai.com/dall-e-2" style="color:rgb(131, 182, 10);text-decoration:underline">DALL-E 2</a> to try to create a suitable image for each target. I entered up to six prompts and stopped if I judged that the image represented the target.</p>
 
     </div>
     <div class="light" style="text-align: center;">
         <h2>Results</h2>
-        <p>You can view <i>all</i> of the prompts and images on <a href="https://johnepierce.github.io/AI-images-for-aphasia/" style="color:rgb(77, 111, 0);text-decoration:underline">this page</a> (takes a while to load them all).</p>
+        <p>You can view all of the prompts and resulting images on <a href="https://johnepierce.github.io/AI-images-for-aphasia/" style="color:rgb(77, 111, 0);text-decoration:underline">this page</a> (takes a while to load them all).</p>
         <ul>
-            <li>Successful images were generated for 94.5% of targets <i>('successful' admittedly being a subjective decision)</i></li>
-            <li>Nouns were the most successful (99%), followed by verbs (98%) and then sentences (80%).</li>
+            <li>Successful images  generated for 94.5% of targets <i>('successful' admittedly being a subjective decision)</i></li>
+            <li>Nouns were most successful (99%), followed by verbs (98%) and then sentences (80%).</li>
             <li>The process was efficient - a mean of 2.3 minutes per target</li>
-            <li>The average cost was $0.31 USD per target</li>
+            <li>Average cost was $0.31 USD per target</li>
         </ul>
         <h3>Some of the good images</h3>
         <div class="gallery">
-             <img loading="lazy" src="./images/AIimages/beg.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/bone.jpg" alt="sample"> 
-             <img loading="lazy" src="./images/AIimages/hair.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/juice.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/kneel.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/policepainting.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/smell.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/waterfall.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/bell.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/chicken.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/house.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/king.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/paint.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/push.jpg" alt="sample">
-             <img loading="lazy" src="./images/AIimages/tractor.jpg" alt="sample">          
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/beg.jpg" >
+                <div class="caption">Beg</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/bone.jpg" >
+                <div class="caption">Bone</div> 
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/hair.jpg" >
+                <div class="caption">Hair</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/juice.jpg" >
+                <div class="caption">Juice</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/kneel.jpg" >
+                <div class="caption">Kneel</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/policepainting.jpg" >
+                <div class="caption">Police painting dancer</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/smell.jpg" >
+                <div class="caption">Smell</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/waterfall.jpg" >
+                <div class="caption">Waterfall</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/bell.jpg" >
+                <div class="caption">Bell</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/chicken.jpg" >
+                <div class="caption">Chicken</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/house.jpg" >
+                <div class="caption">House</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/king.jpg" >
+                <div class="caption">King</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/paint.jpg" >
+                <div class="caption">Paint</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/push.jpg" >
+                <div class="caption">Push</div>
+            </div>
+             <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/tractor.jpg" >
+                <div class="caption">Tractor</div> 
+            </div>         
         </div>
         <h3>Some of the passable, but flawed, images</h3>
         <p>❗️Even though many images represented the target word, they looked a bit off. These imperfections could be distracting or unsettling for users.</p>
         <div class="gallery">
-            <img loading="lazy" src="./images/AIimages/lock.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/eat.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/work.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/playrecords.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/restaurant.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/curtsy.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/smoke.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/cut.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/saw.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/lasso.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/cry.jpg" alt="sample">
-            <img loading="lazy" src="./images/AIimages/crown.jpg" alt="sample">
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/lock.jpg" >
+                <div class="caption">Lock</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/eat.jpg" >
+                <div class="caption">Eat</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/work.jpg" >
+                <div class="caption">Work</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/playrecords.jpg" >
+                <div class="caption">Play records</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/restaurant.jpg" >
+                <div class="caption">Restaurant</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/curtsy.jpg" >
+                <div class="caption">Curtsy</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/smoke.jpg" >
+                <div class="caption">Smoke</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/cut.jpg" >
+                <div class="caption">Cut</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/saw.jpg" >
+                <div class="caption">Saw</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/lasso.jpg" >
+                <div class="caption">Lasso</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/cry.jpg" >
+                <div class="caption">Cry</div>
+            </div>
+            <div class="image-container">
+                <img loading="lazy" src="./images/AIimages/crown.jpg" >
+                <div class="caption">Crown</div>
+            </div>
         </div>
 
         <h3>Some of the frankly bizarre images</h3>
         <p>Obviously, these were not considered successful. But they are funny. <br>
             See the full set of strange images <a href="https://labs.openai.com/c/X3vPwJmq9G3CrK416OJRlmFm" style="color:rgb(131, 182, 10);text-decoration:underline">here</a>.</p>
         <div class="gallery">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.49.34---A-singing-man-photographs-a-soldier.jpg" alt="sample">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.49.56---A-diver-enters-the-water-with-a-splash,-wide-shot,-Olympic-Games.jpg" alt="sample">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.12---a-maid-on-a-stool-milking-a-cow,-painting.jpg" alt="sample">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.20---a-man-proposes-to-a-smiling,-happy-woman-on-one-knee,-stock-photograph,-studio-lighting.jpg" alt="sample">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.30---An-older-man-lowers-himself-into-an-armchair,-studio-lighting.jpg" alt="sample">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.43---stock-photography-of-a-smiling-woman-carrying-a-box-while-walking,-studio-lighting,-wide-shot.jpg" alt="sample">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.50.48---a-brass-trumpet-being-played,-studio-stock-photograph,-high-detail.jpg" alt="sample">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.51.07---Portrait-of-a-regal-king-wearing-a-crown.jpg" alt="sample">
-            <img src="./images/AIimages/DALL·E-2023-10-21-16.51.24---a-ballerina-running-away-from-a-policeman,-high-speed-shutter.jpg" alt="sample">
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.49.34---A-singing-man-photographs-a-soldier.jpg" >
+            <div class="caption">Singer photographing soldier?</div>
         </div>
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.49.56---A-diver-enters-the-water-with-a-splash,-wide-shot,-Olympic-Games.jpg" >
+            <div class="caption">Diving?</div>
+        </div>
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.50.12---a-maid-on-a-stool-milking-a-cow,-painting.jpg" >
+            <div class="caption">Milking?</div>
+        </div>
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.50.20---a-man-proposes-to-a-smiling,-happy-woman-on-one-knee,-stock-photograph,-studio-lighting.jpg" >
+            <div class="caption">Proposing?</div>
+        </div>
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.50.30---An-older-man-lowers-himself-into-an-armchair,-studio-lighting.jpg" >
+            <div class="caption">Sitting?</div>
+        </div>
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.50.43---stock-photography-of-a-smiling-woman-carrying-a-box-while-walking,-studio-lighting,-wide-shot.jpg" >
+            <div class="caption">Carrying?</div>
+        </div>
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.50.48---a-brass-trumpet-being-played,-studio-stock-photograph,-high-detail.jpg" >
+            <div class="caption">Trumpet?</div>
+        </div>
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.51.07---Portrait-of-a-regal-king-wearing-a-crown.jpg" >
+            <div class="caption">King?</div>
+        </div>
+            <div class="image-container"><img src="./images/AIimages/DALL·E-2023-10-21-16.51.24---a-ballerina-running-away-from-a-policeman,-high-speed-shutter.jpg" >
+            <div class="caption">Policeman chasing dancer?</div>
+        </div>
+    </div>
     </div>
     <div class="dark" style="background-color: rgb(35, 41, 22);">
         <h2>Why is this work important?</h2>
-        <p>If you're a clinician, you can probably just use Google image search without thinking about copyright. But if you're creating anything that will be published, such as assessments, treatment materials or aphasia-friendly information, finding the right images is hard.</p>
-        <p>This brief exploration shows that AI image generation is likely to become a <b>low cost</b>, <b>rapid</b> source of copyright-free images that can be heavily customised. This is a very new technology that will only get better. In fact, in the short time since I ran this test, Dall-E and many other generators have improved substantially. <b>Combining</b> AI images and manual editing (e.g. Dall-E 2 + photoshop) is likely to become the new normal.</p>
+        <p>If you're a clinician, you can probably just use Google image search without thinking about copyright. But for anything that will be published, such as assessments, treatment materials or aphasia-friendly information, finding the right images is hard.</p>
+        <p>This brief exploration shows that AI image generation could become a <b>low cost</b>, <b>rapid</b> source of copyright-free images that can be heavily customised. This is a very new technology that will only get better. In fact, in the short time since I ran this test, Dall-E and many other generators have improved substantially. <b>Combining</b> AI images and manual editing (e.g. Dall-E 2 + photoshop) will probably be the new normal.</p>
         <h3>Current Limitations:</h3>
-        <p>Unfortunately, the most complex and low frequency items were the most difficult to generate. It's easy to find an image of a glass of juice from the internet but very hard to find an image of 'the cat chases the dog'. Yet AI seems not to be very successful at the latter, at present.</p>
-        <p>Part of the difficulty with more complex scenes was that Dall-E 2 was not accurately parsing the syntax. Prepositions and adjectives were inconsistently applied and often to the wrong noun.            </p>
-            <span style="display: block; margin-top: 2rem; font-style: italic;">Results of prompt, “A ballerina runs behind a policeman, high speed shutter”. The preposition is not consistently applied to the correct noun.</span>
-            <div style="display: flex; justify-content: center; width: 100%;gap: 1rem;">
-                <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase1.jpg" alt="sample">
-                <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase2.jpg" alt="sample">
-                <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase3.jpg" alt="sample">
-                <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase4.jpg" alt="sample">
+        <p><b>Complexity/frequency: </b>Unfortunately, the most complex and low frequency items were the most difficult to generate. It's easy to find an image of a glass of juice from the internet but very hard to find an image of 'the cat chases the dog'. Yet AI seems to struggle more with the latter, at present.</p>
+        <p><b>Syntax: </b>Part of the difficulty with more complex scenes was that Dall-E 2 was not accurately parsing the syntax. Prepositions and adjectives were inconsistently applied and often to the wrong noun. This is a known limitation.</p>
+            <div style="background: rgba(255, 255, 255,0.2);
+            padding: 1rem;
+            border-radius: 1rem;">
+                <span style="display: block; font-style: italic;">Results of prompt, “A ballerina runs behind a policeman, high speed shutter”. The preposition is not consistently applied to the correct noun.</span>
+                <div style="display: flex; justify-content: center; width: 100%;gap: 1rem;">
+                    <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase1.jpg" >
+                    <div class="caption"></div>
+                    <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase2.jpg" >
+                    <div class="caption"></div>
+                    <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase3.jpg" >
+                    <div class="caption"></div>
+                    <img style="width: 100%;" loading="lazy" src="./images/AIimages/chase4.jpg" >
+                    <div class="caption"></div>
+                </div>
             </div>
 
-        <p>Dall-E 2 produced a diverse range of races without prompting, <b>but</b> it has been intentionally programmed to do so because early models defaulted to white-looking people. AI is not biased <i>itself</i> but reflects and exaggerates the human-generated data used to train it. Most AI image generators were trained on English-language, Western culture images and captions, meaning generating images for <a href="https://restofworld.org/2023/ai-image-stereotypes/">other cultures</a> may be substantially less accurate and efficient.</p>
+        <p><b>Bias: </b>Dall-E 2 produced a diverse range of races without prompting, but it has been <i>intentionally programmed to do so</i> because early models defaulted to white-looking people. AI is not biased itself but reflects and exaggerates the human-generated data used to train it. Most AI image generators have been trained on English-language, Western culture images and captions, meaning generating images for <a style="color: rgb(131, 182, 10);" href="https://restofworld.org/2023/ai-image-stereotypes/">other cultures</a> may be substantially less accurate and efficient.</p>
         <h3>What's next?</h3>
         <p>We need to see what people think about these images - I plan to investigate the acceptability and accuracy of AI-generated images compared to 'human generated' images.</p>
-        <p style="margin-top: 6rem; text-align: center;">Pierce, J. E. (2023). AI-generated images for speech pathology—An exploratory application to aphasia assessment and intervention materials. <i>American Journal of Speech-Language Pathology. </i>https://doi.org/10.1044/2023_AJSLP-23-00142
+        <p style="margin-top: 6rem; text-align: center;">Pierce, J. E. (2023). AI-generated images for speech pathology—An exploratory application to aphasia assessment and intervention materials. <i>American Journal of Speech-Language Pathology. </i><a href="https://doi.org/10.1044/2023_AJSLP-23-00142">https://doi.org/10.1044/2023_AJSLP-23-00142</a>
         </p>
     </div>
     <div class="light" style="box-shadow: inset 0px 10px 20px -10px rgba(0, 0, 0, 0.5);">
         <p>If you'd like to try using Dall-E 2 yourself, I recommend this <a href="https://dallery.gallery/the-dalle-2-prompt-book/">excellent prompt guide</a>.</p>
-        <p>You may also want to compare <a href="https://johnepierce.github.io/AI-images-for-aphasia/">my prompts</a> with the results.</p>
-        <p>Below, I have summarised what I learned about prompts. Note that each AI image generator (Dall-E, Midjourney, Photoshop, Stable Diffusion...) will have its own quirks. Dall-E 2 is not a free generator.</p>
+        <p>You may also want to compare <a href="https://johnepierce.github.io/AI-images-for-aphasia/">my prompts</a> with the results to see what worked best.</p>
+        <p>Below, I have summarised what I learned about prompts. Note that each AI image generator (Dall-E, Midjourney, Photoshop, Stable Diffusion...) will have its own quirks. Dall-E 2 does involve a cost.</p>
         <table class=MsoTableGrid width="91%"
         style='width:91.14%;background:#D9D9D9;mso-background-themecolor:background1;
         mso-background-themeshade:217;border-collapse:collapse;border:none;mso-border-alt:
@@ -282,7 +424,7 @@
             mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
             mso-bidi-font-family:"Times New Roman";color:black;mso-color-alt:windowtext;
             mso-fareast-language:EN-GB'>Adjectives can be very effective but are not
-            consistently applied to the correct noun.</span><span style='mso-ascii-font-family:
+            consistently applied to the correct noun - keep trying!</span><span style='mso-ascii-font-family:
             "Times New Roman";mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:
             "Times New Roman";mso-bidi-font-family:"Times New Roman";mso-fareast-language:
             EN-GB'><o:p></o:p></span></p>
@@ -292,8 +434,10 @@
             mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman";
             color:black;mso-color-alt:windowtext;mso-fareast-language:EN-GB'>Duplication
             has been reported to be effective at focusing on a particular description and
-            improving its quality, e.g. A smiling girl is tickled, laughing, bright
-            lighting, happy</span><span style='mso-ascii-font-family:"Times New Roman";
+            improving its quality, e.g. <i>
+                A <b>smiling</b> girl is tickled, <b>laughing</b>, bright
+                lighting, <b>happy</b>
+            </i></span><span style='mso-ascii-font-family:"Times New Roman";
             mso-fareast-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
             mso-bidi-font-family:"Times New Roman";mso-fareast-language:EN-GB'><o:p></o:p></span></p>
             </td>

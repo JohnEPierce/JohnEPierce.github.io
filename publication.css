@@ -125,3 +125,19 @@ ul,ol {
     transform: skewY(1.3deg);
     padding: 0;
 }
+
+@media screen and (max-width: 500px) {
+    body > * {
+        padding-left: 4vw;
+        padding-right: 4vw;
+      }
+    p {
+        text-align: left;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .paperbutton {
+        margin-bottom: 1rem;
+    }
+}

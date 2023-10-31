@@ -4,10 +4,23 @@
     <link rel="stylesheet" href="publication.css">
     <link href='https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800&display=swap' rel='stylesheet'>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         #typed {
             animation: typing 4s steps(40) infinite;
             overflow: hidden;
+        }
+        #demo {
+            width: 70%; 
+            display: grid;
+            grid-template-columns: 1fr min-content;
+            grid-gap: 1rem; 
+            margin: auto;
+        }
+        #demo div p {
+            font-family: OCR A Std, 'Courier New', Courier, monospace; 
+            font-size: 1.8rem;
+            color: rgb(201, 255, 75);
         }
         #dalleImage {
             opacity: 0;
@@ -86,6 +99,19 @@
             transform: scale(1, 1);
          }
         }
+
+        @media screen and (max-width: 500px) {
+            #demo {
+                width: 100%;
+            }
+            #demo div p {
+                font-size: 1.3rem;
+            }
+            p {
+                margin-top: 2rem!important;
+                /* margin-bottom: auto!important; */
+            }
+        }
     </style>
 </head>
 <body>
@@ -107,13 +133,13 @@
                 doi.org/10.1044/2023_AJSLP-23-00142
             </a>
         </div>
-        <div style="width: 70%; display: grid;grid-template-columns: 1fr min-content;grid-gap: 1rem; margin: auto;">
-            <div style=""><p style="font-family: OCR A Std, 'Courier New', Courier, monospace; font-size: 1.8rem;color: rgb(201, 255, 75);">
+        <div id="demo">
+            <div style=""><p>
                 Prompt:<br><span id="typed"></span>
             </p></div>
             <img src="images/shoe_apple.png" alt="Four AI-generated images of shoes and apples in various positions" style="grid-column: 2/3;max-width: 25vw; align-self: center; justify-self: center;" id="dalleImage">
         </div>
-        <p style="text-align: justify;margin-bottom: 3rem; margin-top: 5rem; font-size: 1.4rem;">Images are a key part of aphasia assessment and treatment (and plenty of other areas of practice!). But it can be really difficult and/or expensive to find high quality images. Artificial Intelligence can now generate high quality images from a text prompt - I was interested in whether this might be useful to create customised images <b>quickly</b> and <b>affordably</b>.</p>
+        <p style="margin-bottom: 3rem; margin-top: 5rem; font-size: 1.4rem;">Images are a key part of aphasia assessment and treatment (and plenty of other areas of practice!). But it can be really difficult and/or expensive to find high quality images. Artificial Intelligence can now generate high quality images from a text prompt - I was interested in whether this might be useful to create customised images <b>quickly</b> and <b>affordably</b>.</p>
     </div>
     <div class="mid">
             <h2>Method</h2>

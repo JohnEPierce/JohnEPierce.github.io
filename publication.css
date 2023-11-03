@@ -93,14 +93,12 @@ transition: 0.1s all;
 }
 
 .abstract {
-    text-align: justify;
   margin-bottom: 3rem;
   font-size: 1.4rem;
 }
 
 p {
     font-size: 1.2rem;
-    text-align: justify;
 }
 
 ul,ol {

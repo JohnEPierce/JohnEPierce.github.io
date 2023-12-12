@@ -177,8 +177,8 @@ svg {
 #JournalArticles * td {
     padding-right: 3rem;
 }
-#JournalArticles p, #researchImpact p {
-    margin-bottom: auto;
+#JournalArticles p {
+    margin-bottom: 1rem;
 }
 
 #content a {
@@ -217,6 +217,9 @@ svg {
     height: 2.3rem;
     margin: 0.6rem 0;
     vertical-align: middle;
+}
+#researchImpact p {
+    margin-bottom: auto;
 }
     #posters * a:hover {
         opacity: 80%;

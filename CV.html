@@ -77,9 +77,26 @@
         });
 
         // Add altmetric label
-        const altmetricCounts = document.querySelectorAll('.altmetricCount');
+        const altmetricCounts = document.querySelectorAll('.altmetric');
         altmetricCounts[0].prepend("Altmetrics: ") 
 
+        //function to pull number from altmetric embedded div
+        function pullAltmetricTotal(imgElement){
+            var altText = imgElement.getAttribute('alt');
+            var score = parseInt(altText.match(/\d+/), 10);
+            console.log('Altmetric score is:', score);
+            if (!isNaN(score)) {
+                    let scoreSpan = document.createElement('span');
+                    scoreSpan.textContent = score;
+                    imgElement.parentNode.insertBefore(scoreSpan, imgElement.nextSibling);
+                }
+        }
+        //Feed altmetric embeds through, change image
+        var imgElements = document.querySelectorAll('.altmetric-embed img');
+        imgElements.forEach(element => {
+            pullAltmetricTotal(element)
+            element.setAttribute("src", "images/altmetrics.png")
+        });
     }
 
     
@@ -372,9 +389,7 @@
             <table>
                 <tr>
                     <td>
-                        <img src="images/altmetrics.png" class="altmetric">
-                        <span class="altmetricCount"></span>
-                        <!-- <div class='altmetric-embed' data-badge-type='donut' data-doi="10.1038/nature.2012.9872"></div> -->
+                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1044/2023_AJSLP-23-00142"></div>
                     </td>
                 </tr>
             </table>
@@ -384,8 +399,7 @@
             <table>
                 <tr>
                     <td>
-                        <img src="images/altmetrics.png" class="altmetric">
-                        <span class="altmetricCount">51</span>
+                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2023.2229030"></div>
                     </td>
                 </tr>
             </table>
@@ -395,9 +409,8 @@
             </p>
             <table>
                 <tr>
-                    <td>
-                        <img src="images/altmetrics.png" class="altmetric">
-                        <span class="altmetricCount">14</span>
+                    <td>   
+                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2023.2199463"></div>
                     </td>
                 </tr>
             </table>
@@ -408,8 +421,7 @@
             <table>
                 <tr>
                     <td>
-                        <img src="images/altmetrics.png" class="altmetric">
-                        <span class="altmetricCount">10</span>
+                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/10749357.2023.2196765"></div>
                     </td>
                 </tr>
             </table>
@@ -425,8 +437,7 @@
                     <tbody>
                     <tr>
                         <td>
-                            <img src="images/altmetrics.png" class="altmetric">
-                            <span class="altmetricCount">27</span>
+                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1016/j.apmr.2022.12.002"></div>
                         </td>
                         <td>
                             2 citations
@@ -455,8 +466,7 @@
                  <table>
                     <tbody><tr>
                         <td>
-                            <img src="images/altmetrics.png" class="altmetric">
-                            <span class="altmetricCount">55</span>
+                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1136/jnnp-2021-328422"></div>
                         </td>
                         <td>
                             3 citations
@@ -484,8 +494,7 @@
                  <tr>
                   <td width=159 valign=top >
                   <p>
-                   <img src="images/altmetrics.png" class="altmetric" />
-                  <span  class="altmetricCount">18</span></p>
+                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2021.1955303"></div>
                   </td>
                   <td width=159 valign=top >
                   <p><span >8 citations</span></p>
@@ -508,9 +517,7 @@
                 <table >
                  <tr>
                   <td width=159 valign=top >
-                  <p><span>
-                   <img src="images/altmetrics.png" class="altmetric" />
-                  </span><span  class="altmetricCount">17</span></p>
+                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2021.1948621"></div>
                   </td>
                   <td width=159 valign=top >
                   <p><span >4 citations</span></p>
@@ -542,9 +549,7 @@
                 <table >
                  <tr>
                   <td width=159 valign=top >
-                  <p><span >
-                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
-                  </span><span class="altmetricCount">56</span></p>
+                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2020.1843079"></div>
                   </td>
                   <td width=159 valign=top >
                   <p><span >8 citations </span></p>
@@ -577,9 +582,7 @@
                 <table >
                  <tr>
                   <td width=159 valign=top >
-                  <p><span >
-                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
-                  </span><span class="altmetricCount">189</span></p>
+                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2020.1786412"></div>
                   </td>
                   <td width=159 valign=top >
                   <p><span >11 citations</span></p>
@@ -619,9 +622,7 @@
                 <table >
                  <tr>
                   <td width=159 valign=top >
-                  <p><span >
-                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
-                  </span><span class="altmetricCount">47</span></p>
+                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2020.1768127"></div>
                   </td>
                   <td width=159 valign=top >
                   <p><span >10 citations</span></p>
@@ -655,9 +656,7 @@
                 <table >
                  <tr>
                   <td width=159 valign=top >
-                  <p><span >
-                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
-                  </span><span  class="altmetricCount">10</span></p>
+                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.23641/asha.7646717"></div>
                   </td>
                   <td width=159 valign=top >
                   <p><span >9 citations</span></p>
@@ -679,9 +678,7 @@
                 <table >
                  <tr>
                   <td width=159 valign=top >
-                  <p><span >
-                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
-                  </span><span class="altmetricCount">26</span></p>
+                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2017.1365730"></div>
                   </td>
                   <td width=159 valign=top >
                   <p><span >13 citations</span></p>
@@ -701,9 +698,7 @@
                 <table >
                  <tr>
                   <td width=159 valign=top >
-                  <p><span >
-                   <img src="images/altmetrics.png" class="altmetric" o:href="https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1469511956/oxx3evfnjtknjax5v6nx.png"/>
-                  </span><span class="altmetricCount">3</span></p>
+                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.12001"></div>
                   </td>
                   <td width=159 valign=top >
                   <p><span >22 citations</span></p>

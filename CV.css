@@ -188,7 +188,21 @@ svg {
 
 .altmetric {
     vertical-align: middle;
+    display: inline;
 }
+    .altmetric * img {
+        vertical-align: middle;
+        display: inline;
+        width: auto;
+        height: auto;
+    }
+    .altmetric * span {
+        color: var(--secondary-color);
+    }
+    .altmetric * {
+        text-decoration: none;
+    }
+
 .inlineicon {
     vertical-align: middle;
     width: 1rem;

@@ -138,4 +138,7 @@ ul,ol {
     .paperbutton {
         margin-bottom: 1rem;
     }
+    img {
+        max-width: 92vw!important;
+    }
 }

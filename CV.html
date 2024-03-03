@@ -46,8 +46,20 @@
         //Years post PhD
         let now = Date.now();
         const Phd = 1628204400000;
-        let elapsed = ((now - Phd)/31556736000).toFixed(1);
+        let elapsed = ((now - Phd)/31556736000).toFixed(0);
         document.getElementById("yearsPost").innerHTML = elapsed;
+
+        //Funding
+        const fundingDivs = document.querySelectorAll(".funding p *");
+        var funding = 0;
+
+        fundingDivs.forEach(span => {
+            if (span.textContent.includes("successful")) {
+                const dollarAmounts = span.textContent.match(/\$\d+(,\d{3})*(\.\d+)?/g);
+                const number = dollarAmounts(amount.replace(/[\$,]/g, ''));
+                funding += number;
+            }
+        });
 
         //strip word styling
         var wordStyling = ["", "mso-bidi-font-weight:normal","font-size:11.0pt;",'font-family:"Helvetica Neue Light";',"mso-themecolor:text1","mso-themetint:217","color:#262626;",'Helvetica Neue Light','font-family','MsoNormal',"11.0pt","10.0pt", "-18.0pt;","padding:0cm 5.4pt 0cm 5.4pt","width:297.7pt;","height:11.2pt","width:82.2pt;",'width="397','width="110'];
@@ -91,7 +103,6 @@
         function pullAltmetricTotal(imgElement){
             var altText = imgElement.getAttribute('alt');
             var score = parseInt(altText.match(/\d+/), 10);
-            console.log('Altmetric score is:', score);
             if (!isNaN(score)) {
                     let scoreSpan = document.createElement('span');
                     scoreSpan.textContent = score;
@@ -307,11 +318,11 @@
         <div class="leftCol">
             <div id="GrantsScholarships">Grants & Scholarships</div>
         </div>
-        <div class="rightCol">
+        <div class="rightCol funding">
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-                <p><b>Pierce, J. E.</b>. (2023). <i>Future Leaders Grant</i>, Stroke Foundation, Melbourne, VIC. ($15,000 – submitted).</span></p>
+                <p><b>Pierce, J. E.</b>. (2023). <i>Future Leaders Grant</i>, Stroke Foundation, Melbourne, VIC. ($15,000 – successful).</span></p>
             <p><span>Lanyon, L.,
                 Shiggins, C., <b>Pierce, J. E.</b>, <span>Rademaker</span>, B., <span>Sayner</span>, A., Ermert, M., Ermert, K., Pettigrove, K., Rose,
                 M. (2023). </span><i><span

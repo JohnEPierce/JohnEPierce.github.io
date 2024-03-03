@@ -50,22 +50,33 @@
         document.getElementById("yearsPost").innerHTML = elapsed;
 
         //Funding
-        const fundingDivs = document.querySelectorAll(".funding p *");
+        const fundingDivs = document.querySelectorAll(".funding p");
         var funding = 0;
+        var fundingCIA = 0;
 
         fundingDivs.forEach(span => {
-            if (span.textContent.includes("successful")) {
+            if (span.textContent.includes(" successful")) {
                 const dollarAmounts = span.textContent.match(/\$\d+(,\d{3})*(\.\d+)?/g);
-                const number = dollarAmounts(amount.replace(/[\$,]/g, ''));
-                funding += number;
+                if (dollarAmounts && dollarAmounts.length > 0) {
+                    const number = parseInt(dollarAmounts[0].replace(/[\$,]/g, ''));
+                    funding += number;
+                    console.log(number + " --> " + funding);
+                }
+            }
+            if (span.textContent.startsWith("Pierce") && span.textContent.includes(" successful")) {
+                const dollarAmounts = span.textContent.match(/\$\d+(,\d{3})*(\.\d+)?/g);
+                if (dollarAmounts && dollarAmounts.length > 0) {
+                    const number = parseInt(dollarAmounts[0].replace(/[\$,]/g, ''));
+                    fundingCIA += number;
+                    console.log(number + " --> CIA " + fundingCIA);
+                }
             }
         });
+        document.getElementById("funding").innerText = "$" + (funding/1000).toFixed(0) + "k";
+        document.getElementById("fundingCIA").innerText = "$" + (fundingCIA/1000).toFixed(0) + "k";
 
-        //strip word styling
-        var wordStyling = ["", "mso-bidi-font-weight:normal","font-size:11.0pt;",'font-family:"Helvetica Neue Light";',"mso-themecolor:text1","mso-themetint:217","color:#262626;",'Helvetica Neue Light','font-family','MsoNormal',"11.0pt","10.0pt", "-18.0pt;","padding:0cm 5.4pt 0cm 5.4pt","width:297.7pt;","height:11.2pt","width:82.2pt;",'width="397','width="110'];
-        for (var str of wordStyling) {
-            document.body.innerHTML = document.body.innerHTML.replaceAll(str, '');
-        }
+        //Count publications
+        document.getElementById("pubsCount").innerText = document.querySelectorAll(".JournalArticles p:not(.lineBreak)").length
         
         //show or hide home arrow
         var topArrowTrigger = document.getElementById("ProfessionalExperience").offsetTop;
@@ -150,9 +161,9 @@
     </div>
     <div id="details">
         <p>
-            <span><span id="yearsPost">1</span> years post PhD</span>
-            <span><span>$416k</span> funding | <span>$191k</span> as CIA </span>
-            <span><span>15</span> publications </span>
+            <span><span id="yearsPost">1 years post PhD</span>
+            <span><span id="funding">$416k</span> funding | <span id="fundingCIA">$191k</span> as CIA </span>
+            <span><span  id="pubsCount">15</span> publications </span>
             <span><span>157</span> citations</span>
             <span>H-index <span>8</span></span>
             <!-- https://www.scopus.com/authid/detail.uri?authorId=57209304655 -->
@@ -168,26 +179,26 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-            <p><b><span>Doctor of Philosophy</span></b>
-                <br><span>La Trobe University Aug
-                2021</span>
-                <br><i><span>A Comparison of Lower
-                Intensity Constraint-Induced and Multimodal Therapies in Chronic Aphasia</span></i>
-                <br><span>Supervisors: Prof
-                Miranda Rose, Dr Robyn O’Halloran &amp; Prof Leanne Togher</span></p>
+            <p><b>Doctor of Philosophy</b>
+                <br>La Trobe University Aug
+                2021
+                <br><i>A Comparison of Lower
+                Intensity Constraint-Induced and Multimodal Therapies in Chronic Aphasia</i>
+                <br>Supervisors: Prof
+                Miranda Rose, Dr Robyn O’Halloran &amp; Prof Leanne Togher</p>
                 
-                <p><b><span>Post Graduate Diploma in Health
-                Research Methodology (1st class)</span></b>
-                <br><span>La Trobe University
-                2011</span>
-                <br><i><span>Alternating &amp;
-                Sequential Motion Rates in Older Adults – Normative Data</span></i>
-                <br><span>Supervisors: Prof
-                Alison Perry &amp; A/Prof Susan Cotton<b></b></span></p>
+                <p><b>Post Graduate Diploma in Health
+                Research Methodology (1st class)</b>
+                <br>La Trobe University
+                2011
+                <br><i>Alternating &amp;
+                Sequential Motion Rates in Older Adults – Normative Data</i>
+                <br>Supervisors: Prof
+                Alison Perry &amp; A/Prof Susan Cotton<b></b></p>
                 
-                <p><b><span>Bachelor of Speech Pathology</span></b>
-                <br><span>La Trobe University
-                2008 || Member of Golden Key Society</span></p>
+                <p><b>Bachelor of Speech Pathology</b>
+                <br>La Trobe University
+                2008 || Member of Golden Key Society</p>
         </div>
         <a id="topArrow" href="#header">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
@@ -201,60 +212,57 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-            <p><span><b><span>Post Doctoral</span></b></span><b><span> Research Fellow – Centre of Research
-                Excellence in Aphasia Recovery and Rehabilitation</span></b>
-                <br><span>May 2021 </span><span>⇾ </span><span>Present ||
-                Full-time</span>
-                <br><i><span>Coordinator of Communication
-                Connect ($1.8m NHMRC Ideas Grant)</span></i></p>
+            <p><b>Post Doctoral</b><b> Research Fellow – Centre of Research
+                Excellence in Aphasia Recovery and Rehabilitation</b>
+                <br>May 2021 ⇾ Present ||
+                Full-time
+                <br><i>Coordinator of Communication
+                Connect ($1.8m NHMRC Ideas Grant)</i></p>
                 
-                <p><b><span>Grade 4 Speech
-                Pathologist – Cabrini Health</span></b>
-                <br><span>Sep 2017 </span><span>⇾</span><span> April 2021 || Permanent part-time</span>
-                <br><i><span>Rehabilitation in inpatient,
-                <span>outpatient</span> and ambulatory services</span></i>
-                <br><span><span>-<span>
-                </span></span></span><span>Coordinator
-                of interdisciplinary Parkinson’s Program</span>
-                <br><span><span>-<span>
-                </span></span></span><span>Senior
-                Subacute Speech Pathologist, managed team of six</span></p>
+                <p><b>Grade 4 Speech
+                Pathologist – Cabrini Health</b>
+                <br>Sep 2017 ⇾ April 2021 || Permanent part-time
+                <br><i>Rehabilitation in inpatient,
+                outpatient and ambulatory services</i>
+                <br>-
+                Coordinator
+                of interdisciplinary Parkinson’s Program
+                <br>-
+                Senior
+                Subacute Speech Pathologist, managed team of six</p>
                 
-                <p><b><span>Grade 3 Subacute Speech
-                Pathologist – Cabrini Health</span></b>
-                <br><span>May 2016 </span><span>⇾</span><span> Sep 2017 || Permanent part-time</span>
-                <br><i><span>Rehabilitation in inpatient,
-                <span>outpatient</span> and ambulatory services</span></i></p>
+                <p><b>Grade 3 Subacute Speech
+                Pathologist – Cabrini Health</b>
+                <br>May 2016 ⇾ Sep 2017 || Permanent part-time
+                <br><i>Rehabilitation in inpatient,
+                outpatient and ambulatory services</i></p>
                 
-                <p><b><span>Movement Disorders
-                Program Coordinator – Peninsula Health</span></b>
-                <br><span>Sep 2013 </span><span>⇾</span><span> April 2016 || Permanent part-time</span>
-                <br><i><span>Inpatient and outpatient program for Parkinson’s Disease</span></i></p>
+                <p><b>Movement Disorders
+                Program Coordinator – Peninsula Health</b>
+                <br>Sep 2013 ⇾ April 2016 || Permanent part-time
+                <br><i>Inpatient and outpatient program for Parkinson’s Disease</i></p>
                 
-                <p><b><span>Grade 2 Speech
-                Pathologist – Peninsula Health</span></b>
-                <br><span>Sep 2010 </span><span>⇾</span><span> April 2016 || Permanent full-time</span>
-                <br><i><span>Community rehab, subacute inpatient,
-                acute, residential care</span></i></p>
+                <p><b>Grade 2 Speech
+                Pathologist – Peninsula Health</b>
+                <br>Sep 2010 ⇾ April 2016 || Permanent full-time
+                <br><i>Community rehab, subacute inpatient,
+                acute, residential care</i></p>
                 
-                <p><b><span>Private Practice Speech Pathologist –
-                independent</span></b>
-                <br><span >Dec 2014</span><span> </span><span>⇾</span><span> </span><span
-                >June 2016 || After hours</span>
-                <br><i><span
-                >Rehabilitation of patients with traumatic brain injury </span></i></p>
+                <p><b>Private Practice Speech Pathologist –
+                independent</b>
+                <br>Dec 2014 ⇾ June 2016 || After hours
+                <br><i>Rehabilitation of patients with traumatic brain injury </i></p>
                 
-                <p><b><span>Grade 1 Speech
-                Pathologist – Peninsula Health</span></b>
-                <br><span>Mar 2009 </span><span>⇾</span><span> Sep 2010 || Permanent full-time<u></u></span>
-                <br><i><span>Sub-acute inpatient, acute &amp;
-                community rehab</span></i></p>
+                <p><b>Grade 1 Speech
+                Pathologist – Peninsula Health</b>
+                <br>Mar 2009 ⇾ Sep 2010 || Permanent full-time<u></u>
+                <br><i>Sub-acute inpatient, acute &amp;
+                community rehab</i></p>
                 
-                <p><b><span>Grade 1 Speech
-                Pathologist – Victorian Rehabilitation Centre</span></b>
-                <br><span>Nov 2008 </span><span>⇾</span><span> Jan 2009 || Fixed term full-time</span>
-                <br><i><span>Sub-acute inpatient</span></i><span
-                ></span></p>
+                <p><b>Grade 1 Speech
+                Pathologist – Victorian Rehabilitation Centre</b>
+                <br>Nov 2008 ⇾ Jan 2009 || Fixed term full-time
+                <br><i>Sub-acute inpatient</i></p>
         </div>
         <div class="leftCol">
             <div id="Awards">Awards</div>
@@ -267,10 +275,9 @@
             <p>Best Aphasia Presentation - 2023, Stroke Conference, Melbourne.</p>
             <p>Collaboration of Aphasia Trialists Resources and Recruitment Award - CATS 10 year anniversary awards 2023.</p>
             
-            <p><span><span>Tavistock</span></span><span> Trust for Aphasia Student Prize - La Trobe
-                University 2020. </span><i><span
-                >Awarded for&nbsp;excellence&nbsp;in work relating
-                to&nbsp;aphasia.</span></i><span></span></p>
+            <p>Tavistock Trust for Aphasia Student Prize - La Trobe
+                University 2020. <i>Awarded for&nbsp;excellence&nbsp;in work relating
+                to&nbsp;aphasia.</i></p>
         </div>
         <!-- <div class="leftCol">
             Current Projects
@@ -279,41 +286,38 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-            <p><i><span >Aphasia Therapy Online – Vietnamese,
-                Mandarin, Greek</span></i></p>
-                <p><i><span >&nbsp;</span></i></p>
-                <p><i><span >M-MAT-tele</span></i></p>
-                <p><i><span >&nbsp;</span></i></p>
-                <p><i><span >Communication Connect</span></i></p>
-                <p><i><span >&nbsp;</span></i></p>
-                <p><i><span >Updating the Australian Aphasia
-                Rehabilitation Pathway.</span></i></p>
-                <p><i><span ><span style='text-decoration:none'>&nbsp;</span></span></i></p>
-                <p><i><span >CHAT Maintain</span></i></p>
-                <p><i><span >&nbsp;</span></i></p>
-                <p><i><span >Fatigue and distress</span></i></p>
-                <p><i><span >&nbsp;</span></i></p>
-                <p><i><span >What makes a video aphasia-accessible? An
-                international project.</span></i><span></span></p>
-                <p><span >Finch, E., Pierce, J. E., Breitenstein, C.
+            <p><i>Aphasia Therapy Online – Vietnamese,
+                Mandarin, Greek</i></p>
+                <p><i>&nbsp;</i></p>
+                <p><i>M-MAT-tele</i></p>
+                <p><i>&nbsp;</i></p>
+                <p><i>Communication Connect</i></p>
+                <p><i>&nbsp;</i></p>
+                <p><i>Updating the Australian Aphasia
+                Rehabilitation Pathway.</i></p>
+                <p><i><span style='text-decoration:none'>&nbsp;</i></p>
+                <p><i>CHAT Maintain</i></p>
+                <p><i>&nbsp;</i></p>
+                <p><i>Fatigue and distress</i></p>
+                <p><i>&nbsp;</i></p>
+                <p><i>What makes a video aphasia-accessible? An
+                international project.</i></p>
+                <p>Finch, E., Pierce, J. E., Breitenstein, C.
                 (University of Muenster), Dow-Richards, C. (Aphasia Recovery Connection), Matos,
                 A. (University of Aveiro), Pais, A. (Trinity College Dublin), Charalambous,
                 M. (University of Fribourg; Cyprus University of Technology), Wallace, S.
-                (University of Queensland), Reed, A. (Aphasia Recovery Connection).</span></p>
+                (University of Queensland), Reed, A. (Aphasia Recovery Connection).</p>
                 
-                <p><i><span >Establishing consensus on implementation
-                priorities for post-stroke aphasia services.</span></i><span
-                > Shrubsole, K. (University of Queensland), Power, E.
+                <p><i>Establishing consensus on implementation
+                priorities for post-stroke aphasia services.</i> Shrubsole, K. (University of Queensland), Power, E.
                 (University of Technology Sydney), Lynch, E. (Flinders University), Wallace,
-                S. (University of Queensland).</span></p>
+                S. (University of Queensland).</p>
                 
-                <p><i><span
-                >Spontaneous swallowing rates in people with Parkinson's
-                compared to controls.</span></i><span><br>
-                (Funded research).</span></p>
-                <p><span>Pierce, J. E., Crouch,
-                H. (Monash Health), Vogel, A. (The University of Melbourne).</span><span
-                ></span></p>
+                <p><i>Spontaneous swallowing rates in people with Parkinson's
+                compared to controls.</i><br>
+                (Funded research).</p>
+                <p>Pierce, J. E., Crouch,
+                H. (Monash Health), Vogel, A. (The University of Melbourne).</p>
         </div> -->
         <div class="leftCol">
             <div id="GrantsScholarships">Grants & Scholarships</div>
@@ -322,88 +326,100 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-                <p><b>Pierce, J. E.</b>. (2023). <i>Future Leaders Grant</i>, Stroke Foundation, Melbourne, VIC. ($15,000 – successful).</span></p>
-            <p><span>Lanyon, L.,
-                Shiggins, C., <b>Pierce, J. E.</b>, <span>Rademaker</span>, B., <span>Sayner</span>, A., Ermert, M., Ermert, K., Pettigrove, K., Rose,
-                M. (2023). </span><i><span
-                >Phase II investigation of the feasibility,
+                <p><b>Pierce, J. E.</b>. (2023). <i>Future Leaders Grant</i>, Stroke Foundation, Melbourne, VIC. ($15,000 – successful).</p>
+            <p>Lanyon, L.,
+                Shiggins, C., <b>Pierce, J. E.</b>, Rademaker, B., Sayner, A., Ermert, M., Ermert, K., Pettigrove, K., Rose,
+                M. (2023). <i>Phase II investigation of the feasibility,
                 acceptability, and preliminary efficacy of a Hub-and-Spoke, Peer-Led
-                Community Aphasia Group program.</span></i><span> Early and Early-Mid Career Researcher Seed Grant,
-                Stroke Foundation, Melbourne, VIC. ($80,000 – successful).</span></p>
+                Community Aphasia Group program.</i> Early and Early-Mid Career Researcher Seed Grant,
+                Stroke Foundation, Melbourne, VIC. ($80,000 – successful).</p>
                 
-                <p><span>Finch, E.,
-                Kelly, E., Farrell, A., <span>Ownsworth</span>, T., Pinkham, M.,
+                <p>Finch, E.,
+                Kelly, E., Farrell, A., Ownsworth, T., Pinkham, M.,
                 Brownsett, B., Copland, D., Jones, A., Fleming, J., Doig, E., Jones, A., <b>Pierce,
-                J. E.</b>, McPhail, S., Turkington, L., Little, L. (2022). <span>CanCommunicate</span>: Optimising communication for people with
+                J. E.</b>, McPhail, S., Turkington, L., Little, L. (2022). CanCommunicate: Optimising communication for people with
                 brain cancer and their families. Metro South Health Study Education and
-                Research Trust Account ($125,000 – successful).</span></p>
+                Research Trust Account ($125,000 – successful).</p>
                 
-                <p><b><span>Pierce, J.E.</span></b><span>, Copland, D., Godecke, E.,
+                <p><b>Pierce, J.E.</b>, Copland, D., Godecke, E.,
                 Foster, A., Churilov, L., Nicholls, R., Tulloch, G., Barry, S., &amp; Rose,
-                M. (2022).</span><i><span
-                > M-MAT Tele: Maximising aphasia recovery through a
-                group telehealth intervention.</span></i><span> Early and Early-Mid Career Researcher Seed Grant,
-                Stroke Foundation, Melbourne, VIC. ($80,000 – <b>successful as CIA</b>).</span></p>
+                M. (2022).<i> M-MAT Tele: Maximising aphasia recovery through a
+                group telehealth intervention.</i> Early and Early-Mid Career Researcher Seed Grant,
+                Stroke Foundation, Melbourne, VIC. ($80,000 – <b>successful as CIA</b>).</p>
                 
-                <p><span><b>Pierce, J.E.</b>
-                (2022). </span><i><span>Aphasia
-                Therapy Online - Vietnamese, Mandarin, Greek.</span></i><span> Telematics Trust. ($50,000
-                – <b>successful as CIA</b>).</span></p>
+                <p><b>Pierce, J.E.</b>
+                (2022). <i>Aphasia
+                Therapy Online - Vietnamese, Mandarin, Greek.</i> Telematics Trust. ($50,000
+                – <b>successful as CIA</b>).</p>
                 
-                <p><span><b>Pierce, J.E.</b>
-                (2022). </span><i><span>Enabling
-                clinical implementation of evidence-based aphasia intervention: M-MAT Tele.</span></i><span> Speech Pathology Australia New
-                Researcher Grant. ($18,000 – <b>successful as CIA</b>).</span></p>
+                <p><b>Pierce, J.E.</b>
+                (2022). <i>Enabling
+                clinical implementation of evidence-based aphasia intervention: M-MAT Tele.</i> Speech Pathology Australia New
+                Researcher Grant. ($18,000 – <b>successful as CIA</b>).</p>
                 
-                <p><span><b>Pierce, J.E.</b>, Hill,
-                A., Wong, D. &amp; Rose, M. (2021). </span><i><span >Addressing inequity in aphasia
-                rehabilitation: Adapting Multi-Modality Aphasia Therapy for telehealth</span></i><span>. La Trobe University Theme
-                Grant, Melbourne, VIC. ($25,000 – <b>successful as CIA</b>).</span></p>
+                <p><b>Pierce, J.E.</b>, Hill,
+                A., Wong, D. &amp; Rose, M. (2021). <i>Addressing inequity in aphasia
+                rehabilitation: Adapting Multi-Modality Aphasia Therapy for telehealth</i>. La Trobe University Theme
+                Grant, Melbourne, VIC. ($25,000 – <b>successful as CIA</b>).</p>
                 
-                <p><span><b>Pierce, J.E.</b>,
+                <p><b>Pierce, J.E.</b>,
                 Togher, L., Copland, D., Nickels, L., Godecke, E., Foster, A., Churilov, L.,
-                Nicholls, R., Hayward, K., Rose, M. (2021).</span><i><span > Phase II exploration of Lower Intensity
-                Multi-Modality Aphasia Therapy (LIMMAT).</span></i><span> Lady Marigold Southey Aphasia Research Grant,
-                Stroke Foundation, Melbourne, VIC. ($100,000 – unsuccessful).</span></p>
+                Nicholls, R., Hayward, K., Rose, M. (2021).<i> Phase II exploration of Lower Intensity
+                Multi-Modality Aphasia Therapy (LIMMAT).</i> Lady Marigold Southey Aphasia Research Grant,
+                Stroke Foundation, Melbourne, VIC. ($100,000 – unsuccessful).</p>
                 
-                <p><span>Campbell, J., Dignam,
+                <p>Campbell, J., Dignam,
                 J., Copland, D., Hill, A., Rose, M., Hersh, D., Shrubsole, K., <b>Pierce, J.E.</b>, Jamieson,
                 P. CHAT-Maintain: Maintaining language and quality of life gains with
                 low-dose technology-delivered aphasia therapy. Lady Marigold Southey Aphasia Research
-                Grant, Stroke Foundation, Melbourne, VIC. ($100,000 – <b>successful as CIH</b>).</span></p>
+                Grant, Stroke Foundation, Melbourne, VIC. ($100,000 – <b>successful as CIH</b>).</p>
                 
-                <p><span><b>Pierce, J.E.</b>,
+                <p><b>Pierce, J.E.</b>,
                 Togher, L., Copland, D., Nickels, L., Godecke, E., Foster, A., Churilov, L., Nicholls,
-                R., Hayward, K., Rose, M. (2021).</span><i><span
-                > Exploration of Lower Intensity Multi-Modality Aphasia
-                Therapy (LIMMAT).</span></i><span> CASS Foundation
-                Science Grant, CASS Foundation, Melbourne, VIC. ($65,000 – unsuccessful).</span></p>
+                R., Hayward, K., Rose, M. (2021).<i> Exploration of Lower Intensity Multi-Modality Aphasia
+                Therapy (LIMMAT).</i> CASS Foundation
+                Science Grant, CASS Foundation, Melbourne, VIC. ($65,000 – unsuccessful).</p>
                 
-                <p><span><b>Pierce, J.E.</b>
-                &amp; Vogel, A. (2019). </span><i><span
-                >Spontaneous swallowing rates in people with Parkinson's
-                compared to controls</span></i><span>. Cabrini Foundation research grant, Melbourne, VIC. ($20,000 – <b>successful
-                as CIA</b>)</span></p>
+                <p><b>Pierce, J.E.</b>
+                &amp; Vogel, A. (2019). <i>Spontaneous swallowing rates in people with Parkinson's
+                compared to controls</i>. Cabrini Foundation research grant, Melbourne, VIC. ($20,000 – <b>successful
+                as CIA</b>)</p>
                 
-                <p><span><b>Pierce, J.E.</b>
-                &amp; Vogel, A. (2018). </span><i><span
-                >Spontaneous swallowing rates in people with Parkinson's
-                compared to controls</span></i><span>. Cabrini Foundation research grant, Melbourne, VIC. (unsuccessful)</span></p>
+                <p><b>Pierce, J.E.</b>
+                &amp; Vogel, A. (2018). <i>Spontaneous swallowing rates in people with Parkinson's
+                compared to controls</i>. Cabrini Foundation research grant, Melbourne, VIC. (unsuccessful)</p>
                 
-                <p><span>Smart strokes
+                <p>Smart strokes
                 scholarship 2017 - travel scholarship.<br>
-                Melbourne, VIC. ($500 - <b>successful</b>)</span></p>
+                Melbourne, VIC. ($500 - <b>successful</b>)</p>
         </div>
         <div class="leftCol">
             <div id="JournalArticles">Peer Reviewed Publications</div>
         </div>
-        <div class="rightCol" id="JournalArticles">
+        <div class="rightCol JournalArticles">
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
             <p>
-                Kim, J., Rose, M. L., <b>Pierce, J. E.</b>, Nickels, L., Copland, D., Togher, L., Godecke, E., Meinzer, M., Rai, T., Hurley, M., Foster, A., Carragher, M., Wilcox, C., & Cadilhac, D. A. (2024). High-intensity aphasia therapy is cost-effective in people with post-stroke aphasia: Evidence from the COMPARE trial. Stroke. <a href="https://doi.org/10.1161/STROKEAHA.123.045183 ">https://10.1161/STROKEAHA.123.045183</a>
+                Griffin-Musick, J., Harvey, S., <b>Pierce, J. E.</b>, Fahey, D., & Off, C. (2024). The “I” in ICAPs: examining treatment intensity under the microscope. <i>Aphasiology</i>, 1-29. <a href="https://doi.org/10.1080/02687038.2024.2317920">https://doi.org/10.1080/02687038.2024.2317920</a>
             </p>
+                <table>
+                    <tr>
+                        <td>
+                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2024.2317920"></div>
+                        </td>
+                    </tr>
+                </table>
+            <p>
+                Kim, J., Rose, M. L., <b>Pierce, J. E.</b>, Nickels, L., Copland, D., Togher, L., Godecke, E., Meinzer, M., Rai, T., Hurley, M., Foster, A., Carragher, M., Wilcox, C., & Cadilhac, D. A. (2024). High-intensity aphasia therapy is cost-effective in people with post-stroke aphasia: Evidence from the COMPARE trial. Stroke. <a href="https://doi.org/10.1161/STROKEAHA.123.045183">https://10.1161/STROKEAHA.123.045183</a>
+            </p>
+                <table>
+                    <tr>
+                        <td>
+                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1161/STROKEAHA.123.045183"></div>
+                        </td>
+                    </tr>
+                </table>
             <p>
                 Eley, E., Rose, M. L.,  van den Berg, M., <b>Pierce, J.</b>, Foster, A., Lamborn, E., D'Souza, S., Godecke, E., Lanyon, L., Shiggins, C., Kneebone, I., Baker, C. (2023). The effects of cognitive-linguistic interventions to treat aphasia in the first 90 days post stroke: A systematic review. Aphasiology.
                 <a href="https://doi.org/10.1080/02687038.2023.2282659">https://doi.org/10.1080/02687038.2023.2282659</a>
@@ -458,13 +474,8 @@
                 </tr>
             </table>
 
-            <p><span >Harvey,
-                S., Rose, M. L., Brogan, E., <b>Pierce, J. E.</b>, </span><span><span><span>Godecke</span></span></span><span><span>, E., <span>Brownsett</span>, S. L. E., <span>Churilov</span>,
-                L., Copland, D., Dickey, M. W., Dignam, J., <span>Lannin</span>,
-                N. A., Nickels, L., Bernhardt, J., &amp; Hayward, K. S. (2022). Examining
-                dose frameworks to improve aphasia rehabilitation research. <i>Archives of
-                Physical Medicine and Rehabilitation, 104</i>(5), 830-838. </span></span><span></span><a
-                href="https://doi.org/10.1016/j.apmr.2022.12.002"><span><span >https://doi.org/10.1016/j.apmr.2022.12.002</span></span></a><span><span></span></span></p>
+            <p>Harvey,S., Rose, M. L., Brogan, E., <b>Pierce, J. E.</b>, Godecke, E., Brownsett, S. L. E., Churilov, L., Copland, D., Dickey, M. W., Dignam, J., Lannin, N. A., Nickels, L., Bernhardt, J., &amp; Hayward, K. S. (2022). Examining dose frameworks to improve aphasia rehabilitation research. <i>Archives of Physical Medicine and Rehabilitation, 104</i>(5), 830-838. <a href="https://doi.org/10.1016/j.apmr.2022.12.002">https://doi.org/10.1016/j.apmr.2022.12.002</a>
+            </p>
                 <table>
                     <tbody>
                     <tr>
@@ -478,23 +489,20 @@
                 </table>
 
                 
-                <p><span><span
-                >Rose, M., Nickels, L., Copland, D., Togher, L.,
+                <p>Rose, M., Nickels, L., Copland, D., Togher, L.,
                 Godecke, E., Meinzer, M., Rai, T., Cadilhac, D., Kim, J., Hurley, M., Foster,
                 A., Carragher, M., Wilcox, C., <b>Pierce, J. E</b>., Steel, G. (2022).
                 Results of the COMPARE trial of constraint-induced or multimodality aphasia
                 therapy compared with usual care in chronic poststroke aphasia. <i>Journal of
-                Neurology, Neurosurgery and Psychiatry, </i>93(6), 573-581. </span></span><span></span><a
-                href="https://doi.org/10.1136/jnnp-2021-328422"><span><span >https://doi.org/10.1136/jnnp-2021-328422</span></span></a><span><span></span></span></p>
-                <p><span></span><a
-                href="https://www.youtube.com/watch?v=dT7Sic8Gimc"><span><span>
+                Neurology, Neurosurgery and Psychiatry, </i>93(6), 573-581. <a
+                href="https://doi.org/10.1136/jnnp-2021-328422">https://doi.org/10.1136/jnnp-2021-328422</a></p>
+                <p class="lineBreak"><a
+                href="https://www.youtube.com/watch?v=dT7Sic8Gimc">
                  
                  <img class="inlineicon" src="images/image006.png"/></a>
-                </span></span><span></span></a><span><span><span
-                > </span></span></span><a
-                href="https://www.youtube.com/watch?v=dT7Sic8Gimc"><span><i><span >Video
-                abstract</span></i></span></a><span><span
-                ><i><span> </span></i></span></span></p>
+                </a> <a
+                href="https://www.youtube.com/watch?v=dT7Sic8Gimc"><i>Video
+                abstract</i></a><i> </i></p>
                  <table>
                     <tbody><tr>
                         <td>
@@ -507,235 +515,205 @@
                 </tbody></table>
                 
                 
-                <p><span >Menahemi-Falkov, M., Breitenstein, C., <b>Pierce,
+                <p>Menahemi-Falkov, M., Breitenstein, C., <b>Pierce,
                 J. E</b>., Hill, A. J., O'Halloran, R., &amp; Rose, M. L. (2021). A
                 systematic review of maintenance following intensive therapy programs in
                 chronic post-stroke aphasia: importance of individual response analysis<i>.
-                Disability and Rehabilitation, 44</i>(20), 5811-5826. </span><span><a
-                href="https://doi.org/10.1080/09638288.2021.1955303"><span>https://doi.org/10.1080/09638288.2021.1955303</span></a></span><span
-                > </span>
-                <br>
-                <span><a
-                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><span></a>
+                Disability and Rehabilitation, 44</i>(20), 5811-5826. <a
+                href="https://doi.org/10.1080/09638288.2021.1955303">https://doi.org/10.1080/09638288.2021.1955303</a> 
+                <p class="lineBreak">
+                <a
+                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"></a>
                  <img class="inlineicon" src="images/image006.png"/>
                  
-                </span></a><span > </span><a
-                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><i><span
-                >Video abstract</span></i></a></span><i><span
-                ></span></i></p>
+                </a> <a
+                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><i>Video abstract</i></a><i></i></p>
                 <table >
                  <tr>
                   <td width=159 valign=top >
                     <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2021.1955303"></div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >8 citations</span></p>
+                  <div>8 citations</div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >FWCI: 1.95</span></p>
+                  <div>FWCI: 1.95</div>
                   </td>
                  </tr>
-                <tr><span><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/429ffb99-e67c-4037-8051-61dfcaadf87d">Evidence Map</a>; cited in UK Stroke Guidelines</i></b></span></tr>
+                <tr><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/429ffb99-e67c-4037-8051-61dfcaadf87d">Evidence Map</a>; cited in UK Stroke Guidelines</i></b></tr>
                 </table>
             
                 
-                <p><span >Rose, M. L., <b>Pierce, J. E., </b>Scharp,
-                V., Off, C., Babbitt, E., Griffin-<span>Musick</span>, J., &amp;
+                <p>Rose, M. L., <b>Pierce, J. E., </b>Scharp,
+                V., Off, C., Babbitt, E., Griffin-Musick, J., &amp;
                 Cherney, L. (2021). Developments in the application of Intensive
                 Comprehensive Aphasia Programs: An international survey of practice. <i>Disability
-                and Rehabilitation, 44</i>(20), 5863-5877. </span><span><a
-                href="https://doi.org/10.1080/09638288.2021.1948621"><span>https://doi.org/10.1080/09638288.2021.1948621</span></a></span><span
-                > </span></p>
+                and Rehabilitation, 44</i>(20), 5863-5877. <a
+                href="https://doi.org/10.1080/09638288.2021.1948621">https://doi.org/10.1080/09638288.2021.1948621</a> </p>
                 <table >
                  <tr>
                   <td width=159 valign=top >
                     <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2021.1948621"></div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >4 citations</span></p>
+                  4 citations
                   </td>
                   <td width=159 valign=top >
-                  <p><span >FWCI: 1.62</span></p>
+                  FWCI: 1.62
                   </td>
                  </tr>
                 </table>
                 
                 
-                <p><span >Harvey, S., Carragher, M., Dickey, M. W., <b>Pierce,
+                <p>Harvey, S., Carragher, M., Dickey, M. W., <b>Pierce,
                 J. E</b>., &amp; Rose, M. L. (2020). Dose effects in behavioural treatment of
                 post-stroke aphasia: a systematic review and meta-analysis. <i>Disability and
-                Rehabilitation, 93</i>(1), 1–12. </span><span><a
-                href="https://doi.org/10.1080/09638288.2020.1843079"><span>https://doi.org/10.1080/09638288.2020.1843079</span></a></span><span
-                ><span></span></span></p>
-                <p><span><a
-                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><span
-                >
+                Rehabilitation, 93</i>(1), 1–12. <a
+                href="https://doi.org/10.1080/09638288.2020.1843079">https://doi.org/10.1080/09638288.2020.1843079</a></p>
+                <p class="lineBreak"><a
+                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391">
                  </a>
                  <img class="inlineicon" src="images/image006.png"/>
                  
-                </span></a></span><span><span
-                > </span><a
-                href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top"><i><span
-                >Video abstract</span></i></a></span><i><span
-                ></span></i></p>
+                </a> <a
+                href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top"><i>Video abstract</i></a><i></i></p>
                 <table >
                  <tr>
                   <td width=159 valign=top >
                     <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2020.1843079"></div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >8 citations </span></p>
+                    8 citations
                   </td>
                   <td width=159 valign=top >
-                  <p><span >FWCI: 4.82</span></p>
+                    FWCI: 4.82
                   </td>
                  </tr>
-                    <tr><span><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/ae168cdd-921c-4a72-9394-8fad14b5c7c8">Evidence Map</a></i></b></span></tr>
+                    <tr><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/ae168cdd-921c-4a72-9394-8fad14b5c7c8">Evidence Map</a></i></b></tr>
                 </table>
                 
                 
                 
                 
-                <p><span >Harvey, S. R., Carragher, M., Dickey, M.
+                <p>Harvey, S. R., Carragher, M., Dickey, M.
                 W., <b>Pierce, J. E</b>., &amp; Rose, M. L. (2020). Treatment dose in
                 post-stroke aphasia: A systematic scoping review. <i>Neuropsychological
-                Rehabilitation</i>, 31(10), 1629-1660. </span><span><a
-                href="https://doi.org/10.1080/09602011.2020.1786412"><span>https://doi.org/10.1080/09602011.2020.1786412</span></a></span><span
-                ><span></span></span>
+                Rehabilitation</i>, 31(10), 1629-1660. <a
+                href="https://doi.org/10.1080/09602011.2020.1786412">https://doi.org/10.1080/09602011.2020.1786412</a>
                 <br>
-                <span><a
-                href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top"><span
-                >
+                <a
+                href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top">
                  </a>
                  <img class="inlineicon" src="images/image006.png"/>
-                </span></a></span><span><span
-                > </span><a href="https://vimeo.com/437127608"><i><span
-                >Video abstract</span></i></a></span><span
-                ><i><span></span></i></span></p>
+                </a> <a href="https://vimeo.com/437127608"><i>Video abstract</i></a><i></i></p>
                 <table >
                  <tr>
                   <td width=159 valign=top >
                     <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2020.1786412"></div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >11 citations</span></p>
+                  11 citations
                   </td>
                   <td width=159 valign=top >
-                  <p><span >FWCI: 1.64</span></p>
+                  FWCI: 1.64
                   </td>
                  </tr>
-                    <tr><b><span >Cited in ASHA’s Aphasia </span></b><span><a
-                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/8db4b3d6-d39c-40cc-8ae2-4f584b9226a9"><b><span>evidence map</span></b></a></span</tr>
+                    <tr><b>Cited in ASHA’s Aphasia </b><a
+                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/8db4b3d6-d39c-40cc-8ae2-4f584b9226a9"><b>evidence map</b></a></tr>
                 </table>
                 
                 
-                <p><b><span >Pierce, J. E.</span></b><span
-                >,&nbsp;O’Halloran, R., Menahemi-Falkov, M., Togher, L.,
+                <p><b>Pierce, J. E.</b>,&nbsp;O’Halloran, R., Menahemi-Falkov, M., Togher, L.,
                 &amp; Rose, M. (2020).&nbsp;Comparing higher and lower weekly treatment
                 intensity for chronic aphasia: A <i>systematic review and meta-analysis.
-                Neuropsychological</i> Rehabilitation, 31(8), 1289-1313. </span><span><a
-                href="https://doi.org/10.1080/09602011.2020.1768127"><span>https://doi.org/10.1080/09602011.2020.1768127</span></a></span><span
-                >&nbsp;</span>
+                Neuropsychological</i> Rehabilitation, 31(8), 1289-1313. <a
+                href="https://doi.org/10.1080/09602011.2020.1768127">https://doi.org/10.1080/09602011.2020.1768127</a>&nbsp;
                 <br>
-                <span><a
-                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><span
-                >
+                <a
+                href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391">
                  </a>
                  <img class="inlineicon" src="images/image006.png"/>
                  
-                </span></a></span><span><span
-                > </span><a href="https://vimeo.com/427783862"><i><span
-                >Video abstract –
-                standard</span></i></a></span><i><span> | </span></i><span><a href="https://vimeo.com/427784453"><span>
+                </a> <a href="https://vimeo.com/427783862"><i>Video abstract –
+                standard</i></a><i> | </i><a href="https://vimeo.com/427784453">
                  </a>
                  <img class="inlineicon" src="images/image006.png"/>
                  
-                </span></a><span > </span><a
-                href="https://vimeo.com/427784453"><i><span>Video abstract – aphasia friendly</span></i></a></span><span
-                ><i><span></span></i></span></p>
+                </a> <a
+                href="https://vimeo.com/427784453"><i>Video abstract – aphasia friendly</i></a><i></i></p>
                 <table >
                  <tr>
                   <td width=159 valign=top >
                     <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2020.1768127"></div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >10 citations</span></p>
+                    10 citations
                   </td>
                   <td width=159 valign=top >
-                  <p><span >FWCI 4.1</span></p>
+                    FWCI 4.1
                   </td>
                  </tr>
-                    <tr><b><span >Cited in ASHA’s Aphasia </span></b><span><a
-                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/880e2f9c-1ab6-4bf8-80de-aac5afb5a20b"><b><span
-                >evidence map</span></b></a></span><span
-                ></span></tr>
+                    <tr><b>Cited in ASHA’s Aphasia </b><a
+                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/880e2f9c-1ab6-4bf8-80de-aac5afb5a20b"><b>evidence map</b></a></tr>
                 </table>
                 
                 
-                <p><b><span >Pierce, J. E</span></b><span
-                >., O’Halloran, R., Togher, L., &amp; Rose, M.
+                <p><b>Pierce, J. E</b>., O’Halloran, R., Togher, L., &amp; Rose, M.
                 (2019).&nbsp;What Is Meant by “Multimodal Therapy” for Aphasia? American Journal
                 of Speech-Language Pathology. American Journal of Speech-Language Pathology,
-                28(2),&nbsp;</span><span><a
-                href="http://dx.doi.org/10.1044/2018_AJSLP-18-0157"><span>http://dx.doi.org/10.1044/2018_AJSLP-18-0157</span></a></span><span
-                >&nbsp;<br>
-                </span><span><a
-                href="https://doi.org/10.23641/asha.7646717"><span>
+                28(2),&nbsp;<a
+                href="http://dx.doi.org/10.1044/2018_AJSLP-18-0157">http://dx.doi.org/10.1044/2018_AJSLP-18-0157</a>&nbsp;<br>
+                <a
+                href="https://doi.org/10.23641/asha.7646717">
                  </a>
                  <img class="inlineicon" src="images/image006.png"/>
                  
-                </span></a></span><span ><span > </span></span><span><a href="https://doi.org/10.23641/asha.7646717"><i><span
-                >Video abstract</span></i></a></span><span
-                > (1526 views) </span></p>
+                </a> <a href="https://doi.org/10.23641/asha.7646717"><i>Video abstract</i></a> (1526 views) </p>
                 <table >
                  <tr>
                   <td width=159 valign=top >
                     <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.23641/asha.7646717"></div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >9 citations</span></p>
+                    9 citations
                   </td>
                   <td width=159 valign=top >
-                  <p><span >FWCI: 1.43</span></p>
+                    FWCI: 1.43
                   </td>
                  </tr>
                 </table>
                 
-                <p><b><span >Pierce, J. E.</span></b><span>, Menahemi-Falkov, M., O'Halloran,
-                R., Togher, L., &amp; Rose, M. L. (2017). <span>Constraint and multimodal approaches </span></span><span>to therapy for chronic
-                aphasia: A systematic review and meta-analysis</span><span>.
-                <i>Neuropsychologi</i></span><i
-               ><span>cal
-                <span>Rehabilitation, </span></span></i><span>29(7), 1–37. </span><span><a
-                href="https://doi.org/10.1080/09602011.2017.1365730"><span>https://doi.org/10.1080/09602011.2017.1365730</span></a></span><span
-                ><span></span></span></p>
+                <p><b>Pierce, J. E.</b>, Menahemi-Falkov, M., O'Halloran,
+                R., Togher, L., &amp; Rose, M. L. (2017). Constraint and multimodal approaches to therapy for chronic
+                aphasia: A systematic review and meta-analysis.
+                <i>Neuropsychologi</i><i
+               >cal
+                Rehabilitation, </i>29(7), 1–37. <a
+                href="https://doi.org/10.1080/09602011.2017.1365730">https://doi.org/10.1080/09602011.2017.1365730</a></p>
                 <table >
                  <tr>
                   <td width=159 valign=top >
                     <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2017.1365730"></div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >13 citations</span></p>
+                    13 citations
                   </td>
                   <td width=159 valign=top >
                   </td>
                  </tr>
-                    <tr><span><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/778e4c32-acb0-498a-88ff-eb66f7f6751f">Evidence Map</a></i></b></span></tr>
+                    <tr><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/778e4c32-acb0-498a-88ff-eb66f7f6751f">Evidence Map</a></i></b></tr>
                 </table>
                 
-                <p><b><span >Pierce, J. E.</span></b><span
-                >, Cotton, S., &amp; Perry, A. (2013). Alternating &amp;
+                <p><b>Pierce, J. E.</b>, Cotton, S., &amp; Perry, A. (2013). Alternating &amp;
                 sequential motion rates in older adults. <i>International Journal of Language
-                &amp; Communication Disorders, 48</i>(3): 257-264</span><span>.&nbsp;</span><span><a href="http://doi.org/10.1111/1460-6984.12001"><span
-                >http://doi.org/10.1111/1460-6984.12001</span></a></span><span
-                ><span></span></span></p>
+                &amp; Communication Disorders, 48</i>(3): 257-264.&nbsp;<a href="http://doi.org/10.1111/1460-6984.12001">http://doi.org/10.1111/1460-6984.12001</a></p>
                 <table >
                  <tr>
                   <td width=159 valign=top >
                     <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.12001"></div>
                   </td>
                   <td width=159 valign=top >
-                  <p><span >22 citations</span></p>
+                    22 citations
                   </td>
                   <td width=159 valign=top >
                   
@@ -750,14 +728,14 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-            <p><span >Rose, M. L., <b>Pierce, J. E.</b> &amp;
+            <p>Rose, M. L., <b>Pierce, J. E.</b> &amp;
                 Harvey, S. (2022). Single-Case Experimental Designs in Health Research. In P.
                 Liamputtong (Ed.), <i>Research Methods in Health - Foundations for
-                Evidence-Based Practice</i> (4th ed.) Oxford University Press.</span></p>
+                Evidence-Based Practice</i> (4th ed.) Oxford University Press.</p>
                 
-                <p><span ><b>Pierce, J. E.</b> &amp; Vogel, A. (2023). Clinical scenario - Questions about diagnosis: examples of appraisals from different health
+                <p><b>Pierce, J. E.</b> &amp; Vogel, A. (2023). Clinical scenario - Questions about diagnosis: examples of appraisals from different health
                 professions, In Hoffmann, T., Bennett, S., and Del Mar, S. (Eds.)
-                <i>Evidence-Based Practice across the Health Professions.</i> Elsevier. 4th Edition.</span> Elsevier. 9780729598545
+                <i>Evidence-Based Practice across the Health Professions.</i> Elsevier. 4th Edition. Elsevier. 9780729598545
                 9</p>
         </div>
         <div class="leftCol">
@@ -776,219 +754,201 @@
                 <p><b>Pierce, J. E.</b> (August, 2023). <i>Co-designing digital solutions for aphasia. </i>Loddon Mallee Region Speech Pathology Week Event <b>[invited speaker]</b>, Bendigo, Australia.</p>
                 <p><b>Pierce, J. E.</b>(August, 2023). <i>Technology Solutions to Post Stroke Aphasia. </i>Congresso Fonoaudiológico de Bauru <b>[invited speaker]</b>, São Paulo, Brazil.</p>
             
-            <p><b><span >Pierce,
-                J. E.</span></b><span >,
-                Adikari, A., Hernandez, N., <span>Pallewala</span>, N.,
+            <p><b>Pierce,
+                J. E.</b>,
+                Adikari, A., Hernandez, N., Pallewala, N.,
                 Alahakoon, D., Copland, D., Hill, A., Power, E., Ryan, B., Togher, L.,
-                Usherwood, T., Wong, D., Rose, M. (<span>November,</span> 2022). <i>AI
-                in Aphasia - Past, <span>present</span> and future.</i>
-                Aphasiology Symposium of Australasia, Melbourne, Australia. </span></p>
+                Usherwood, T., Wong, D., Rose, M. (November, 2022). <i>AI
+                in Aphasia - Past, present and future.</i>
+                Aphasiology Symposium of Australasia, Melbourne, Australia. </p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >,
+                <p><b>Pierce,
+                J. E.</b>,
                 Alahakoon, D., Attard, M., Cadilhac, D., Churilov, L., Copland, D.,
                 Hernandez, N., Hill, A., Hill, K., Kneebone, I., Lanyon, L., Togher, L.,
                 Lindley, R., Power, E., Rietdijk, R., Ryan, B., Sheldrick, T., Shiggins, C., Usherwood,
-                T., Wong, D., Worrall, L., Rose, M. L. (<span>August,</span>
+                T., Wong, D., Worrall, L., Rose, M. L. (August,
                 2022). <i>“The Big Black Hole” - Experiences of Communication Disability after
                     Stroke from Patient, Caregiver and Clinician Perspectives. Smart Strokes,
                     Sydney, Australia.
-                </i></span></p>
+                </i></p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >,
-                Wallace, S., Harvey, S., Baker, C., Shiggins, C., Carragher, M., Rose, M. (<span>May,</span> 2022). <i>Creating a Video Abstract for your research</i>
+                <p><b>Pierce,
+                J. E.</b>,
+                Wallace, S., Harvey, S., Baker, C., Shiggins, C., Carragher, M., Rose, M. (May, 2022). <i>Creating a Video Abstract for your research</i>
                 [workshop]. Australasian Society for the Study of Brain Impairment
-                Conference, Perth, Australia.</span></p>
+                Conference, Perth, Australia.</p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >,
+                <p><b>Pierce,
+                J. E.</b>,
                 Pais, A., &amp; Finch, E. (2021, December). Aphasia-friendly video
                 project/how to create a research video for a person with aphasia. Collaboration
-                of Aphasia Trialists Virtual Event Week.<b></b></span></p>
+                of Aphasia Trialists Virtual Event Week.<b></b></p>
                 
-                <p><b><span >Pierce,
-                J. E. </span></b><span >(2021,
+                <p><b>Pierce,
+                J. E. </b>(2021,
                 October). Low-moderate intensity aphasia intervention – a pilot trial of
                 Constraint Induced Aphasia Therapy and Multi-Modality Aphasia Therapy <b>[invited
-                speaker]</b>. Aphasia CRE Seminar, Melbourne, Australia.</span></p>
+                speaker]</b>. Aphasia CRE Seminar, Melbourne, Australia.</p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >
+                <p><b>Pierce,
+                J. E.</b>
                 (2021, October). <i>Closing the loop: Using Phase III trial data to guide a
-                basket Bayesian Optimal Phase <span>IIa</span> trial design</i> <b>[invited
-                speaker].</b> Stroke Society of Australasia, Perth, Australia.</span></p>
+                basket Bayesian Optimal Phase IIa trial design</i> <b>[invited
+                speaker].</b> Stroke Society of Australasia, Perth, Australia.</p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >,
+                <p><b>Pierce,
+                J. E.</b>,
                 Togher, L., O'Halloran, R., Cadilhac, D., Copland, D., Foster, A., Godecke, E.,
                 Kim, J., Hurley, M., Nickels, L., Meinzer, M., Rai, T; Wilcox, C., Rose, M. L.
                 (2021, September). <i>Comparison of Constraint Induced Aphasia Therapy and
-                Multi-Modality Aphasia Therapy at a Low-Moderate Intensity – A <span>Substudy</span> Randomised Controlled Trial. </i>British
-                Aphasiology Society Conference, Newcastle, United Kingdom.</span></p>
+                Multi-Modality Aphasia Therapy at a Low-Moderate Intensity – A Substudy Randomised Controlled Trial. </i>British
+                Aphasiology Society Conference, Newcastle, United Kingdom.</p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >,
+                <p><b>Pierce,
+                J. E.</b>,
                 Togher, L., O'Halloran, R., Cadilhac, D., Copland, D., Foster, A., Godecke, E.,
                 Kim, J., Hurley, M., Nickels, L., Meinzer, M., Rai, T; Wilcox, C., Rose, M. L.
                 (2021, July). <i>Comparison of Constraint Induced Aphasia Therapy and
-                Multi-Modality Aphasia Therapy at a Low-Moderate Intensity – A <span>Substudy</span> Randomised Controlled Trial. </i>6th Pacific Rim
-                Conference, Melbourne, Australia.</span></p>
+                Multi-Modality Aphasia Therapy at a Low-Moderate Intensity – A Substudy Randomised Controlled Trial. </i>6th Pacific Rim
+                Conference, Melbourne, Australia.</p>
                 
-                <p><b><span
-                >Pierce, J. E.</span></b><span
-                > (2021, June). <i>Dysphagia
+                <p><b>Pierce, J. E.</b> (2021, June). <i>Dysphagia
                 research updated</i> <b>[invited speaker]</b>. Parkinson’s Victoria – Speech
-                Pathology Community of Practice [online].</span></p>
+                Pathology Community of Practice [online].</p>
                 
-                <p><b><span >Pierce, J. E.</span></b><span>, Menahemi-Falkov, M., O'Halloran,
-                R., Togher, L., &amp; Rose, M. <span > </span>(2021,
-                June). </span><i><span >Looking
-                at the relationship between intense or <span>spread out</span> therapy
-                – both can be positive.</span></i><span> Australian Aphasia Association Conference [online].<i></i></span></p>
+                <p><b>Pierce, J. E.</b>, Menahemi-Falkov, M., O'Halloran,
+                R., Togher, L., &amp; Rose, M.  (2021,
+                June). <i>Looking
+                at the relationship between intense or spread out therapy
+                – both can be positive.</i> Australian Aphasia Association Conference [online].<i></i></p>
                 
-                <p><b><span >Pierce, J. E.</span></b><span>, Menahemi-Falkov, M., O'Halloran,
-                R., Togher, L., &amp; Rose, M. <span > </span>(2021,
-                May). </span><i><span >Review
-                of treatment intensity in chronic aphasia. </span></i><span>Speech Pathologists in Adult
-                Rehabilitation [online seminar].<b></b></span></p>
+                <p><b>Pierce, J. E.</b>, Menahemi-Falkov, M., O'Halloran,
+                R., Togher, L., &amp; Rose, M.  (2021,
+                May). <i>Review
+                of treatment intensity in chronic aphasia. </i>Speech Pathologists in Adult
+                Rehabilitation [online seminar].<b></b></p>
                 
-                <p><span >Rose,
+                <p>Rose,
                 M., Copland, D., Nickels, L., Togher, L., Meinzer, M., Rai, T., Kim, J.,
                 Cadilhac, D., Hurley, M., Wilcox, C., Foster, A., Carragher, M., <b>Pierce, J.
                 E.</b> &amp; Godecke, E. (2021, May). <i>Primary and secondary results of the
                 COMPARE randomized controlled trial of Constraint Induced Aphasia
                 Therapy-Plus, Multimodality Aphasia Therapy and usual care for chronic
-                post-stroke aphasia</i>. Clinical Aphasiology Conference [virtual].</span></p>
+                post-stroke aphasia</i>. Clinical Aphasiology Conference [virtual].</p>
                 
-                <p><span >Rose,
+                <p>Rose,
                 M., Copland, D., <b>Pierce, J. E.</b>, Harvey, S., Brogan, E., Brownsett, S.,
                 Godecke, E., Carragher, M., &amp; Dickey, M. W. (2021, May). <i>Revisiting
                 concepts of treatment dose and intensity in aphasia rehabilitation. </i>Clinical
-                Aphasiology Conference [virtual].</span></p>
+                Aphasiology Conference [virtual].</p>
                 
-                <p><span >Pierce,
+                <p>Pierce,
                 J. E. (2020, December). <i>Research Impact and Dissemination </i>[virtual
-                panel]. American Speech-Language Hearing Association. <b>Invited speaker.</b></span></p>
+                panel]. American Speech-Language Hearing Association. <b>Invited speaker.</b></p>
                 
-                <p><b><span >Pierce,
-                J. E., </span></b><span >O'Halloran,
-                R., Togher, L., &amp; Rose, M. (2020). </span><span><a
-                href="https://www.youtube.com/watch?v=Tsa-xBBUKa0"><i><span>Words Fail Me</span></i></a></span><i><span
-                >. </span></i><span
-                >Visualise Your
-                Thesis, La Trobe University, Australia.<b></b></span></p>
+                <p><b>Pierce,
+                J. E., </b>O'Halloran,
+                R., Togher, L., &amp; Rose, M. (2020). <a
+                href="https://www.youtube.com/watch?v=Tsa-xBBUKa0"><i>Words Fail Me</i></a><i>. </i>Visualise Your
+                Thesis, La Trobe University, Australia.<b></b></p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >
+                <p><b>Pierce,
+                J. E.</b>
                 &amp; Vogel, A. (2019, October). <i>Investigating Spontaneous Swallowing
                 Frequency in Parkinson’s Disease.</i> Cabrini Research Week, Melbourne,
-                Australia.</span></p>
+                Australia.</p>
                 
-                <p><b><span
-                >Pierce, J. E.</span></b><span
-                > (2019, October).
+                <p><b>Pierce, J. E.</b> (2019, October).
                 <i>Treatment options for Parkinson’s</i> <b>[invited speaker]</b>.
-                Parkinson’s Victoria - Special Interest Group. Surrey Hills, Australia.</span></p>
+                Parkinson’s Victoria - Special Interest Group. Surrey Hills, Australia.</p>
                 
-                <p><b><span >Pierce,
-                J. E. </span></b><span >(2019,
+                <p><b>Pierce,
+                J. E. </b>(2019,
                 June). <i>SMART goals may not be as smart as we thought.</i> Speech Pathology
-                Subacute Seminar, St Vincent's Hospital, Melbourne, Australia.</span></p>
+                Subacute Seminar, St Vincent's Hospital, Melbourne, Australia.</p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >,
+                <p><b>Pierce,
+                J. E.</b>,
                 O'Halloran, R., Togher, L., &amp; Rose, M. (2019, June). <i>Constraint-Induced
                 and Multimodal approaches to aphasia therapy – what are they and which one
                 leads to better outcomes?</i> Speech Pathology Subacute Seminar, St Vincent's
-                Hospital, Melbourne, Australia.</span></p>
+                Hospital, Melbourne, Australia.</p>
                 
-                <p><b><span >Pierce,
-                J. E.</span></b><span >,
+                <p><b>Pierce,
+                J. E.</b>,
                 O'Halloran, R., Togher, L., &amp; Rose, M.&nbsp;(2019, June). <i>A Systematic
                 Review of Intensity in Chronic Aphasia</i>.&nbsp;Speech Pathology Australia
-                Conference, Brisbane, Australia.</span></p>
+                Conference, Brisbane, Australia.</p>
                 
-                <p><span >Reyes,
-                N., Krikheli, L., <span>McCaskie</span>, D., <b>Pierce, J. E.</b>,
-                <span>Brusco</span>, N., Frawley, H., <span>Keage</span>,
+                <p>Reyes,
+                N., Krikheli, L., McCaskie, D., <b>Pierce, J. E.</b>,
+                Brusco, N., Frawley, H., Keage,
                 M. (2019, June). <i>Does the implementation of an e-learning package to
                 medical and nursing staff improve adherence to dysphagia screening?</i> Speech
-                Pathology Australia Conference, Brisbane, Australia.</span></p>
+                Pathology Australia Conference, Brisbane, Australia.</p>
                 
-                <p><b><span >Pierce, J. E.</span></b><span
-                >, O'Halloran, R., Togher, L., &amp; Rose, M. (2018,
-                October). </span><span><a
-                href="https://youtu.be/LqxNaY0tVCY"><i><span>What do speech pathologists
-                mean by&nbsp;‘multimodal therapy’ for aphasia?</span></i></a></span><span
-                > Aphasiology Symposium of Australia, Sunshine Coast, Queensland,
-                Australia.</span></p>
+                <p><b>Pierce, J. E.</b>, O'Halloran, R., Togher, L., &amp; Rose, M. (2018,
+                October). <a
+                href="https://youtu.be/LqxNaY0tVCY"><i>What do speech pathologists
+                mean by&nbsp;‘multimodal therapy’ for aphasia?</i></a> Aphasiology Symposium of Australia, Sunshine Coast, Queensland,
+                Australia.</p>
                 
-                <p><b><span
-                >Pierce, J. E</span></b><span >. (2018,
-                October). </span><span><a
-                href="https://youtu.be/vf8CIHYjAQ4?t=47"><i><span>Cognitive-communication
-                assessments - what else is out there?</span></i></a></span><i><span> </span></i><span>[online webinar].</span><span
-                > Australian Catholic University speed sessions.</span></p>
+                <p><b>Pierce, J. E</b>. (2018,
+                October). <a
+                href="https://youtu.be/vf8CIHYjAQ4?t=47"><i>Cognitive-communication
+                assessments - what else is out there?</i></a><i> </i>[online webinar]. Australian Catholic University speed sessions.</p>
                 
-                <p><b><span >Pierce, J. E.</span></b><span
-                >, O'Halloran, R., Togher, L., &amp; Rose, M. (2018,
-                June). <i><span>Update on intensity and
-                dose in aphasia rehabilitation.</span></i> <span>Speech Pathologists in Adult Rehabilitation, Bundoora, Australia.</span></span></p>
+                <p><b>Pierce, J. E.</b>, O'Halloran, R., Togher, L., &amp; Rose, M. (2018,
+                June). <i>Update on intensity and
+                dose in aphasia rehabilitation.</i> Speech Pathologists in Adult Rehabilitation, Bundoora, Australia.</p>
                 
-                <p><b><span >Pierce, J. E.</span></b><span
-                > (2017, June). <i>Words fail me.</i> Three Minute Thesis,
-                La Trobe University, Australia.</span></p>
+                <p><b>Pierce, J. E.</b> (2017, June). <i>Words fail me.</i> Three Minute Thesis,
+                La Trobe University, Australia.</p>
                 
-                <p><b><span >Pierce, J. E.</span></b><span
-                >, O'Halloran, R., Togher, L., &amp; Rose, M. (2017,
-                October). <i>Revisiting the case for single case research.</i> <span>Cabrini Research week, </span>Melbourne, Australia.</span></p>
+                <p><b>Pierce, J. E.</b>, O'Halloran, R., Togher, L., &amp; Rose, M. (2017,
+                October). <i>Revisiting the case for single case research.</i> Cabrini Research week, Melbourne, Australia.</p>
                 
-                <p><b><span >Pierce, J</span></b><b><span >. E.</span></b><span >,
+                <p><b>Pierce, J</b><b>. E.</b>,
                 Nickels, L., Togher, L., Meinzer, M., Rai, T., Godecke, E., Kim, J.,
                 Cadilhac, D., Foster, A., Hurley, M., Copland, D., O’Halloran, R., and Rose,
                 M. (2017, August). <i>Treatment for people with chronic aphasia –
-                investigation of high and low intensity, <span>constraint</span>
-                and multimodal treatments</i>. Smart Strokes Conference, Gold Coast, Australia.</span></p>
+                investigation of high and low intensity, constraint
+                and multimodal treatments</i>. Smart Strokes Conference, Gold Coast, Australia.</p>
                 
-                <p><b><span >Pierce, J</span></b><span>.<b
+                <p><b>Pierce, J</b>.<b
                > E.</b>, O'Halloran, R., Togher, L.,
                 &amp; Rose, M. (2017, June). <i>Revisiting the case for single case research.</i>
                 Australasian Society for the Study of Brain Impairment Conference,<i
-               > </i>Melbourne, Australia.</span></p>
+               > </i>Melbourne, Australia.</p>
                 
-                <p><b><span >Pierce, J</span></b><span>.<b
+                <p><b>Pierce, J</b>.<b
                > E.</b>, O’Halloran, R., Togher, L.,
                 &amp; Rose, M. (2016, October). <i>What is constraint therapy? What is
-                multimodal therapy? What is the difference?<b> </b></i><span>Australian Aphasia Association National Conference,
-                Adelaide, Australia.</span></span></p>
+                multimodal therapy? What is the difference?<b> </b></i>Australian Aphasia Association National Conference,
+                Adelaide, Australia.</p>
                 
-                <p><b><span
-                >Pierce, J. E.</span></b><span > (2016,
+                <p><b>Pierce, J. E.</b> (2016,
                 May). <i>Atypical Parkinson’s – A focus on communication, swallowing and
-                secretions.</i> <span>Managing Atypical
-                Parkinson’s, Melbourne, Australia. </span></span></p>
+                secretions.</i> Managing Atypical
+                Parkinson’s, Melbourne, Australia. </p>
                 
-                <p><span >Panel member. (2015, September).<i
-               > Parkinson’s Victoria <span>Education
-                day</span></i>, Melbourne, Australia.</span></p>
+                <p>Panel member. (2015, September).<i
+               > Parkinson’s Victoria Education
+                day</i>, Melbourne, Australia.</p>
                 
-                <p><b><span
-                >Pierce, J. E. </span></b><span><a
-                href="https://youtu.be/4yQilRWa7E4"><span>Speech pathology is ok... really.</span></a></span><span
-                > (2015, March). <i>St
-                Vincent's Speech Pathology Sub Acute Seminar</i>, Melbourne, Australia.</span></p>
+                <p><b>Pierce, J. E. </b><a
+                href="https://youtu.be/4yQilRWa7E4">Speech pathology is ok... really.</a> (2015, March). <i>St
+                Vincent's Speech Pathology Sub Acute Seminar</i>, Melbourne, Australia.</p>
                 
-                <p><b><span
-                >Pierce, J. E. </span></b><span >(2013,
+                <p><b>Pierce, J. E. </b>(2013,
                 June). <i>Alternating and sequential motion rates in older adults.</i> Speech
-                Pathology Australia National Conference, Gold Coast, Australia.</span></p>
+                Pathology Australia National Conference, Gold Coast, Australia.</p>
                 
-                <p><b><span >Pierce, J. E.</span></b><span
-                > (2011, March). <span><i>Citeulike</i></span><i>
-                – helping make articles shareable, <span>manageable</span> and
-                retrievable.</i> <span>St Vincent’s Speech
-                Pathology Subacute Seminar, Melbourne, Australia.</span></span></p>
+                <p><b>Pierce, J. E.</b> (2011, March). <i>Citeulike</i><i>
+                – helping make articles shareable, manageable and
+                retrievable.</i> St Vincent’s Speech
+                Pathology Subacute Seminar, Melbourne, Australia.</p>
         </div>
         <div class="leftCol">
             <div id="Posters">Conference Posters</div>
@@ -1000,192 +960,169 @@
             <table style="width: 100%;">
             <tr>
                 <td width=397 valign=top>
-            <p><b><span >Pierce,
-                J. E.</span></b><span >,
+            <p><b>Pierce,
+                J. E.</b>,
                 Harvey, S., Dickey, M., Cadilhac, D., Carragher, M., Copland, D., Foster, A.,
                 Godecke, E., Kim, J., Hurley, M., Nickels, L., Meinzer, M., Rai, T., Togher,
-                L., Wilcox, C., Rose, M L. (<span>June,</span> 2022). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EdP48lzhOrFMmss_AOi1jFABD7-gaFwpX3hDG7aP-yKxQw?e=NRtl60"><i><span
-                >Fatigue Levels
+                L., Wilcox, C., Rose, M L. (June, 2022). <a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EdP48lzhOrFMmss_AOi1jFABD7-gaFwpX3hDG7aP-yKxQw?e=NRtl60"><i>Fatigue Levels
                 Across 30 Hours of Intensive Treatment - an Analysis of 144 Participants from
-                the COMPARE Trial</span></i></a></span><span> [poster]. International Aphasia Research
-                Conference, Philadelphia, USA.<b></b></span></p>
+                the COMPARE Trial</i></a> [poster]. International Aphasia Research
+                Conference, Philadelphia, USA.<b></b></p>
                 </td>
                 <td width=110 colspan=2 valign=top>
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EdP48lzhOrFMmss_AOi1jFABD7-gaFwpX3hDG7aP-yKxQw?e=NRtl60"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EdP48lzhOrFMmss_AOi1jFABD7-gaFwpX3hDG7aP-yKxQw?e=NRtl60">
                  <img src="images/image008.png" o:title="Calendar&#10;&#10;Description automatically generated with medium confidence"/>
-                </span></a></span><span></span></p>
+                </a></p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><b><span >Pierce,
-                J. E.</span></b><span >,
+                <p><b>Pierce,
+                J. E.</b>,
                 Harvey, S., Dickey, M., Cadilhac, D., Carragher, M., Copland, D., Foster, A.,
                 Godecke, E., Kim, J., Hurley, M., Nickels, L., Meinzer, M., Rai, T., Togher,
-                L., Wilcox, C., Rose, M L. (<span>May,</span> 2022). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EQf72o4MLURPmHHQ5Fb9zOsBsYHj2OzFd4a8YlYI5aenWA?e=TzVe6w"><i><span
-                >How Fatiguing is
+                L., Wilcox, C., Rose, M L. (May, 2022). <a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EQf72o4MLURPmHHQ5Fb9zOsBsYHj2OzFd4a8YlYI5aenWA?e=TzVe6w"><i>How Fatiguing is
                 High Intensity Treatment for People with Aphasia? An Analysis of 144
-                Participants from the COMPARE Trial</span></i></a></span><i><span
-                >.</span></i><span
-                > [poster]. <span>Australasian Society for the Study
+                Participants from the COMPARE Trial</i></a><i>.</i> [poster]. Australasian Society for the Study
                 of Brain Impairment Conference,<i> </i>Perth,
-                Australia.</span></span></p>
+                Australia.</p>
                 </td>
                 <td width=110 colspan=2 valign=top>
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EQf72o4MLURPmHHQ5Fb9zOsBsYHj2OzFd4a8YlYI5aenWA?e=TzVe6w"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EQf72o4MLURPmHHQ5Fb9zOsBsYHj2OzFd4a8YlYI5aenWA?e=TzVe6w">
                  
                  <img src="images/image009.png"/>
-                </span></a></span><span><span
-                > </span></span></p>
+                </a> </p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><b><span >Pierce, J. E.</span></b><span
-                >, <span>Flitman</span>, S., Rennie, K. and
-                Williams, C. (2019, June). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EX217C8sssRAuD8fv3p5f6gB4x0gwxyLlyt6TGU668zXJg?e=hSSUiz"><i><span
-                >Dark Grape for
-                Managing Thick Secretions - An Exploratory Study of Patient Perception</span></i></a></span><i><span
-                >.</span></i><span> Speech Pathology
-                Australia Conference, Brisbane, Australia.</span><span></span></p>
+                <p><b>Pierce, J. E.</b>, Flitman, S., Rennie, K. and
+                Williams, C. (2019, June). <a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EX217C8sssRAuD8fv3p5f6gB4x0gwxyLlyt6TGU668zXJg?e=hSSUiz"><i>Dark Grape for
+                Managing Thick Secretions - An Exploratory Study of Patient Perception</i></a><i>.</i> Speech Pathology
+                Australia Conference, Brisbane, Australia.</p>
                 </td>
                 <td width=110 colspan=2>
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EX217C8sssRAuD8fv3p5f6gB4x0gwxyLlyt6TGU668zXJg?e=5PabHA"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EX217C8sssRAuD8fv3p5f6gB4x0gwxyLlyt6TGU668zXJg?e=5PabHA">
                  <img src="images/image010.png"/>
-                </span></a></span><span ></span></p>
+                </a></p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><span >Reyes, N. A., Krikheli, L., <span>McCaskie</span>, D., <b>Pierce, J. E.</b>, <span>Brusco</span>,
-                N., Frawley, H., <span>Keage</span> M. (2019, April). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EZdblJPQLTBBr--AiB2owwcBGVX4R6qbMa5jQ9ZFt1jp2g?e=2cygov"><i><span
-                >Does the
+                <p>Reyes, N. A., Krikheli, L., McCaskie, D., <b>Pierce, J. E.</b>, Brusco,
+                N., Frawley, H., Keage M. (2019, April). <a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EZdblJPQLTBBr--AiB2owwcBGVX4R6qbMa5jQ9ZFt1jp2g?e=2cygov"><i>Does the
                 implementation of an e-learning package to medical and nursing staff improve
-                adherence to dysphagia screening?</span></i></a></span><span
-                ><span> </span></span><span>Victorian Allied Health Research Conference, Melbourne,
-                Australia.</span><span></span></p>
+                adherence to dysphagia screening?</i></a> Victorian Allied Health Research Conference, Melbourne,
+                Australia.</p>
                 </td>
                 <td width=110 colspan=2 valign=top >
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EZdblJPQLTBBr--AiB2owwcBGVX4R6qbMa5jQ9ZFt1jp2g?e=wkMjPS"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EZdblJPQLTBBr--AiB2owwcBGVX4R6qbMa5jQ9ZFt1jp2g?e=wkMjPS">
                  <img src="images/image011.png"/>
-                </span></a></span><span></span></p>
+                </a></p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><span >Rose, M. L., Carragher, M., Nickels, L.,
+                <p>Rose, M. L., Carragher, M., Nickels, L.,
                 Togher, L., Meinzer, M., Rai, T., Godecke, E., Kim, J., Cadilhac, D. A.,
                 Foster, A., <b>Pierce, J. E.</b>, Hurley, M., &amp; Copland, D.&nbsp;(2018,
-                May). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EcbyRaGrVWlLlpMxoJkqDHYBFrJQaFFAmCBmDk6YLJ3sTw?e=Fme5WJ"><i><span
-                >Methods of
+                May). <a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EcbyRaGrVWlLlpMxoJkqDHYBFrJQaFFAmCBmDk6YLJ3sTw?e=Fme5WJ"><i>Methods of
                 monitoring fidelity in trials of complex behavioural interventions: The
-                COMPARE fidelity protocol.</span></i></a></span><span >&nbsp;European
-                Stroke Organisation Conference, Gothenburg, Sweden.</span><span></span></p>
+                COMPARE fidelity protocol.</i></a>&nbsp;European
+                Stroke Organisation Conference, Gothenburg, Sweden.</p>
                 </td>
                 <td width=110 colspan=2 valign=top >
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EcbyRaGrVWlLlpMxoJkqDHYBFrJQaFFAmCBmDk6YLJ3sTw?e=vHU0Av"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EcbyRaGrVWlLlpMxoJkqDHYBFrJQaFFAmCBmDk6YLJ3sTw?e=vHU0Av">
                  <img src="images/image012.png"/>
-                </span></a></span><span></span></p>
+                </a></p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><span >Rose, M., Nickels, L., Togher, L., Copland,
-                D., Meinzer, M., Rai, T., Godecke, E., Kim, J., <span>Cadhilac</span>,
+                <p>Rose, M., Nickels, L., Togher, L., Copland,
+                D., Meinzer, M., Rai, T., Godecke, E., Kim, J., Cadhilac,
                 D., Foster, A., Hurley, M., O’Halloran, R., &amp; <b>Pierce, J. E.</b> (2017,
-                October). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ESvLPeNoX1xHuV7vUFOaERIBA7yx7QjI3JapQdJ2Zk8uMw?e=63TKwQ"><i><span
-                >The COMPARE Trial
-                - a national RCT for individuals with chronic post-stroke aphasia.</span></i></a></span><span
-                > La Trobe Research Week, Melbourne, Australia.</span><span></span></p>
+                October). <a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ESvLPeNoX1xHuV7vUFOaERIBA7yx7QjI3JapQdJ2Zk8uMw?e=63TKwQ"><i>The COMPARE Trial
+                - a national RCT for individuals with chronic post-stroke aphasia.</i></a> La Trobe Research Week, Melbourne, Australia.</p>
                 </td>
                 <td width=110 colspan=2 valign=top >
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ESvLPeNoX1xHuV7vUFOaERIBA7yx7QjI3JapQdJ2Zk8uMw?e=01HDYZ"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ESvLPeNoX1xHuV7vUFOaERIBA7yx7QjI3JapQdJ2Zk8uMw?e=01HDYZ">
                  <img src="images/image013.png"/>
-                </span></a></span><span></span></p>
+                </a></p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><span >Rose, M., Foster, A., Copland, D., Nickels,
+                <p>Rose, M., Foster, A., Copland, D., Nickels,
                 L., Togher, L., Meinzer, M., Rai, T., Hurley, M., <b>Pierce, J. E.</b>,
-                Godecke, E., Cadilhac, D., Kim, J., &amp; Godecke, E. (2017, May). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:i:/g/personal/jpierce_ltu_edu_au/EXFDneZKcrdOoB-Gh4xaDPkBTjomdopgJlUMZRnG2OV29A?e=JcDMBp"><i><span
-                >Embedding
+                Godecke, E., Cadilhac, D., Kim, J., &amp; Godecke, E. (2017, May). <a
+                href="https://latrobeuni-my.sharepoint.com/:i:/g/personal/jpierce_ltu_edu_au/EXFDneZKcrdOoB-Gh4xaDPkBTjomdopgJlUMZRnG2OV29A?e=JcDMBp"><i>Embedding
                 Measures of Therapy Fidelity in “Compare”: A Randomised Controlled Trial of
-                Complex Behavioural Interventions for Post-Stroke Aphasia.</span></i></a></span><i><span
-                >&nbsp;</span></i><span >European
-                Stroke Organisation Conference, Prague, Czech Republic.</span><span></span></p>
+                Complex Behavioural Interventions for Post-Stroke Aphasia.</i></a><i>&nbsp;</i>European
+                Stroke Organisation Conference, Prague, Czech Republic.</p>
                 </td>
                 <td width=110 colspan=2 valign=top >
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:i:/g/personal/jpierce_ltu_edu_au/EXFDneZKcrdOoB-Gh4xaDPkBTjomdopgJlUMZRnG2OV29A?e=8cyodf"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:i:/g/personal/jpierce_ltu_edu_au/EXFDneZKcrdOoB-Gh4xaDPkBTjomdopgJlUMZRnG2OV29A?e=8cyodf">
                  <img src="images/image014.jpg" o:title="A picture containing text&#10;&#10;Description automatically generated"/>
-                </span></a></span><span></span></p>
+                </a></p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><b><span >Pierce, J. E.</span></b><span
-                >, O’Halloran, R., Togher, L., &amp; Rose, M. (2016,
-                September). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ERruViRUrWNAni9Bv-ib7rAB0pot8g8apDbwG05Cqd2Dtw?e=CUpTBQ"><i><span
-                >Intensity of
-                aphasia therapy - How intensive does therapy need to be in chronic aphasia?</span></i></a></span><span
-                > La Trobe Research Showcase, Melbourne, Australia.</span><span></span></p>
+                <p><b>Pierce, J. E.</b>, O’Halloran, R., Togher, L., &amp; Rose, M. (2016,
+                September). <a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ERruViRUrWNAni9Bv-ib7rAB0pot8g8apDbwG05Cqd2Dtw?e=CUpTBQ"><i>Intensity of
+                aphasia therapy - How intensive does therapy need to be in chronic aphasia?</i></a> La Trobe Research Showcase, Melbourne, Australia.</p>
                 </td>
                 <td width=110 colspan=2 valign=top >
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ERruViRUrWNAni9Bv-ib7rAB0pot8g8apDbwG05Cqd2Dtw?e=ekj1ro"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/ERruViRUrWNAni9Bv-ib7rAB0pot8g8apDbwG05Cqd2Dtw?e=ekj1ro">
                  <img src="images/image015.png"/>
-                </span></a></span><span></span></p>
+                </a></p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><b><span >Pierce, J. E.</span></b><span
-                >, O’Halloran, R., Togher, L., &amp; Rose, M. (2016,
-                September).&nbsp;</span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EeFJw0xYomdHtCE3PDq3HMYBF951eQOlbQtWQD3QTVvV5Q?e=w5RxSJ"><i><span
-                >Are multi-modal
-                methods as effective as constraint in aphasia treatment?</span></i></a></span><span
-                > Cabrini Research Week, Melbourne, Australia.</span><span></span></p>
+                <p><b>Pierce, J. E.</b>, O’Halloran, R., Togher, L., &amp; Rose, M. (2016,
+                September).&nbsp;<a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EeFJw0xYomdHtCE3PDq3HMYBF951eQOlbQtWQD3QTVvV5Q?e=w5RxSJ"><i>Are multi-modal
+                methods as effective as constraint in aphasia treatment?</i></a> Cabrini Research Week, Melbourne, Australia.</p>
                 </td>
                 <td width=110 colspan=2 valign=top >
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EWWsnr8-FWRDvLHV8snk4fkB5ciXd7nwByeTKJnifkbEOQ?e=7rgORb"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EWWsnr8-FWRDvLHV8snk4fkB5ciXd7nwByeTKJnifkbEOQ?e=7rgORb">
                  <img src="images/image016.png"/>
-                </span></a></span><span></span></p>
+                </a></p>
                 </td>
                </tr>
                <tr>
                 <td width=397 valign=top>
-                <p><span >Rose, M., Foster, A., <b>Pierce, J. E.</b>,
+                <p>Rose, M., Foster, A., <b>Pierce, J. E.</b>,
                 Menahemi-Falkov, M., Sekhon, J., Erickson, S., Hill, A., O’Halloran, R.,
-                &amp; Worrall, L.&nbsp;(2015, November). </span><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EXu7O7Jlo61MgYmRdnC2GWQBLHIERqreggw31O1fsw784A?e=h3f1fz"><i><span
-                >Service provision
+                &amp; Worrall, L.&nbsp;(2015, November). <a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EXu7O7Jlo61MgYmRdnC2GWQBLHIERqreggw31O1fsw784A?e=h3f1fz"><i>Service provision
                 for post-stroke aphasia in acute and sub-acute settings: Solutions for
-                addressing the evidence-practice gap.</span></i></a></span><span
-                > 11<sup>th</sup> Clinical National Allied Health
-                Conference, Melbourne, Australia.</span><span></span></p>
+                addressing the evidence-practice gap.</i></a> 11<sup>th</sup> Clinical National Allied Health
+                Conference, Melbourne, Australia.</p>
                 </td>
                 <td width=110 colspan=2 valign=top>
-                <p><span><a
-                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EXu7O7Jlo61MgYmRdnC2GWQBLHIERqreggw31O1fsw784A?e=Tylt6t"><span>
+                <p><a
+                href="https://latrobeuni-my.sharepoint.com/:b:/g/personal/jpierce_ltu_edu_au/EXu7O7Jlo61MgYmRdnC2GWQBLHIERqreggw31O1fsw784A?e=Tylt6t">
                  <img src="images/image017.png"/>
-                </span></a></span><span></span></p>
+                </a></p>
                 </td>
                </tr>
             </table>
@@ -1208,8 +1145,6 @@
                 Trialists - Multilingual Aphasia Practice Group</li>
                 <li>Centre for Research
                 Excellence in Aphasia Recovery and Rehabilitation</li>
-                <li>Aphasia CRE Post Doc and PhD
-                Students Group</li>
             </ul>
         </div>
         <div class="leftCol">
@@ -1219,7 +1154,7 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-            <p>Currently co-supervising two full time PhD candidates, one honours student, one novice clinician researcher</p>
+            <p>Currently co-supervising two full-time PhD candidates, one honours student, one novice clinician researcher</p>
         </div>
         <div class="leftCol">
             <div id="teaching">Teaching</div>
@@ -1229,38 +1164,38 @@
                 <div class="rightColMask"></div>
             </div>
                 <p>Marking of honours thesis for Sydney University (by invitation)</p>
-                <p><span>Marking of final year thesis for National University of Singapore (by invitation)</span></p>
-                <p ><span>Aphasia intervention (2022-2023).
+                <p>Marking of final year thesis for National University of Singapore (by invitation)</p>
+                <p >Aphasia intervention (2022-2023).
                 Class delivered to PhD neuropsychology students by invitation, Monash
-                University.</span></p>
-                <p ><span>Creation of lectures, <span>tutorials</span> and online content for three-week unit on
+                University.</p>
+                <p >Creation of lectures, tutorials and online content for three-week unit on
                 dysphagia – HCS2ICR (2020). Short-term contract delivered on time and to
-                budget for La Trobe University and University of Adelaide.</span></p>
-                <p><span>Writing and
+                budget for La Trobe University and University of Adelaide.</p>
+                <p>Writing and
                 restructuring of online subject Critical Implementation of Evidence – HCS5CIE
                 (2020 S2). Short-term contract delivered on time and on budget for La Trobe
-                University and University of Adelaide. </span><b><i><span >Received highest student feedback score for
+                University and University of Adelaide. <b><i>Received highest student feedback score for
                 the subject to date, increasing from an average of 3.33/5 in 2018-19 to 4.42/5
-                in 2020.</span></i></b><span></span></p>
-                <p><span>Marking of
-                assignments – HCS2CSL. 2020 S1</span></p>
-                <p><span>Delivered
+                in 2020.</i></b></p>
+                <p>Marking of
+                assignments – HCS2CSL. 2020 S1</p>
+                <p>Delivered
                 lectures and skills classes on aphasia intervention– HCS5AIA. Two-hour
-                lecture, 2 x two-hour skills classes. 2019 S2</span></p>
-                <p><span>Facilitator –
-                Cabrini Medical Mystery session (clinical case for medical, <span>nursing</span> and allied health students). 2019 x2</span></p>
-                <p><span>Marking –
-                HCS5ASP. Marking of submissions for six assignments. 2019</span></p>
-                <p><span>Marking –
-                HCS2CSL. Marking of submissions for all assignments. 2019 S1</span></p>
-                <p><span>Marking –
+                lecture, 2 x two-hour skills classes. 2019 S2</p>
+                <p>Facilitator –
+                Cabrini Medical Mystery session (clinical case for medical, nursing and allied health students). 2019 x2</p>
+                <p>Marking –
+                HCS5ASP. Marking of submissions for six assignments. 2019</p>
+                <p>Marking –
+                HCS2CSL. Marking of submissions for all assignments. 2019 S1</p>
+                <p>Marking –
                 HCS5CIE. Marking of submissions for all assignments and oral seminars. 2018
-                S2</span></p>
-                <p><span>Marking –
-                HCS2CSL. Marking of submissions for all assignments. 2018 S1</span></p>
-                <p><span>Instance coordinator – HCS5CIE. Responsibilities
+                S2</p>
+                <p>Marking –
+                HCS2CSL. Marking of submissions for all assignments. 2018 S1</p>
+                <p>Instance coordinator – HCS5CIE. Responsibilities
                 included forum posts, LMS management, gradebooks, marking group, individual
-                and oral presentation assignments. 2017 S2 </span><span></span></p>
+                and oral presentation assignments. 2017 S2 </p>
         </div>
         <!-- <div class="leftCol" style="display: none;">
             <div>Recent Professional Development</div>
@@ -1275,10 +1210,10 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-            <p><span >Lee Silverman
-                Voice Treatment – certified clinician.</span></p>
-                <p><span >Clinical
-                Good Practice accreditation.</span></p>
+            <p>Lee Silverman
+                Voice Treatment – certified clinician.</p>
+                <p>Clinical
+                Good Practice accreditation.</p>
         </div> -->
         <div class="leftCol">
             <div id="researchimpactheader">Researcher Profile</div>
@@ -1287,25 +1222,25 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
-            <p><span >Five papers in ASHA evidence map for aphasia</span></p>
+            <p>Five papers in ASHA evidence map for aphasia</p>
                 <table>
                  <tr>
                   <td valign=top>
-                  <p><span>
+                  <p>
                    <img src="images/image018.png" o:title="Logo Twitter Circle Image PNG Transparent Background, Free Download #47449  - FreeIconsPNG"/>
-                  </span><span></span></p>
+                  </p>
                   </td>
                   <td valign=top>
                   <p><a
                   href="http://www.twitter.com/JohnPierce85">Twitter</a></p>
-                  <p>2,099 followers</p>
+                  <p>2,124 followers</p>
                   </td>
                  </tr>
                  <tr>
                   <td valign=top>
-                  <p><span><span>
+                  <p>
                    <img src="images/image019.png" o:href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/YouTube_social_red_circle_%282017%29.svg/1024px-YouTube_social_red_circle_%282017%29.svg.png"/>
-                  </span></span></p>
+                  </p>
                   </td>
                   <td valign=top>
                   <p><a
@@ -1315,17 +1250,17 @@
                  </tr>
                  <tr>
                   <td width=51 valign=top>
-                  <p><span><span>
+                  <p>
                    <img src="images/image020.png" o:href="https://www.wur.nl/upload_mm/2/8/5/9f59698c-e156-4f33-9520-405cb7f4d9c6_researchgate_56f72ad6_490x330.png"
                     cropleft="10404f" cropright="10404f"/>
-                  </span></span></p>
+                  </p>
                   </td>
                   <td width=230 valign=top>
-                  <p><span><a
-                  href="https://www.researchgate.net/profile/John-Pierce/"><span>ResearchGate</span></a></span><span
-                  ><span></span></span></p>
-                  <p><span>93,000 paper reads</span><span
-                 ></span></p>
+                  <p><a
+                  href="https://www.researchgate.net/profile/John-Pierce/">ResearchGate</a>
+                </p>
+                  <p>94,000 paper reads
+                  </p>
                   </td>
                  </tr>
                 </table>
@@ -1338,45 +1273,39 @@
                 <div class="rightColMask"></div>
             </div>
             <p>Organising committee member for the Aphasiology Symposium of Australasia, Nov 2023.</p>
-            <p><span>Set up </span><span><a
-            href="https://rbcavanaugh.github.io/aphasia-tech-map/"><span
-            >Technology in Aphasia Map</span></a></span><span> with
-            Miranda Rose and Rob Cavanaugh – An international map of <span>technology
-            based</span> research projects in aphasia.</span></p>
+            <p>Set up <a
+            href="https://rbcavanaugh.github.io/aphasia-tech-map/">Technology in Aphasia Map</a> with
+            Miranda Rose and Rob Cavanaugh – An international map of technology
+            based research projects in aphasia.</p>
             
-            <p><span>Organising committee member for the Aphasiology Symposium of
-            Australasia, Nov 2022.</span></p>
+            <p>Organising committee member for the Aphasiology Symposium of
+            Australasia, Nov 2022.</p>
             
-            <p><span>Volunteer in Collaboration of Aphasia Trialists, Facebook team
-            2021-2023</span></p>
+            <p>Volunteer in Collaboration of Aphasia Trialists, Facebook team
+            2021-2023</p>
             
-            <p><span>Produced free guide: </span><span><a
-            href="https://www.aphasiatrials.org/aphasia-friendly-video-abstract-project/"><span
-            >Developing an
-            aphasia-friendly video abstract – a how-to guide</span></a></span><span>. Created with funding from the <span>Tavistock</span>
-            Trust for Aphasia.</span></p>
+            <p>Produced free guide: <a
+            href="https://www.aphasiatrials.org/aphasia-friendly-video-abstract-project/">Developing an
+            aphasia-friendly video abstract – a how-to guide</a>. Created with funding from the Tavistock
+            Trust for Aphasia.</p>
             
-            <p><span>Facilitator – Aphasia CRE Seminars, 2021-2022.</span></p>
+            <p>Facilitator – Aphasia CRE Seminars, 2021-2022.</p>
             
-            <p><span>Update of the Australian Aphasia
-            Rehabilitation Pathway, 2021.</span></p>
+            <p>Update of the Australian Aphasia
+            Rehabilitation Pathway, 2021.</p>
             
-            <p><span><b>Designed &amp; coded free therapy website</b> </span><span><a href="http://www.aphasiatherapyonline.com"><span
-            >www.aphasiatherapyonline.com</span></a></span><span
-            ><span></span></span>
-            <br><b><i><span>45,000</span></i></b><i><span> unique visitors per year</span></i>
-            <br><span>Maintained from 2013 – present. Estimated 1500
-            hours of service.</span>
-            <br><span>Currently working with volunteers to
-            translate into:</span>
+            <p><b>Designed &amp; coded free therapy website</b> <a href="http://www.aphasiatherapyonline.com">www.aphasiatherapyonline.com</a>
+            <br><b><i>45,000</i></b><i> unique visitors per year</i>
+            <br>Maintained from 2013 – present. Estimated 1500
+            volunteered hours.
+            <br>Currently working with volunteers to
+            translate into:
                 <ul>
                     <li>Arabic <b>(complete)</b></li>
                     <li>Greek</li>
                     <li>German</li>
                     <li>Hindi</li>
                     <li>Mandarin <b>(complete)</b></li>
-                    <li>Malay</li>
-                    <li>Slovenian</li>
                     <li>European Portuguese <b>(complete)</b></li>
                     <li>Brazilian Portuguese <b>(complete)</b></li>
                     <li>Spanish <b>(complete)</b></li>
@@ -1386,18 +1315,15 @@
                 </ul>
             </p>
             
-            <p><span>Published speech pathology </span><span><a
-            href="https://www.youtube.com/channel/UCtigAXfJSqqiDUhNlohcVcA/featured"><span
-            >tutorials</span></a></span><span
-            > </span><span>on YouTube</span>
-            <br><b><i><span>205,000</span></i></b><i><span> combined views</span></i></p>
+            <p>Published speech pathology <a
+            href="https://www.youtube.com/channel/UCtigAXfJSqqiDUhNlohcVcA/featured">tutorials</a> on YouTube
+            <br><b><i>205,000</i></b><i> combined views</i></p>
             
-            <p><span>Published </span><span ><a href="https://www.youtube.com/watch?v=W7PmQt-B3Nc"><span
-            >video guide to
-            aphasia therapy software</span></a></span><span> on
-            YouTube for people with aphasia</span></p>
+            <p>Published <a href="https://www.youtube.com/watch?v=W7PmQt-B3Nc">video guide to
+            aphasia therapy software</a> on
+            YouTube for people with aphasia</p>
             
-            <p><span>Peer review:</span></p>
+            <p>Peer review:</p>
             <ul>
                 <li>Aphasiology</li>
                 <li>Archives of Physical Medicine and Rehabilitation</li>
@@ -1412,17 +1338,17 @@
                 <li>Journal of Neurology, Neurosurgery and Psychiatry</li>
                 <li>Seminars in Speech & Language</li>
             </ul>
-            <p><span>Presented at Parkinson’s Disease fundraising
-            event, Caulfield. 2018.</span></p>
+            <p>Presented at Parkinson’s Disease fundraising
+            event, Caulfield. 2018.</p>
             
-            <p><span>Presented to Aphasia CRE Postdoc group on
-            creating video abstracts. 2019.</span></p>
+            <p>Presented to Aphasia CRE Postdoc group on
+            creating video abstracts. 2019.</p>
             
-            <p><span>Presented to ABI Communication Lab on creating
-            video abstracts. 2020.</span></p>
+            <p>Presented to ABI Communication Lab on creating
+            video abstracts. 2020.</p>
             
-            <p><span>Presented at Collaboration of Aphasia
-            Trialists workshop on creating video abstracts. 2021.</span></p>
+            <p>Presented at Collaboration of Aphasia
+            Trialists workshop on creating video abstracts. 2021.</p>
         </div>
         <div class="leftCol">
             <div id="collaboration">Collaboration (Published papers)</div>

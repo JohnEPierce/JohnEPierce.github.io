@@ -171,15 +171,17 @@ svg {
 .rightCol * td {
     padding-bottom: 1rem;
 }
-#JournalArticles table {
+.JournalArticles table {
     width: fit-content;
 }
-#JournalArticles * td {
+.JournalArticles * td {
     padding-right: 3rem;
 }
-#JournalArticles p:not(:nth-of-type(1)) {
-    margin-bottom: 0;
+.JournalArticles p:not(:nth-of-type(1)) {
     margin-top: 1rem;
+}
+.JournalArticles p {
+    margin-bottom: 0;
 }
 
 #content a {

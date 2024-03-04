@@ -321,3 +321,48 @@ svg {
         width: 1.6rem;
     }
 }
+
+
+/* Print */
+@media print {
+    @page {
+        margin-top: 1.25cm;
+        margin-left: 2.5cm;
+        margin-right: 2.5cm;
+        margin-bottom: 2cm;
+    }
+    body > div {
+        padding-left: 0;
+        padding-right: 0;
+        border-bottom: dotted windowtext 1.0pt;
+    }
+    #topArrow, #homeArrow {
+        display: none;
+    }
+    html {
+        font-size: 11pt;
+    }
+    h1 {
+        font-size: 28pt;
+    }
+    #header {
+        padding-top: 1cm;
+    }
+    #content {
+        grid-template-columns: 3fr 13fr;
+        grid-gap: 1rem;
+    }
+    .leftCol, .rightCol {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .altmetric * img {
+        height: 11pt;
+    }
+    #posters {
+        page-break-after: always;
+    }
+    #national {
+        width: 50%;
+    }
+}

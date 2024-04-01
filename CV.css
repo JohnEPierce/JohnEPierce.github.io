@@ -216,6 +216,10 @@ svg {
 #content table {
     margin: 0.3rem 0;
 }
+.poster {
+    display: grid;
+    grid-template-columns: auto 9vw;
+}
 #posters img {
     width: 8vw;
 }

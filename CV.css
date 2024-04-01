@@ -111,6 +111,9 @@ svg {
         top: 0;
         cursor: pointer;
     }
+    .leftCol div:hover {
+        opacity: 80%;
+    }
 
 .rightCol {
     padding: 1.2rem;
@@ -239,8 +242,13 @@ svg {
     margin: 0 auto 1rem auto;
 }
 
-#Collaboration img {
-    margin-top: -12%;
+#Collaboration img:first-of-type {
+    height: 22%;
+    object-fit: cover;
+}
+#Collaboration img:last-of-type {
+    height: 40%;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 768px) {
@@ -284,6 +292,9 @@ svg {
         margin-left: -0.6rem;
         padding: 1px 1.6rem;
         box-sizing: border-box;
+    }
+    .clear {
+        display: none;
     }
     #homeArrow {
         display: none;
@@ -349,12 +360,26 @@ svg {
         padding-top: 1cm;
     }
     #content {
-        grid-template-columns: 3fr 13fr;
-        grid-gap: 1rem;
+        display: block;
     }
     .leftCol, .rightCol {
         padding-left: 0;
         padding-right: 0;
+    }
+    .leftCol {
+        float: left;
+        width: 17.75%;
+    }
+    .rightCol {
+        float: right;
+        width: 79.25%;
+    }
+    .clear {
+        display: block;
+        clear: both;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        page-break-before: avoid;
     }
     .altmetric * img {
         height: 11pt;

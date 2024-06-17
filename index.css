@@ -231,6 +231,9 @@ a {
     transition: all 0.2s ease;
     filter: none;
 }
+    .contentlinks a:hover > .cardUpper img {
+        scale: 1.02;
+    }
 
 .contentlinks div a div {
     display: grid;
@@ -246,6 +249,9 @@ a {
     background-color: white;
     filter: brightness(80%);
 }
+    .cardUpper img {
+        transition: all 0.6s ease;
+    }
 
 .cardLower {
     background: var(--secondary-color);
@@ -317,6 +323,9 @@ a {
     }
     .profileContainer {
         padding: 4vh 0 3vh 0;
+    }
+    .cardUpper img {
+        scale: none!important;
     }
 }
 

@@ -72,11 +72,30 @@
                 }
             }
         });
-        document.getElementById("funding").innerText = "$" + (funding/1000).toFixed(0) + "k";
-        document.getElementById("fundingCIA").innerText = "$" + (fundingCIA/1000).toFixed(0) + "k";
+
+        //count up animation
+        function animateValue(id, start, end, duration, prefix, suffix) {
+            const element = document.getElementById(id);
+            const range = end - start;
+            let startTime = null;
+
+            function tick(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                element.innerText = prefix + ((start + range * progress)).toFixed(0) + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                }
+            }
+
+            requestAnimationFrame(tick);
+        }
+        animateValue("funding", 0, funding/1000, 1000, "$", "k"); 
+        animateValue("fundingCIA", 0, fundingCIA/1000, 1000, "$", "k");
 
         //Count publications
-        document.getElementById("pubsCount").innerText = document.querySelectorAll(".JournalArticles p:not(.lineBreak)").length
+        pubCount = document.querySelectorAll(".JournalArticles p:not(.lineBreak)").length;
+        animateValue("pubsCount", 0, pubCount, 1000, "", "");
         
         //show or hide home arrow
         var topArrowTrigger = document.getElementById("ProfessionalExperience").offsetTop;
@@ -162,8 +181,8 @@
     <div id="details">
         <p>
             <span><span id="yearsPost">1</span> years post PhD</span>
-            <span><span id="funding">$416k</span> funding | <span id="fundingCIA">$191k</span> as CIA </span>
-            <span><span  id="pubsCount">15</span> publications </span>
+            <span><span id="funding">$0k</span> funding | <span id="fundingCIA">$0k</span> as CIA </span>
+            <span><span  id="pubsCount">0</span> publications </span>
             <span><span>196</span> citations</span>
             <span>H-index <span>9</span></span>
             <!-- https://www.scopus.com/authid/detail.uri?authorId=57209304655 -->

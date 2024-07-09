@@ -60,7 +60,6 @@
                 if (dollarAmounts && dollarAmounts.length > 0) {
                     const number = parseInt(dollarAmounts[0].replace(/[\$,]/g, ''));
                     funding += number;
-                    console.log(number + " --> " + funding);
                 }
             }
             if (span.textContent.startsWith("Pierce") && span.textContent.includes(" successful")) {
@@ -68,13 +67,12 @@
                 if (dollarAmounts && dollarAmounts.length > 0) {
                     const number = parseInt(dollarAmounts[0].replace(/[\$,]/g, ''));
                     fundingCIA += number;
-                    console.log(number + " --> CIA " + fundingCIA);
                 }
             }
         });
 
         //count up animation
-        function animateValue(id, start, end, duration, prefix, suffix) {
+        function animateValue(id, start, end, duration, prefix, suffix, decimals) {
             const element = document.getElementById(id);
             const range = end - start;
             let startTime = null;
@@ -82,7 +80,7 @@
             function tick(timestamp) {
                 if (!startTime) startTime = timestamp;
                 const progress = Math.min((timestamp - startTime) / duration, 1);
-                element.innerText = prefix + ((start + range * progress)).toFixed(0) + suffix;
+                element.innerText = prefix + ((start + range * progress)).toFixed(decimals) + suffix;
                 if (progress < 1) {
                     requestAnimationFrame(tick);
                 }
@@ -90,8 +88,8 @@
 
             requestAnimationFrame(tick);
         }
-        animateValue("funding", 0, funding/1000, 1000, "$", "k"); 
-        animateValue("fundingCIA", 0, fundingCIA/1000, 1000, "$", "k");
+        animateValue("funding", 0, funding/1000000, 1000, "$", "m", 2); 
+        animateValue("fundingCIA", 0, fundingCIA/1000, 1000, "$", "k", 0);
 
         //Count publications
         pubCount = document.querySelectorAll(".JournalArticles p:not(.lineBreak)").length;
@@ -352,6 +350,9 @@
             <div class="rightColMask-container">
                 <div class="rightColMask"></div>
             </div>
+                <p>P<b>ierce, J. E.</b>, Adam, T., Adam, J., Godecke, E., Hill, A., Johns, H., Kim, J., Nicholls, R., Power, E., Togher, L., Rose, M. (2024). <i>Maximising Aphasia Treatment and Recovery across Australia through Innovative Group Telerehabilitation</i>. MRFF Cardiovascular Mission. ($565,000 - successful).
+                </p>
+
                 <p>
                   Adikari, A., <b>Pierce, J. E.</b>, Alahakoon, D. (2024). <i>AI-empowered personalised communication assistant.</i> La Trobe Business School Small Grant, La Trobe University, Australia. ($5000 - successful).
                 </p>
@@ -367,30 +368,29 @@
                 <p>Finch, E.,
                 Kelly, E., Farrell, A., Ownsworth, T., Pinkham, M.,
                 Brownsett, B., Copland, D., Jones, A., Fleming, J., Doig, E., Jones, A., <b>Pierce,
-                J. E.</b>, McPhail, S., Turkington, L., Little, L. (2022). CanCommunicate: Optimising communication for people with
-                brain cancer and their families. Metro South Health Study Education and
+                J. E.</b>, McPhail, S., Turkington, L., Little, L. (2022). CanCommunicate: Optimising communication for people with brain cancer and their families. Metro South Health Study Education and
                 Research Trust Account ($125,000 – successful).</p>
                 
                 <p><b>Pierce, J.E.</b>, Copland, D., Godecke, E.,
                 Foster, A., Churilov, L., Nicholls, R., Tulloch, G., Barry, S., &amp; Rose,
                 M. (2022).<i> M-MAT Tele: Maximising aphasia recovery through a
                 group telehealth intervention.</i> Early and Early-Mid Career Researcher Seed Grant,
-                Stroke Foundation, Melbourne, VIC. ($80,000 – <b>successful as CIA</b>).</p>
+                Stroke Foundation, Melbourne, VIC. ($80,000 – <b>successful</b>).</p>
                 
                 <p><b>Pierce, J.E.</b>
                 (2022). <i>Aphasia
                 Therapy Online - Vietnamese, Mandarin, Greek.</i> Telematics Trust. ($50,000
-                – <b>successful as CIA</b>).</p>
+                – <b>successful</b>).</p>
                 
                 <p><b>Pierce, J.E.</b>
                 (2022). <i>Enabling
                 clinical implementation of evidence-based aphasia intervention: M-MAT Tele.</i> Speech Pathology Australia New
-                Researcher Grant. ($18,000 – <b>successful as CIA</b>).</p>
+                Researcher Grant. ($18,000 – <b>successful</b>).</p>
                 
                 <p><b>Pierce, J.E.</b>, Hill,
                 A., Wong, D. &amp; Rose, M. (2021). <i>Addressing inequity in aphasia
                 rehabilitation: Adapting Multi-Modality Aphasia Therapy for telehealth</i>. La Trobe University Theme
-                Grant, Melbourne, VIC. ($25,000 – <b>successful as CIA</b>).</p>
+                Grant, Melbourne, VIC. ($25,000 – <b>successful</b>).</p>
                 
                 <p><b>Pierce, J.E.</b>,
                 Togher, L., Copland, D., Nickels, L., Godecke, E., Foster, A., Churilov, L.,
@@ -413,7 +413,7 @@
                 <p><b>Pierce, J.E.</b>
                 &amp; Vogel, A. (2019). <i>Spontaneous swallowing rates in people with Parkinson's
                 compared to controls</i>. Cabrini Foundation research grant, Melbourne, VIC. ($20,000 – <b>successful
-                as CIA</b>)</p>
+               </b>)</p>
                 
                 <p><b>Pierce, J.E.</b>
                 &amp; Vogel, A. (2018). <i>Spontaneous swallowing rates in people with Parkinson's

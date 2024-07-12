@@ -208,6 +208,11 @@ svg {
     .altmetric * {
         text-decoration: none;
     }
+    .altmetric a:not(:has(img)) {
+        max-width: 1rem;
+        max-height: 1rem;
+        background-image: none !important;
+    }
 
 .inlineicon {
     vertical-align: middle;

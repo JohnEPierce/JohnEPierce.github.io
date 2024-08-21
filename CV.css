@@ -360,7 +360,7 @@ svg {
         padding-right: 0;
         border-bottom: dotted windowtext 1.0pt;
     }
-    #topArrow, #homeArrow {
+    #topArrow, #homeArrow, #collaboration, #Collaboration {
         display: none;
     }
     html {
@@ -372,20 +372,18 @@ svg {
     #header {
         padding-top: 1cm;
     }
-    #content {
-        display: block;
-    }
     .leftCol, .rightCol {
-        padding-left: 0;
-        padding-right: 0;
+        box-sizing: border-box;
     }
     .leftCol {
-        float: left;
-        width: 17.75%;
+        display: inline-block;
+        /* width: 17.75%; */
+        vertical-align: top;
+        ;
     }
     .rightCol {
-        float: right;
-        width: 79.25%;
+        display: inline-block;
+        /* width: 79.25%; */
     }
     .clear {
         display: block;
@@ -396,9 +394,6 @@ svg {
     }
     .altmetric * img {
         height: 11pt;
-    }
-    #posters {
-        page-break-after: always;
     }
     #national {
         width: 50%;

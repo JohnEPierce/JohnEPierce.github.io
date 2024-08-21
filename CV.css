@@ -11,8 +11,12 @@ html {
 body {
     margin: auto;
     height: max-content;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Open Sans", "Helvetica Neue", Helvetica, Quicksand, Calibri, Arial, Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif, Helvetica neue;
     font-weight: 300;
+}
+
+b {
+    font-weight: 500;
 }
 
 p {
@@ -21,7 +25,7 @@ p {
 
 a:hover {
     filter: brightness(120%);
-    color: rgb(80,80,80);
+    color: rgb(80,80,80) !important;
 }
 body > div {
     border-bottom: dotted windowtext 2.0pt;

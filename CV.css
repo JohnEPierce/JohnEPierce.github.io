@@ -139,6 +139,9 @@ svg {
     .rightCol ul {
         list-style-type: "-  ";
     }
+    .rightCol ul li {
+        margin-bottom: 0.5rem;
+    }
     .rightCol > img {
         width: 100%;
     }

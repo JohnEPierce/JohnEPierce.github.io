@@ -119,6 +119,10 @@ svg {
         opacity: 80%;
     }
 
+.rightCol:not(:last-of-type), .leftCol:not(:last-of-type) {
+    border-bottom: 1px #82b9a4 dotted;
+}
+
 .rightCol {
     padding: 1.2rem;
     grid-column: 2/3;

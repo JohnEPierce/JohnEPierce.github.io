@@ -83,7 +83,7 @@ a {
     max-width: 100%;
 }
 
-#twitter:hover div {
+#twitter:hover div, #bluesky:hover div {
     color: #1DA1F2;
 }
 #youtube:hover div {
@@ -96,10 +96,10 @@ a {
     color: #e22333;
 }
 #cv:hover div {
-    color:#9022ea;
+    color:#82B9A4;
 }
 #emaila:hover div {
-    color:hsl(20, 20.3%, 29%);
+    color:hsl(273,58%,42%);
 }
 #svgBase {
     opacity: 0.0;

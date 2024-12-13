@@ -42,7 +42,7 @@ a {
 /* EXTERNAL LINKS */
 .externalLinks {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     grid-auto-rows: min-content;
     align-items: baseline;
     justify-items: center;
@@ -94,6 +94,9 @@ a {
 }
 #latrobe:hover div {
     color: #e22333;
+}
+#linkedin:hover div{
+    color: #0077b7;
 }
 #cv:hover div {
     color:#82B9A4;

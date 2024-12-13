@@ -120,6 +120,14 @@
             rightCol.classList.toggle("rightColHidden")
             const mask = rightCol.querySelector(".rightColMask")
             mask.style.opacity = mask.style.opacity === "1" ? "0" : "1";
+            if (rightCol.classList.contains("rightColHidden")) {
+                var hiddenHeight = `calc(${leftCol.querySelector('div').offsetHeight}px + 1.2rem)`;
+                rightCol.style.maxHeight = hiddenHeight;
+                rightCol.querySelector(".rightColMask").style.height = hiddenHeight;
+            }
+            else{
+                rightCol.style.maxHeight = "none"; 
+            }
         });
         });
 
@@ -1420,7 +1428,7 @@
             aphasia-friendly video abstract – a how-to guide</a>. Created with funding from the Tavistock
             Trust for Aphasia.</p>
             
-            <p>Facilitator – Aphasia CRE Seminars, 2021-2022.</p>
+            <p>Facilitator – Aphasia CRE Seminars, 2021-2025.</p>
             
             <p>Update of the Australian Aphasia
             Rehabilitation Pathway, 2021.</p>

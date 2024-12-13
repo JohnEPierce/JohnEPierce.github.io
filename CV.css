@@ -145,9 +145,6 @@ svg {
     .rightCol > img {
         width: 100%;
     }
-.rightColHidden {
-    max-height: 1.1rem;
-}
 .rightColMask-container {
     width: 100%;
     position: relative;
@@ -159,6 +156,7 @@ svg {
     height: 2.5rem;
     opacity: 0;
     transition: opacity 0.6s;
+    padding-bottom: 1.2rem;
 }
 
 .sticky {

@@ -103,7 +103,7 @@ spanElements.forEach(item => {item.innerHTML = item.innerHTML.replace(/_/g, " ")
 var divs = document.querySelectorAll('.cardUpper');
 
 for (var i = 0; i < divs.length; i++) {
-    var height = Math.random() * 6 + 3;
+    var height = Math.random() * 6 + 5;
 
     // Set the height of the div
     divs[i].style.height = height + 'rem';

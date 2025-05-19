@@ -54,7 +54,21 @@ var classCounts = elements.reduce((acc, curr) => {
   }, {});
 
   //fontsize function
-  var fontSize = count => count;
+  var fontSize = count => {
+    // Define min and max font sizes in rem
+    const minSize = .7;
+    const maxSize = 3;
+    
+    // Get min and max counts from classCounts
+    const counts = Object.values(classCounts);
+    const minCount = Math.min(...counts);
+    const maxCount = Math.max(...counts);
+    
+    // Calculate font size using linear interpolation
+    const size = minSize + (count - minCount) * (maxSize - minSize) / (maxCount - minCount);
+    
+    return size;
+  };
   
   
   //exclude toplinks

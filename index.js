@@ -54,10 +54,10 @@ var classCounts = elements.reduce((acc, curr) => {
   }, {});
 
   //fontsize function
-  var fontSize = count => {
+  /* var fontSize = count => {
     // Define min and max font sizes in rem
-    const minSize = .7;
-    const maxSize = 3;
+    const minSize = 1;
+    const maxSize = 1.3 ;
     
     // Get min and max counts from classCounts
     const counts = Object.values(classCounts);
@@ -68,7 +68,7 @@ var classCounts = elements.reduce((acc, curr) => {
     const size = minSize + (count - minCount) * (maxSize - minSize) / (maxCount - minCount);
     
     return size;
-  };
+  }; */
   
   
   //exclude toplinks
@@ -87,23 +87,17 @@ var classCounts = elements.reduce((acc, curr) => {
     const count = classCounts[span.className];
 
     // Set the font size of the span element based on the count
-    span.style.fontSize = `${fontSize(count)}rem`;
+    // span.style.fontSize = `${fontSize(count)}rem`;
 });
 
-//sort by font size
+//sort by frequency
 const spanElements = wordcloud.querySelectorAll('span');
 
 const sortedSpans = Array.from(spanElements).sort((a, b) => {
-  const fontSizeA = parseInt(getComputedStyle(a).fontSize, 10);
-  const fontSizeB = parseInt(getComputedStyle(b).fontSize, 10);
-  // Sort the elements in descending order by font size
-  if (fontSizeA > fontSizeB) {
-    return -1;
-  } else if (fontSizeA < fontSizeB) {
-    return 1;
-  } else {
-    return 0;
-  }
+  const countA = classCounts[a.className];
+  const countB = classCounts[b.className];
+  // Sort the elements in descending order by frequency
+  return countB - countA;
 });
 
 // Append the sorted span elements to the wordcloud div

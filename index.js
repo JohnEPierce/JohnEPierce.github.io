@@ -104,6 +104,12 @@ const sortedSpans = Array.from(spanElements).sort((a, b) => {
 // Append the sorted span elements to the wordcloud div
 sortedSpans.forEach(span => wordcloud.appendChild(span));
 
+// Add 'other' span
+const otherSpan = document.createElement('span');
+otherSpan.classList.add('other');
+otherSpan.textContent = 'Other';
+wordcloud.appendChild(otherSpan);
+
 // Remove wordcloud spans for topics that appear less than twice
 sortedSpans.forEach(span => {
   const count = classCounts[span.className];
@@ -122,21 +128,29 @@ const hideCards = (event) => {
   const allElements = document.querySelectorAll('.contentlinks div');
 }
 // const wordcloud = document.querySelectorAll('.toplink');
-spanElements.forEach(function(element){
+document.querySelectorAll('.wordcloud span').forEach(function(element){
   element.addEventListener('click', function(){
     this.classList.toggle("focus");
 
-    // Get all currently active span classes
-    const activeTags = Array.from(spanElements)
+    const spans = document.querySelectorAll('.wordcloud span');
+    const activeTags = Array.from(spans)
       .filter(el => el.classList.contains("focus"))
-      .map(el => Array.from(el.classList).find(c => c !== "focus"));
+      .map(el => el.classList.contains("other") ? "other" : Array.from(el.classList).find(c => c !== "focus"));
 
-    // Loop through all content cards
     const allCards = document.querySelectorAll('.contentlinks > div');
     allCards.forEach(card => {
       const cardClasses = Array.from(card.classList);
-      // Check if all activeTags are present in the card
-      const shouldShow = activeTags.every(tag => cardClasses.includes(tag));
+      let shouldShow;
+
+      if (activeTags.includes("other")) {
+        const allSpanClasses = Array.from(spans)
+          .map(el => el.classList.contains("other") ? null : Array.from(el.classList).find(c => c !== "focus"))
+          .filter(Boolean);
+        shouldShow = allSpanClasses.every(tag => !cardClasses.includes(tag));
+      } else {
+        shouldShow = activeTags.every(tag => cardClasses.includes(tag));
+      }
+
       card.classList.toggle("hidden", !shouldShow);
     });
   });

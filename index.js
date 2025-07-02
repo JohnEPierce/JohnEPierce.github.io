@@ -73,9 +73,10 @@ var classCounts = elements.reduce((acc, curr) => {
   
   //exclude toplinks
   var excludeToplinks = [];
-  for(i=0;i<toplinks.length;i++){
-        excludeToplinks.push(toplinks[i].id);
-    }
+  // for(i=0;i<toplinks.length;i++){
+  //       excludeToplinks.push(toplinks[i].id);
+  //   }
+    excludeToplinks.push("aphasia", "technology", "multimodal", "Presentations", "Publications");
 
     document.querySelectorAll('.wordcloud span').forEach(span => {
       // Delete if in exclude list
@@ -103,8 +104,43 @@ const sortedSpans = Array.from(spanElements).sort((a, b) => {
 // Append the sorted span elements to the wordcloud div
 sortedSpans.forEach(span => wordcloud.appendChild(span));
 
+// Remove wordcloud spans for topics that appear less than twice
+sortedSpans.forEach(span => {
+  const count = classCounts[span.className];
+  if (count < 2) {
+    span.remove();
+  }
+});
+
+
 //Remove underscores
 spanElements.forEach(item => {item.innerHTML = item.innerHTML.replace(/_/g, " ");});
+
+// Make wordclouds clickable - toggling
+const hideCards = (event) => {
+  let clickedElement = event.target.className;
+  const allElements = document.querySelectorAll('.contentlinks div');
+}
+// const wordcloud = document.querySelectorAll('.toplink');
+spanElements.forEach(function(element){
+  element.addEventListener('click', function(){
+    this.classList.toggle("focus");
+
+    // Get all currently active span classes
+    const activeTags = Array.from(spanElements)
+      .filter(el => el.classList.contains("focus"))
+      .map(el => Array.from(el.classList).find(c => c !== "focus"));
+
+    // Loop through all content cards
+    const allCards = document.querySelectorAll('.contentlinks > div');
+    allCards.forEach(card => {
+      const cardClasses = Array.from(card.classList);
+      // Check if all activeTags are present in the card
+      const shouldShow = activeTags.every(tag => cardClasses.includes(tag));
+      card.classList.toggle("hidden", !shouldShow);
+    });
+  });
+});
 
 
 //Random card height

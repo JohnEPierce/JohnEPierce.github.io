@@ -172,16 +172,19 @@ a {
 }
 .focus {
     color: var(--secondary-color)!important;
-    background-color: var(--primary-color)!important;
+    background-color: color-mix(in oklab,var(--primary-color), white 25%)!important;
 }
 .focus::before {
-    content: "✓ ";
+    content: url('images/check-mark-svgrepo-com.svg');
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: 0.5rem;
 }
 
 /* WORDCLOUD */
 .wordcloud {
     overflow-wrap: break-word;
-    /* background-color: var(--primary-color); */
     padding: 0.5rem 1rem 1rem 1rem;
     border-radius: 0.5rem 0.5rem 0 0 ;
     color: var(--primary-color);

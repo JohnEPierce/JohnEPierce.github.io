@@ -170,42 +170,127 @@ a {
     justify-content: center;
     border-radius: 0.7rem;
 }
-.focus {
-    color: var(--secondary-color)!important;
-    background-color: color-mix(in oklab,var(--primary-color), white 25%)!important;
-}
-.focus::before {
-    content: url('images/check-mark-svgrepo-com.svg');
-    display: inline-block;
-    width: 0.7rem;
-    height: 0.7rem;
-    margin-right: 0.5rem;
-}
 
 /* WORDCLOUD */
+.contentHead {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+
+#filterButton {
+    padding: 0rem 0.6rem 0rem 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    color: var(--primary-color);
+    max-height: 1000px !important;
+    opacity: 100 !important;
+    border-radius: 1rem;
+    width: fit-content;
+    margin-bottom: 0.8rem;
+    border: 1px solid var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;    
+}
+
+    #filterButton:hover {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+    }
+
+#filter {
+    font-size: 1rem;
+    width: 100%;
+}
+    #filterButton svg {
+        fill: var(--primary-color);
+        height: 2rem;
+    }
+    #filterButton:hover #filter, #filterButton:hover svg, .filterOpen #filter, .filterOpen svg {
+        filter: brightness(100);
+    }
+    .filterOpen svg {
+        transform: rotateY(180deg)!important;
+    }
+    .filterOpen {
+        background-color: var(--primary-color);
+        font-weight: 600;
+    }
+    /* #filter:after {
+        content: "";
+        display: inline-block;
+        float: right;
+        margin-left: 0.5rem;
+        margin-bottom: 0.4rem;
+        margin-right: 1rem;
+        margin-top: 0.4rem;
+        width: 0.5em;
+        height: 0.5em;
+        vertical-align: middle;
+        border: solid var(--primary-color);
+        border-width: 0 0.1em 0.1em 0;
+        padding: 0.22em;
+        transform: rotate(45deg);
+        box-sizing: border-box;
+        border-radius: 0.1rem;
+        transition: transform 0.3s ease-out;
+    } */
+
 .wordcloud {
     overflow-wrap: break-word;
-    padding: 0.5rem 1rem 1rem 1rem;
-    border-radius: 0.5rem 0.5rem 0 0 ;
-    color: var(--primary-color);
     line-height: 1.6;
+    font-size: 1rem;
+    opacity: 100;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    column-span: all;
+    margin-bottom: 0;
 }
+    .wordcloud:hover {
+        transform: none!important;
+    }
+
+    .wordcloudOpen {
+        max-height: 1000px;
+        margin-bottom: 1rem;
+    }
+
 .wordcloud span {
     margin: 0.2rem 0.4rem;
     transition: all 0.2s ease;
-    background: var(--soft-primary-color);
-    color: var(--primary-secondary-color);
+    background: var(--secondary-color);;
+    color: var(--primary-color);
     border: 1px solid var(--primary-color);
     border-radius: 1rem;
     padding: 0rem 0.7rem;
     display: inline-block;
+    font-weight: normal;
 }
     .wordcloud span:hover {
         transition: all 0.2s ease;
-        background: color-mix(in srgb, var(--soft-primary-color) 90%, black);
         cursor: pointer;
         transform: scale(1.02);
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        border: 1px solid var(--secondary-color);
     }
+
+    .focus {
+        color: var(--secondary-color)!important;
+        background-color: #6E6C68!important;
+        /* font-weight: 600!important; */
+        border: 1px solid var(--secondary-color)!important;
+        }
+        .focus::before {
+            content: url('images/check-mark-svgrepo-com.svg');
+            display: inline-block;
+            width: 0.7rem;
+            height: 0.7rem;
+            margin-right: 0.5rem;
+        }
+
 #learnAbout {
     font-size: 1.8rem;
     color: var(--primary-color);
@@ -223,11 +308,11 @@ a {
     border-radius: 1rem;
     margin-bottom: 3rem;
 }
-.contentlinks > div {/* card */
+.contentlinks > div:not(:first-child) { /* card */
     transition: all 0.3s ease;
     color: var(--primary-color);
     border-radius: 0.5rem;
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
     overflow: hidden;
     margin-bottom: 1rem;
     max-height: 1000px;

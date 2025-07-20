@@ -35,9 +35,14 @@ toplinks.forEach(function(element){
     })
 })
 
-//Wordcloud
-var elements = Array.from(document.querySelector(".contentlinks").querySelectorAll(".contentlinks > div"));
+//## Wordcloud
+//filter dropdown
+const filterButton = document.getElementById("filterButton");
 const wordcloud = document.querySelector(".wordcloud");
+
+
+//build wordcloud
+var elements = Array.from(document.querySelector(".contentlinks").querySelectorAll(".contentlinks > div"));
 var classCounts = elements.reduce((acc, curr) => {
     curr.classList.forEach(className => {
       if (className in acc) {
@@ -52,30 +57,10 @@ var classCounts = elements.reduce((acc, curr) => {
     });
     return acc;
   }, {});
-
-  //fontsize function
-  /* var fontSize = count => {
-    // Define min and max font sizes in rem
-    const minSize = 1;
-    const maxSize = 1.3 ;
-    
-    // Get min and max counts from classCounts
-    const counts = Object.values(classCounts);
-    const minCount = Math.min(...counts);
-    const maxCount = Math.max(...counts);
-    
-    // Calculate font size using linear interpolation
-    const size = minSize + (count - minCount) * (maxSize - minSize) / (maxCount - minCount);
-    
-    return size;
-  }; */
   
   
   //exclude toplinks
   var excludeToplinks = [];
-  // for(i=0;i<toplinks.length;i++){
-  //       excludeToplinks.push(toplinks[i].id);
-  //   }
     excludeToplinks.push("aphasia", "technology", "multimodal", "Presentations", "Publications");
 
     document.querySelectorAll('.wordcloud span').forEach(span => {
@@ -86,9 +71,6 @@ var classCounts = elements.reduce((acc, curr) => {
 
     // Get the count of the class from the classCounts object
     const count = classCounts[span.className];
-
-    // Set the font size of the span element based on the count
-    // span.style.fontSize = `${fontSize(count)}rem`;
 });
 
 //sort by frequency
@@ -107,7 +89,7 @@ sortedSpans.forEach(span => wordcloud.appendChild(span));
 // Add 'other' span
 const otherSpan = document.createElement('span');
 otherSpan.classList.add('other');
-otherSpan.textContent = 'Other';
+otherSpan.textContent = 'Other work';
 wordcloud.appendChild(otherSpan);
 
 // Remove wordcloud spans for topics that appear less than twice
@@ -131,30 +113,45 @@ const hideCards = (event) => {
 document.querySelectorAll('.wordcloud span').forEach(function(element){
   element.addEventListener('click', function(){
     this.classList.toggle("focus");
-
-    const spans = document.querySelectorAll('.wordcloud span');
-    const activeTags = Array.from(spans)
-      .filter(el => el.classList.contains("focus"))
-      .map(el => el.classList.contains("other") ? "other" : Array.from(el.classList).find(c => c !== "focus"));
-
-    const allCards = document.querySelectorAll('.contentlinks > div');
-    allCards.forEach(card => {
-      const cardClasses = Array.from(card.classList);
-      let shouldShow;
-
-      if (activeTags.includes("other")) {
-        const allSpanClasses = Array.from(spans)
-          .map(el => el.classList.contains("other") ? null : Array.from(el.classList).find(c => c !== "focus"))
-          .filter(Boolean);
-        shouldShow = allSpanClasses.every(tag => !cardClasses.includes(tag));
-      } else {
-        shouldShow = activeTags.every(tag => cardClasses.includes(tag));
-      }
-
-      card.classList.toggle("hidden", !shouldShow);
-    });
+    updateCardVisibility();
   });
 });
+
+function updateCardVisibility() {
+  const spans = document.querySelectorAll('.wordcloud span');
+  const activeTags = Array.from(spans)
+    .filter(el => el.classList.contains("focus"))
+    .map(el => el.classList.contains("other") ? "other" : Array.from(el.classList).find(c => c !== "focus"));
+
+  const allCards = Array.from(document.querySelectorAll('.contentlinks > div')).filter(div => !div.classList.contains('wordcloud'));
+  allCards.forEach(card => {
+    const cardClasses = Array.from(card.classList);
+    let shouldShow;
+
+    if (activeTags.includes("other")) {
+      const allSpanClasses = Array.from(spans)
+        .map(el => el.classList.contains("other") ? null : Array.from(el.classList).find(c => c !== "focus"))
+        .filter(Boolean);
+      shouldShow = allSpanClasses.every(tag => !cardClasses.includes(tag));
+    } else {
+      shouldShow = activeTags.every(tag => cardClasses.includes(tag));
+    }
+
+    card.classList.toggle("hidden", !shouldShow);
+  });
+}
+
+filterButton.addEventListener('click', function () {
+  filterButton.classList.toggle('filterOpen');
+  wordcloud.classList.toggle('wordcloudOpen')
+  if (!wordcloud.classList.contains('wordcloudOpen')) {
+    document.querySelectorAll('.wordcloud span.focus').forEach(span => {
+      span.classList.remove('focus');
+    });
+    updateCardVisibility();
+  }
+});
+
 
 
 //Random card height

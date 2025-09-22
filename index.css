@@ -347,7 +347,6 @@ a {
     }
 
 .contentlinks div a div {
-    display: grid;
     align-items: center;
 }
 
@@ -359,6 +358,7 @@ a {
     transition: all 0.6s ease;
     background-color: white;
     filter: brightness(80%);
+    display: grid;
 }
     .cardUpper img {
         transition: all 0.6s ease;
@@ -371,6 +371,15 @@ a {
 .cardLower span {
     font-size: 1rem;
     font-weight: 400;
+}
+
+.Publications .cardLower::after {
+    content: url(images/publicationicon-01.svg);
+    width: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 50%;
+    margin-left: 0.2rem;
 }
 
 .cardColumnLeft {

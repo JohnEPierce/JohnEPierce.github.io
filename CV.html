@@ -118,7 +118,8 @@
 
         leftCol.addEventListener('click', () => {
             const rightCol = leftCol.nextElementSibling;
-            rightCol.classList.toggle("rightColHidden")
+            rightCol.classList.toggle("rightColHidden");
+            leftCol.classList.toggle('collapsed', rightCol.classList.contains('rightColHidden'));
             const mask = rightCol.querySelector(".rightColMask")
             mask.style.opacity = mask.style.opacity === "1" ? "0" : "1";
             mask.classList.toggle('rightColMask-show');

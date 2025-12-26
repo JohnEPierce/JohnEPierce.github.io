@@ -118,6 +118,29 @@ svg {
     .leftCol div:hover {
         opacity: 80%;
     }
+    .leftCol > div {
+        position: relative;
+        padding-right: 1.6rem; /* room for caret */
+      }
+      
+      .leftCol > div::after {
+        content: "▸";
+        position: absolute;
+        right: 0.4rem;
+        top: 50%;
+        transform: translateY(-50%) rotate(90deg); /* expanded */
+        transform-origin: center;
+        opacity: 0;
+        transition: transform 0.2s ease, opacity 0.15s ease;
+      }
+      
+      .leftCol.collapsed > div::after {
+        transform: translateY(-50%) rotate(0deg); /* collapsed */
+      }
+      .leftCol:hover > div::after {
+        opacity: 0.7;
+      }
+      
 
 .rightCol:not(:last-of-type), .leftCol:not(:last-of-type) {
     border-bottom: 1px #82b9a4 dotted;
@@ -290,6 +313,11 @@ svg {
 }
 
 @media screen and (max-width: 500px) {
+
+    .leftCol.collapsed > div::after {
+        transform: translateY(-50%) rotate(270deg); /* collapsed */
+      }
+      
     #content {
         /* display: block; */
         grid-template-columns: min-content 1fr;
@@ -406,5 +434,11 @@ svg {
     }
     #national {
         width: 50%;
+    }
+    .leftCol > div::after {
+        content: none !important;
+    }
+    .leftCol > div {
+        padding-right: 0;
     }
 }

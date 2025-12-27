@@ -264,7 +264,7 @@ svg {
 #posters img {
     width: 8vw;
 }
-#researchImpact * img {
+#researchImpact * img, #researchImpact * svg {
     height: 2.3rem;
     margin: 0.6rem 0;
     vertical-align: middle;

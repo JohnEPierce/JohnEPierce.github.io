@@ -39,7 +39,6 @@ body div * {
 }
 a {
     text-decoration: none;
-    color: var(--light-color);
 }
 
 h1 {
@@ -54,6 +53,7 @@ h1 strong {
 h2 {
     font-weight: 600;
     text-align: center;
+    font-size: 1.8rem;
 }
 h3 {
     font-weight: 500;
@@ -97,9 +97,12 @@ transition: 0.1s all;
   font-size: 1.4rem;
 }
 
-p {
-    font-size: 1.2rem;
+p, li, p a {
+    font-size: 1.4rem;
 }
+    p a {
+        text-decoration: underline;
+    }
 
 ul,ol {
     text-align: left;

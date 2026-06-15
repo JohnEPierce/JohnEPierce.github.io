@@ -232,9 +232,9 @@ svg {
     vertical-align: middle;
     display: inline;
 }
-    .altmetric * img {
+    .altmetric img {
         vertical-align: middle;
-        display: inline;
+        display: inline !important;
         width: auto;
         height: auto;
     }

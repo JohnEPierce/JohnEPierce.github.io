@@ -228,9 +228,9 @@ svg {
     
 }
 
-.altmetric {
+.altmetric, .dimensions-badge {
     vertical-align: middle;
-    display: inline;
+    display: inline-block!important;
 }
     .altmetric img {
         vertical-align: middle;
@@ -249,6 +249,28 @@ svg {
         max-height: 1rem;
         background-image: none !important;
     }
+
+.dimensions-badge {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.dimensions-badge svg,
+.dimensions-badge img {
+    width: auto !important;
+}
+
+.dimensions-badge a,
+.dimensions-badge .__dimensions_Link {
+    display: inline-flex !important;
+    align-items: center;
+    max-width: none !important;
+    width: auto !important;
+}
+
+.dimensionscell {
+    vertical-align: middle;
+}
 
 .inlineicon {
     vertical-align: middle;

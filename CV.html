@@ -157,13 +157,99 @@
         altmetricCounts[0].prepend("Altmetrics: ") 
 
         // Add Dimensions citation badges from the same DOI as each Altmetric badge
+        function parseCitationCount(text) {
+            const cleaned = text.replace(/\s+/g, ' ').trim();
+            if (!cleaned) {
+                return null;
+            }
+            const citationMatch = cleaned.match(/(\d[\d,]*)\s*(?:Dimension\s*)?citations?\b/i)
+                || cleaned.match(/\bcitations?\D+(\d[\d,]*)/i);
+            if (citationMatch) {
+                return parseInt(citationMatch[1].replace(/,/g, ''), 10);
+            }
+            const numbers = cleaned.match(/\b\d[\d,]*\b/g);
+            if (numbers && numbers.length === 1) {
+                return parseInt(numbers[0].replace(/,/g, ''), 10);
+            }
+            return null;
+        }
+
+        function getDimensionsCitationCount(dimensionsBadge) {
+            const textSources = [dimensionsBadge.textContent];
+            dimensionsBadge.querySelectorAll('[aria-label], [title], img[alt], title, desc').forEach(element => {
+                if (element.getAttribute('aria-label')) {
+                    textSources.push(element.getAttribute('aria-label'));
+                }
+                if (element.getAttribute('title')) {
+                    textSources.push(element.getAttribute('title'));
+                }
+                if (element.getAttribute('alt')) {
+                    textSources.push(element.getAttribute('alt'));
+                }
+                if (element.tagName === 'TITLE' || element.tagName === 'DESC') {
+                    textSources.push(element.textContent);
+                }
+            });
+            for (const text of textSources) {
+                const count = parseCitationCount(text || '');
+                if (Number.isFinite(count)) {
+                    return count;
+                }
+            }
+            return null;
+        }
+
+        function appendDimensionsCitationCount(dimensionsBadge) {
+            const citationCount = getDimensionsCitationCount(dimensionsBadge);
+            replaceDimensionsBadgeImage(dimensionsBadge, citationCount);
+            if (!Number.isFinite(citationCount)) {
+                return;
+            }
+            const dimensionsCell = dimensionsBadge.closest('td') || dimensionsBadge.parentElement;
+            let citationLabel = dimensionsCell.querySelector('.dimensions-citation-count');
+            if (!citationLabel) {
+                citationLabel = document.createElement('span');
+                citationLabel.className = 'dimensions-citation-count';
+                dimensionsBadge.insertAdjacentElement('afterend', citationLabel);
+            }
+            const labelText = `${citationCount} citation${citationCount === 1 ? '' : 's'}`;
+            if (citationLabel.textContent !== labelText) {
+                citationLabel.textContent = labelText;
+            }
+        }
+
+        function replaceDimensionsBadgeImage(dimensionsBadge, citationCount) {
+            const dimensionsLink = dimensionsBadge.querySelector('a, .__dimensions_Link');
+            if (!dimensionsLink || dimensionsLink.querySelector('.dimensions-icon')) {
+                return;
+            }
+            dimensionsLink.querySelectorAll('svg, img').forEach(element => {
+                element.classList.add('dimensions-generated-badge-image');
+                element.setAttribute('aria-hidden', 'true');
+            });
+            const customIcon = document.createElement('img');
+            customIcon.className = 'dimensions-icon';
+            customIcon.src = 'images/Dimensions.svg';
+            customIcon.alt = Number.isFinite(citationCount)
+                ? `Dimensions citation badge, ${citationCount} citation${citationCount === 1 ? '' : 's'}`
+                : 'Dimensions citation badge';
+            dimensionsLink.prepend(customIcon);
+            dimensionsBadge.classList.add('dimensions-badge-customized');
+        }
+
         const altmetricEmbeds = document.querySelectorAll('.altmetric-embed[data-doi]');
         altmetricEmbeds.forEach(altmetricEmbed => {
             const dimensionsBadge = document.createElement('span');
             dimensionsBadge.className = '__dimensions_badge_embed__ dimensions-badge';
             dimensionsBadge.setAttribute('data-doi', altmetricEmbed.dataset.doi);
             dimensionsBadge.setAttribute('data-hide-zero-citations', 'true');
-            dimensionsBadge.setAttribute('data-style', 'large_rectangle');
+            dimensionsBadge.setAttribute('data-style', 'small_circle');
+            dimensionsBadge.addEventListener('dimensions_embed:show', () => appendDimensionsCitationCount(dimensionsBadge));
+            dimensionsBadge.addEventListener('dimensions_embed:hide', () => {
+                dimensionsBadge.closest('td')?.querySelector('.dimensions-citation-count')?.remove();
+            });
+            const dimensionsObserver = new MutationObserver(() => appendDimensionsCitationCount(dimensionsBadge));
+            dimensionsObserver.observe(dimensionsBadge, { childList: true, subtree: true, characterData: true, attributes: true });
             const altmetricCell = altmetricEmbed.closest('td');
             if (altmetricCell) {
                 const dimensionsCell = document.createElement('td');

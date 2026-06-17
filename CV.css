@@ -255,9 +255,14 @@ svg {
     vertical-align: middle;
 }
 
+.__dimensions_Badge {
+    display: none;
+}
+
 .dimensions-badge svg,
 .dimensions-badge img {
     width: auto !important;
+    fill: inherit !important;
 }
 
 .dimensions-badge a,
@@ -266,10 +271,31 @@ svg {
     align-items: center;
     max-width: none !important;
     width: auto !important;
+    color: #222 !important;
+}
+
+.dimensions-badge-customized a,
+.dimensions-badge-customized .__dimensions_Link {
+    background-image: none !important;
+}
+
+.dimensions-generated-badge-image {
+    display: none !important;
+}
+
+.dimensions-icon {
+    height: 1.5rem !important;
 }
 
 .dimensionscell {
     vertical-align: middle;
+}
+
+.dimensions-citation-count {
+    display: inline-block;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 .inlineicon {

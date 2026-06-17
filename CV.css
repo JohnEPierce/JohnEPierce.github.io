@@ -284,7 +284,8 @@ svg {
 }
 
 .dimensions-icon {
-    height: 1.5rem !important;
+    height: 32px !important;
+    vertical-align: middle !important;
 }
 
 .dimensionscell {
@@ -293,9 +294,16 @@ svg {
 
 .dimensions-citation-count {
     display: inline-block;
-    margin-left: 0.35rem;
-    vertical-align: middle;
-    white-space: nowrap;
+    margin-left: 0.35rem !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+}
+
+.__dimensions_badge_embed__ span {
+    font-size: 1rem !important;
+    font-family: "Open Sans", sans-serif, Helvetica neue !important;
+    font-weight: 300 !important;
+    line-height: 1.5rem !important;
 }
 
 .inlineicon {

@@ -206,11 +206,15 @@
                 return;
             }
             const dimensionsCell = dimensionsBadge.closest('td') || dimensionsBadge.parentElement;
+            const dimensionsLink = dimensionsBadge.querySelector('a, .__dimensions_Link');
+            const citationLabelParent = dimensionsLink || dimensionsCell;
             let citationLabel = dimensionsCell.querySelector('.dimensions-citation-count');
             if (!citationLabel) {
                 citationLabel = document.createElement('span');
                 citationLabel.className = 'dimensions-citation-count';
-                dimensionsBadge.insertAdjacentElement('afterend', citationLabel);
+            }
+            if (citationLabel.parentElement !== citationLabelParent) {
+                citationLabelParent.appendChild(citationLabel);
             }
             const labelText = `${citationCount} citation${citationCount === 1 ? '' : 's'}`;
             if (citationLabel.textContent !== labelText) {

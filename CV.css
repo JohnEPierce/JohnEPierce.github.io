@@ -3,6 +3,7 @@
     --secondary-color: rgb(5,5,5);
     --highlight-color: #82B9A4;
     --lowlight-color: #D8F1E7;
+    --font-small: 0.85rem;
 }
 html {
     font-size: 120%;
@@ -216,9 +217,9 @@ svg {
 .JournalArticles * td {
     padding-right: 3rem;
 }
-.JournalArticles p:not(:nth-of-type(1)) {
+/* .JournalArticles p:not(:nth-of-type(1)) {
     margin-top: 1rem;
-}
+} */
 .JournalArticles p {
     margin-bottom: 0;
 }
@@ -228,16 +229,15 @@ svg {
     
 }
 
+.lineBreak {
+    font-size: var(--font-small);
+}
+
 .altmetric, .dimensions-badge {
     vertical-align: middle;
     display: inline-block!important;
 }
-    .altmetric img {
-        vertical-align: middle;
-        display: inline !important;
-        width: auto;
-        height: auto;
-    }
+    
     .altmetric * span {
         color: var(--secondary-color);
     }
@@ -249,6 +249,54 @@ svg {
         max-height: 1rem;
         background-image: none !important;
     }
+
+.publication-metrics {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.35rem 1rem;
+    margin: 0.3rem 0 1.8rem;
+}
+
+.publication-metrics:empty,
+.publication-metrics.publication-metrics-empty {
+    height: 0;
+    min-height: 0;
+    gap: 0;
+    overflow: hidden;
+}
+
+.metric-item {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    font-size: var(--font-small);
+}
+
+.metric-item:empty,
+.metric-item.metric-hidden {
+    min-height: 0;
+}
+
+.metric-hidden {
+    display: none !important;
+}
+
+.fwci-metric {
+    white-space: nowrap;
+}
+
+.fwci-metric > div {
+    display: inline;
+}
+
+.publication-metric-note {
+    margin: -0.4rem 0 0.8rem;
+    font-weight: 400;
+    font-size: var(--font-small);
+    width: 100%;
+}
 
 .dimensions-badge {
     display: inline-block;
@@ -283,24 +331,22 @@ svg {
     display: none !important;
 }
 
-.dimensions-icon {
-    height: 32px !important;
+.dimensions-icon, .altmetric img {
     vertical-align: middle !important;
+    display: inline !important;
+    width: 1.3rem;
+    height: 1.3rem;
 }
 
-.dimensionscell {
-    vertical-align: middle;
-}
-
-.dimensions-citation-count {
+.metrics-count {
     display: inline-block;
     margin-left: 0.35rem !important;
     vertical-align: middle !important;
     white-space: nowrap !important;
+    font-size: var(--font-small) !important;
 }
 
 .__dimensions_badge_embed__ span {
-    font-size: 1rem !important;
     font-family: "Open Sans", sans-serif, Helvetica neue !important;
     font-weight: 300 !important;
     line-height: 1.5rem !important;
@@ -485,8 +531,8 @@ svg {
         page-break-inside: avoid;
         page-break-before: avoid;
     }
-    .altmetric * img {
-        height: 11pt;
+    .altmetric-metric, .dimensions-icon {
+        display: none !important;
     }
     #national {
         width: 50%;

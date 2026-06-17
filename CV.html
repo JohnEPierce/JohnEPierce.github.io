@@ -152,10 +152,6 @@
         });
         });
 
-        // Add altmetric label
-        const altmetricCounts = document.querySelectorAll('.altmetric');
-        altmetricCounts[0].prepend("Altmetrics: ") 
-
         // Add Dimensions citation badges from the same DOI as each Altmetric badge
         function parseCitationCount(text) {
             const cleaned = text.replace(/\s+/g, ' ').trim();
@@ -199,19 +195,40 @@
             return null;
         }
 
+        function metricItemHasVisibleContent(metricItem) {
+            if (metricItem.classList.contains('metric-hidden')) {
+                return false;
+            }
+            return Boolean(
+                metricItem.querySelector('img:not(.dimensions-generated-badge-image), svg:not(.dimensions-generated-badge-image), .metrics-count') ||
+                metricItem.textContent.trim()
+            );
+        }
+
+        function updatePublicationMetricsState(metricsContainer) {
+            if (!metricsContainer) {
+                return;
+            }
+            const hasVisibleMetric = Array.from(metricsContainer.querySelectorAll('.metric-item'))
+                .some(metricItemHasVisibleContent);
+            metricsContainer.classList.toggle('publication-metrics-empty', !hasVisibleMetric);
+        }
+
         function appendDimensionsCitationCount(dimensionsBadge) {
             const citationCount = getDimensionsCitationCount(dimensionsBadge);
             replaceDimensionsBadgeImage(dimensionsBadge, citationCount);
             if (!Number.isFinite(citationCount)) {
+                updatePublicationMetricsState(dimensionsBadge.closest('.publication-metrics'));
                 return;
             }
-            const dimensionsCell = dimensionsBadge.closest('td') || dimensionsBadge.parentElement;
+            const dimensionsCell = dimensionsBadge.closest('.metric-item, td') || dimensionsBadge.parentElement;
+            dimensionsCell.classList.remove('metric-hidden');
             const dimensionsLink = dimensionsBadge.querySelector('a, .__dimensions_Link');
             const citationLabelParent = dimensionsLink || dimensionsCell;
-            let citationLabel = dimensionsCell.querySelector('.dimensions-citation-count');
+            let citationLabel = dimensionsCell.querySelector('.metrics-count');
             if (!citationLabel) {
                 citationLabel = document.createElement('span');
-                citationLabel.className = 'dimensions-citation-count';
+                citationLabel.className = 'metrics-count';
             }
             if (citationLabel.parentElement !== citationLabelParent) {
                 citationLabelParent.appendChild(citationLabel);
@@ -220,6 +237,7 @@
             if (citationLabel.textContent !== labelText) {
                 citationLabel.textContent = labelText;
             }
+            updatePublicationMetricsState(dimensionsBadge.closest('.publication-metrics'));
         }
 
         function replaceDimensionsBadgeImage(dimensionsBadge, citationCount) {
@@ -241,28 +259,21 @@
             dimensionsBadge.classList.add('dimensions-badge-customized');
         }
 
-        const altmetricEmbeds = document.querySelectorAll('.altmetric-embed[data-doi]');
-        altmetricEmbeds.forEach(altmetricEmbed => {
-            const dimensionsBadge = document.createElement('span');
-            dimensionsBadge.className = '__dimensions_badge_embed__ dimensions-badge';
-            dimensionsBadge.setAttribute('data-doi', altmetricEmbed.dataset.doi);
-            dimensionsBadge.setAttribute('data-hide-zero-citations', 'true');
-            dimensionsBadge.setAttribute('data-style', 'small_circle');
-            dimensionsBadge.addEventListener('dimensions_embed:show', () => appendDimensionsCitationCount(dimensionsBadge));
+        const dimensionsBadges = document.querySelectorAll('.dimensions-badge[data-doi]');
+        dimensionsBadges.forEach(dimensionsBadge => {
+            dimensionsBadge.addEventListener('dimensions_embed:show', () => {
+                dimensionsBadge.closest('.dimensions-metric')?.classList.remove('metric-hidden');
+                appendDimensionsCitationCount(dimensionsBadge);
+            });
             dimensionsBadge.addEventListener('dimensions_embed:hide', () => {
-                dimensionsBadge.closest('td')?.querySelector('.dimensions-citation-count')?.remove();
+                const dimensionsMetric = dimensionsBadge.closest('.dimensions-metric');
+                dimensionsMetric?.querySelector('.metrics-count')?.remove();
+                dimensionsMetric?.classList.add('metric-hidden');
+                updatePublicationMetricsState(dimensionsBadge.closest('.publication-metrics'));
             });
             const dimensionsObserver = new MutationObserver(() => appendDimensionsCitationCount(dimensionsBadge));
             dimensionsObserver.observe(dimensionsBadge, { childList: true, subtree: true, characterData: true, attributes: true });
-            const altmetricCell = altmetricEmbed.closest('td');
-            if (altmetricCell) {
-                const dimensionsCell = document.createElement('td');
-                dimensionsCell.className = 'dimensionscell';
-                dimensionsCell.appendChild(dimensionsBadge);
-                altmetricCell.insertAdjacentElement('afterend', dimensionsCell);
-            } else {
-                altmetricEmbed.insertAdjacentElement('afterend', dimensionsBadge);
-            }
+            appendDimensionsCitationCount(dimensionsBadge);
         });
         if (window.__dimensions_embed && window.__dimensions_embed.addBadges) {
             window.__dimensions_embed.addBadges();
@@ -275,6 +286,7 @@
             if (!isNaN(score)) {
                     let scoreSpan = document.createElement('span');
                     scoreSpan.textContent = score;
+                    scoreSpan.className = 'metrics-count';
                     imgElement.parentNode.insertBefore(scoreSpan, imgElement.nextSibling);
                 }
         }
@@ -282,7 +294,14 @@
         var imgElements = document.querySelectorAll('.altmetric-embed img');
         imgElements.forEach(element => {
             pullAltmetricTotal(element)
-            element.setAttribute("src", "images/altmetrics.png")
+            element.setAttribute("src", "images/altmetrics.svg")
+            updatePublicationMetricsState(element.closest('.publication-metrics'));
+        });
+
+        document.querySelectorAll('.publication-metrics').forEach(metricsContainer => {
+            const metricsObserver = new MutationObserver(() => updatePublicationMetricsState(metricsContainer));
+            metricsObserver.observe(metricsContainer, { childList: true, subtree: true, characterData: true });
+            updatePublicationMetricsState(metricsContainer);
         });
     }
 
@@ -582,291 +601,317 @@
                 <div class="rightColMask"></div>
             </div>
             <p>Arslan, S., Norvik, M. I., Alyahya, R. S. W., Anjum, J., Fyndanis, V., Grima, R., Martínez-Ferreiro, S., Munarriz-Ibarrola, A., Peñaloza, C., <b>Pierce, J. E.</b>, Pourquié, M., Python, G., Scheffer, S. D., Soroli, E., Sze, W. P., &amp; Kambanaros, M. (2026). Characterizing the linguistic profiles, training needs, and caseloads of speech language pathologists providing clinical services to multilingual people with aphasia: The international Multilingual Aphasia Practices (MAP) consensus group survey. <i>PLoS ONE, 21</i>(4), e0346488. <a href="https://doi.org/10.1371/journal.pone.0346488">https://doi.org/10.1371/journal.pone.0346488</a></p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1371/journal.pone.0346488"></div>
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1371/journal.pone.0346488" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1371/journal.pone.0346488"></div>
+    </div>
+</div>
             <p>Finch, E., Kelly, E., Butler, P., Ownsworth, T., Pinkham, M. B., Fleming, J., Doig, E., Turkington, L., Burns, C., Farrell, A., <b>Pierce, J. E.</b>, Wenke, R., Kuwornu, J. P., Copland, D., McPhail, S., &amp; Brownsett, S. (2026). Optimising communication function in primary brain tumour: a randomised controlled trial of CanCommunicate. <i>Disability and Rehabilitation,</i> 1–19. <a href="https://doi.org/10.1080/09638288.2026.2644114">https://doi.org/10.1080/09638288.2026.2644114</a></p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2026.2644114"></div>
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2026.2644114" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2026.2644114"></div>
+    </div>
+</div>
             <p>Wallace, S. E., Hill, A. J., Kirmess, M., Nichol, L., <b>Pierce, J. E.</b>, &amp; Rose, M. L. (2026). International survey of technology use in aphasia clinical practice. <i>Aphasiology,</i> 1–26. <a href="https://doi.org/10.1080/02687038.2025.2609799">https://doi.org/10.1080/02687038.2025.2609799</a></p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2025.2609799"></div>
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/02687038.2025.2609799" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2025.2609799"></div>
+    </div>
+</div>
             <p>Hernandez, N. J., Wong, D., <b>Pierce, J. E.</b>, Borschmann, K., &amp; Rose, M. L. (2025). Determining unmet needs for carers of people with post-stroke aphasia: user perspectives on a screening tool. <i>Disability and Rehabilitation,</i> 1–14. <a href="https://doi.org/10.1080/09638288.2025.2601805">https://doi.org/10.1080/09638288.2025.2601805</a></p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2025.2601805"></div>
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2025.2601805" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2025.2601805"></div>
+    </div>
+</div>
             <p>Adikari, A., Alahakoon, D., Pallewela, N., <b>Pierce, J. E.</b>, Hernandez, N. J., & Rose, M. L. (2025). Reconstructing impaired language using generative AI for people with aphasia. <i>Scientific Reports, 15</i>(1), 40877. <a href='https://doi.org/10.1038/s41598-025-24725-x'>https://doi.org/10.1038/s41598-025-24725-x</a></p>
-           <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1038/s41598-025-24725-x"></div>
-                    </td>
-                </tr>
-            </table>  
+           <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1038/s41598-025-24725-x" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1038/s41598-025-24725-x"></div>
+    </div>
+</div>  
             <p>Lanyon, L., Shiggins, C., Wilcox, C., <b>Pierce, J. E.</b>, Wong, D., Attard, M., Carragher, M., Fenner, P., & Rose, M. (2025). Building community through engagement in a Hub-and-Spoke, Peer-led Community Aphasia Group program: The perspectives of participants with aphasia and their close others. <i>Disability and Rehabilitation,</i>1–21. <a href='https://doi.org/10.1080/09638288.2025.2583075'>https://doi.org/10.1080/09638288.2025.2583075</a></p>
-          <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2025.2583075"></div>
-                    </td>
-                </tr>
-            </table>  
+          <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2025.2583075" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2025.2583075"></div>
+    </div>
+</div>  
           <p>
               Aston, V., Eley, E., Wong, D., Hill, A., Carragher, M., Rose, M., Pitt, R., & <b>Pierce, J. E.</b> (2025). Telerehabilitation delivery of multi-modality aphasia therapy (M-MAT Tele): A pilot feasibility trial. <i>International Journal of Telerehabilitation, 17</i>(2). <a href="https://doi.org/10.63144/ijt.2025.6727">https://doi.org/10.63144/ijt.2025.6727</a>
             </p>
             <p>
                 Lee, S. E., Hernandez, N. J., Hassan, F. H., <b>Pierce, J. E.</b>, Rose, M. L., & Hill, A. J. (2025). Rehabilitation and self-management support for people with aphasia and cognitive communication disability in Malaysia: a scoping review. <i>Disability and Rehabilitation.</i> <a href='https://doi.org/10.1080/09638288.2025.2540502'>https://doi.org/10.1080/09638288.2025.2540502</a>
             </p>
-          <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2025.2540502"></div>
-                    </td>
-                </tr>
-            </table>
+          <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2025.2540502" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2025.2540502"></div>
+    </div>
+</div>
             <p>
               <b>Pierce, J. E.</b>, Hernandez, N. J., Alahakoon, D., Hill, A., Wong, D., Ryan, B., Copland, D., Power, E., Kneebone, I., Togher, L., Usherwood, T., Lindley, R. I., Shiggins, C., Cadilhac, D., Hill, K., Churilov, L., Worrall, L., Rietdijk, R., Sheldrick, T., … Rose, M. (2025). Refining Methods of Experience-Based Co-Design for Application in Aphasia and Cognitive-Communication Disability. <i>American Journal of Speech-Language Pathology, 34</i>(6). <a href="https://doi.org/10.1044/2025_AJSLP-25-00112">https://doi.org/10.1044/2025_AJSLP-25-00112</a>
             </p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1044/2025_AJSLP-25-00112"></div>
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1044/2025_AJSLP-25-00112" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1044/2025_AJSLP-25-00112"></div>
+    </div>
+</div>
             <p>
                 Zingelman, S., Wallace, S. J., Kim, J., Harvey, S., Rose, M. L., <b>Pierce, J. E.</b>, Bagot, K., & Cadilhac, D. A. (2025). Aphasia-specific or generic outcomes? a comparison of two health-related quality of life instruments for economic evaluations of aphasia treatments. <i>Quality of Life Research, 34</i>(10). <a href="https://doi.org/10.1007/s11136-025-04040-8">https://doi.org/10.1007/s11136-025-04040-8</a>
             </p>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1007/s11136-025-04040-8"></div>
-                        </td>
-                    </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1007/s11136-025-04040-8" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1007/s11136-025-04040-8"></div>
+    </div>
+</div>
             <p>Charalambous, M., Pastou, G., Kola, E., <b>Pierce, J. E.</b>, & Savitz, S. (2025). The Role of Speech and Language Therapists in International Stroke Teams: A systematic review. <i>International Journal of Language & Communication Disorders, 60</i>(4), e70062. <a href="https://doi.org/10.1111/1460-6984.70062">https://doi.org/10.1111/1460-6984.70062</a>
             </p>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.70062"></div>
-                        </td>
-                    </tr>
-            </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1111/1460-6984.70062" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.70062"></div>
+    </div>
+</div>
             <p>
               Yıldız, M., Oğuz, Ö., & <b>Pierce, J. E.</b> (2025). A Pilot Study of Adapting and Assessing an Online Aphasia Therapy Software for Turkish Speakers: The Influence of Variables on Naming Accuracy. <i>International Journal of Language &amp; Communication Disorders, 60</i>(6), e70143. <a href="https://doi.org/10.1111/1460-6984.70143">https://doi.org/10.1111/1460-6984.70143</a>
             </p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.70143"></div>
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1111/1460-6984.70143" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.70143"></div>
+    </div>
+</div>
             <p>
               Shrubsole, K., Levine, R., Lynch, E., Briffa, C., <b>Pierce, J. E.</b>, Trebilcock, M., Do, C.-A., Wallace, S. J., & Power, E. (2025). Does a champion-led implementation toolkit have the potential to improve aphasia guideline adherence? Results from a feasibility study. <i>International Journal of Speech-Language Pathology, 0</i>(0), 1–16. <a href="https://doi.org/10.1080/17549507.2025.2573342">https://doi.org/10.1080/17549507.2025.2573342</a>
             </p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/17549507.2025.2573342"></div>
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/17549507.2025.2573342" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/17549507.2025.2573342"></div>
+    </div>
+</div>
             <p>
               Rose, M. L., Wilcox, C., Attard, M., <b>Pierce, J. E.</b>, Shiggins, C., Lanyon, L., Wong, D., Fenner, P., & Carragher, M. (2025). Acceptability, feasibility and preliminary efficacy of the Peer-led Hub-and-Spoke Community Aphasia Group program. <i>Aphasiology, 39</i>(9), 1165-1186. <a href="https://doi.org/10.1080/02687038.2024.2410766">https://doi.org/10.1080/02687038.2024.2410766</a>
             </p>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2024.2410766"></div>
-                        </td>
-                    </tr>
-              </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/02687038.2024.2410766" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2024.2410766"></div>
+    </div>
+</div>
             <p>
               Hernandez, N. J., Pettigrove, K., Mellahn, K., Isaksen, J. K., <b>Pierce, J. E.</b>, & Rose, M. L. (2025). Carers in post-stroke aphasia: a scoping review of interventions and outcomes beyond communication partner training. <i>Disability and Rehabilitation, 47</i>(10). <a href="https://doi.org/10.1080/09638288.2024.2399221">https://doi.org/10.1080/09638288.2024.2399221</a>
             </p>
-            <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2024.2399221"></div>
-                        </td>
-                    </tr>
-              </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2024.2399221" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2024.2399221"></div>
+    </div>
+</div>
             <p>
               Shrubsole, K., Stone, M., Cadilhac, D. A., Kilkenny, M. F., Power, E., Lynch, E., <b>Pierce, J. E.</b>, Copland, D., Godecke, E., Burton, B., Brogan, E. & Wallace, S. J. (2024). Establishing Quality Indicators and Implementation Priorities for Post-Stroke Aphasia Services Through End-User Involvement. <i>Health expectations: an international journal of public participation in health care and health policy, 27</i>(5), e14173. <a href='https://doi.org/10.1111/hex.14173'>https://doi.org/10.1111/hex.14173</a>
             </p>
-              <table>
-                  <tr>
-                      <td>
-                          <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/hex.14173"></div>
-                      </td>
-                  </tr>
-              </table>
+              <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1111/hex.14173" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/hex.14173"></div>
+    </div>
+</div>
             <p>
                 Pallewela, N., Alahakoon, D., Adikari, A., <b>Pierce, J. E.</b>, & Rose, M. L. (2024). Optimizing Speech Emotion Recognition with Machine Learning Based Advanced Audio Cue Analysis. <i>Technologies, 12</i>(7):111. <a href="https://doi.org/10.3390/technologies12070111">https://doi.org/10.3390/technologies12070111</a>
             </p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.3390/technologies12070111"></div>
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.3390/technologies12070111" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.3390/technologies12070111"></div>
+    </div>
+</div>
 
             <p>
               <b>Pierce, J. E.</b>, Hill, A. J., Wong, D., Pitt, R., & Rose, M. L. (2025). Adapting a group-based, multimodal aphasia treatment for telehealth – co-design of M-MAT Tele. <i>Disability and Rehabilitation: Assistive Technology, 20</i>(1). <a href="https://doi.org/10.1080/17483107.2024.2366423">https://doi.org/10.1080/17483107.2024.2366423</a>
             </p>
-            <table>
-                        <tr>
-                            <td>
-                                <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/17483107.2024.2366423"></div>
-                            </td>
-                        </tr>
-                    </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/17483107.2024.2366423" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/17483107.2024.2366423"></div>
+    </div>
+</div>
             <p>
                 <b>Pierce, J. E.</b>, Cavanaugh, R., Harvey, S., Dickey, M. W., Nickels, L., Copland, D., Togher, L., Godecke, E., Meinzer, M., Rai, T., Cadilhac, D. A., Kim, J., Hurley, M., Foster, A. M., Carragher, M., Wilcox, C., & Rose, M. L. (2024). High-Intensity Aphasia Intervention Is Minimally Fatiguing in Chronic Aphasia: An Analysis of Participant Self-Ratings From a Large Randomized Controlled Trial. <i>Stroke, 55</i>(7).<a href='https://doi.org/10.1161/STROKEAHA.123.046031'>https://doi.org/10.1161/STROKEAHA.123.046031</a>
               </p>
-              <table>
-                        <tr>
-                            <td>
-                                <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1161/STROKEAHA.123.046031"></div>
-                            </td>
-                            <td class="FWCIcell" >
-                                FWCI 2.70
-                            </td>
-                        </tr>
-                    </table>
+              <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1161/STROKEAHA.123.046031" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1161/STROKEAHA.123.046031"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 2.70
+    </div>
+</div>
           <p>
             Watanabe, M., Cartwright, J., & <b>Pierce, J. E.</b> (2024). Positive effects of speech and language therapy group interventions in primary progressive aphasia: A systematic review. <i>International Journal of Language & Communication Disorders, 59</i>(5), 1832-1849. <a href='https://doi.org/10.1111/1460-6984.13031'>https://doi.org/10.1111/1460-6984.13031</a>
           </p>
-          <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.13031"></div>
-                        </td>
-                    </tr>
-                </table>
+          <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1111/1460-6984.13031" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.13031"></div>
+    </div>
+</div>
             <p>
               Griffin-Musick, J., Harvey, S., <b>Pierce, J. E.</b>, Fahey, D., & Off, C. (2025). The “I” in ICAPs: examining treatment intensity under the microscope. <i>Aphasiology, 39</i>(1), 11-39. <a href="https://doi.org/10.1080/02687038.2024.2317920">https://doi.org/10.1080/02687038.2024.2317920</a>
             </p>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2024.2317920"></div>
-                        </td>
-                        <td class="FWCIcell" >
-                            FWCI 3.68
-                        </td>
-                    </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/02687038.2024.2317920" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2024.2317920"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 3.68
+    </div>
+</div>
             <p>
                 Kim, J., Rose, M. L., <b>Pierce, J. E.</b>, Nickels, L., Copland, D., Togher, L., Godecke, E., Meinzer, M., Rai, T., Hurley, M., Foster, A., Carragher, M., Wilcox, C., & Cadilhac, D. A. (2024). High-intensity aphasia therapy is cost-effective in people with post-stroke aphasia: Evidence from the COMPARE trial. <i>Stroke, 55</i>(3), 705-714. <a href="https://doi.org/10.1161/STROKEAHA.123.045183">https://10.1161/STROKEAHA.123.045183</a>
             </p>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1161/STROKEAHA.123.045183"></div>
-                        </td>
-                    </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1161/STROKEAHA.123.045183" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1161/STROKEAHA.123.045183"></div>
+    </div>
+</div>
             <p>
                 Eley, E., Rose, M. L.,  van den Berg, M., <b>Pierce, J. E.</b>, Foster, A., Lamborn, E., D'Souza, S., Godecke, E., Lanyon, L., Shiggins, C., Kneebone, I., Baker, C. (2023). The effects of cognitive-linguistic interventions to treat aphasia in the first 90 days post stroke: A systematic review. <i>Aphasiology, 38</i>(4), 1351-1376.
                 <a href="https://doi.org/10.1080/02687038.2023.2282659">https://doi.org/10.1080/02687038.2023.2282659</a>
             </p>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2023.2282659"></div>
-                        </td>
-                        <td class="FWCIcell" >
-                            FWCI 1.18
-                        </td>
-                    </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/02687038.2023.2282659" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2023.2282659"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 1.18
+    </div>
+</div>
             <p>
                <b>Pierce, J. E.</b> (2024). AI-generated images for speech pathology - an exploratory application to aphasia assessment and intervention materials. <i>American Journal of Speech-Language Pathology, 33</i>(1), 443-451.<a href="https://doi.org/10.1044/2023_AJSLP-23-00142">https://doi.org/10.1044/2023_AJSLP-23-00142</a>
             </p>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1044/2023_AJSLP-23-00142"></div>
-                        </td>
-                        <td class="FWCIcell" >
-                            FWCI 2.53
-                        </td>
-                    </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1044/2023_AJSLP-23-00142" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1044/2023_AJSLP-23-00142"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 2.53
+    </div>
+</div>
             <p>
                 Finch, E., <b>Pierce, J. E.</b>, Pais, A. M., Dow-Richards, C., Reed, A., Charalambous, M., Matos, M. A., Wallace, S. J., & Breitenstein, C. (2023). Preferences of people with post-stroke aphasia for aphasia research videos: An international project. <i>Aphasiology, 38</i>(4), 758-769. <a href="https://doi.org/10.1080/02687038.2023.2229030">https://doi.org/10.1080/02687038.2023.2229030</a>
             </p>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2023.2229030"></div>
-                        </td>
-                        <td class="FWCIcell" >
-                            FWCI 3.54
-                        </td>
-                    </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/02687038.2023.2229030" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2023.2229030"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 3.54
+    </div>
+</div>
 
             <p>
                 Adikari, A., Hernandez, N., Alahakoon, D., Rose, M. L., & <b>Pierce, J. E.</b> (2023). From concept to practice: a scoping review of the application of AI to aphasia diagnosis and management. <i>Disability and Rehabilitation, 46</i>(7), 1288-1297. <a href="https://doi.org/10.1080/09638288.2023.2199463">https://doi.org/10.1080/09638288.2023.2199463</a>
             </p>
-                <table>
-                    <tr>
-                        <td>   
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2023.2199463"></div>
-                        </td>
-                        <td class="FWCIcell" >
-                            FWCI 15.79
-                        </td>
-                    </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2023.2199463" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2023.2199463"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 15.79
+    </div>
+</div>
 
             <p>
                 <b>Pierce, J. E.</b>, O’Halloran, R., Togher, L., Nickels, L., Copland, D., Godecke, E., Meinzer, M., Rai, T., Cadilhac, D. A., Kim, J., Hurley, M., Foster, A., Carragher, M., Steel, G., & Rose, M. L. (2024). Acceptability, feasibility and preliminary efficacy of low-moderate intensity Constraint Induced Aphasia Therapy and Multi-Modality Aphasia Therapy in chronic aphasia after stroke. <i>Topics in Stroke Rehabilitation, 31</i>(1), 44-56. <a href="https://doi.org/10.1080/10749357.2023.2196765">https://doi.org/10.1080/10749357.2023.2196765</a>
             </p>
-            <table>
-                <tr>
-                    <td>
-                        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/10749357.2023.2196765"></div>
-                    </td>
-                    <td class="FWCIcell" >
-                        FWCI 9.43
-                    </td>
-                </tr>
-            </table>
+            <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/10749357.2023.2196765" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/10749357.2023.2196765"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 9.43
+    </div>
+</div>
 
             <p>Harvey, S., Rose, M. L., Brogan, E., <b>Pierce, J. E.</b>, Godecke, E., Brownsett, S. L. E., Churilov, L., Copland, D., Dickey, M. W., Dignam, J., Lannin, N. A., Nickels, L., Bernhardt, J., &amp; Hayward, K. S. (2022). Examining dose frameworks to improve aphasia rehabilitation research. <i>Archives of Physical Medicine and Rehabilitation, 104</i>(5), 830-838. <a href="https://doi.org/10.1016/j.apmr.2022.12.002">https://doi.org/10.1016/j.apmr.2022.12.002</a>
             </p>
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1016/j.apmr.2022.12.002"></div>
-                        </td>
-                    </tr></tbody>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1016/j.apmr.2022.12.002" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1016/j.apmr.2022.12.002"></div>
+    </div>
+</div>
 
                 
                 <p>Rose, M., Nickels, L., Copland, D., Togher, L.,
@@ -883,17 +928,18 @@
                 </a> <a
                 href="https://www.youtube.com/watch?v=dT7Sic8Gimc"><i>Video
                 abstract</i></a><i> </i></p>
-                 <table>
-                    <tbody><tr>
-                        <td>
-                            <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1136/jnnp-2021-328422"></div>
-                        </td>
-                        <td class="FWCIcell" >
-                            FWCI 4.80
-                        </td>
-                    </tr>
-                      <tr><b><i>Cited in <a href='https://www.nice.org.uk/guidance/ng236'>NICE guideline - stroke rehabilitation for adults</a></i></b></tr>
-                </tbody></table>
+                 <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1136/jnnp-2021-328422" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1136/jnnp-2021-328422"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 4.80
+    </div>
+    <div class="publication-metric-note"><b><i>Cited in <a href='https://www.nice.org.uk/guidance/ng236'>NICE guideline - stroke rehabilitation for adults</a></i></b></div>
+</div>
                 
                 
                 <p>Menahemi-Falkov, M., Breitenstein, C., <b>Pierce,
@@ -902,6 +948,7 @@
                 chronic post-stroke aphasia: importance of individual response analysis<i>.
                 Disability and Rehabilitation, 44</i>(20), 5811-5826. <a
                 href="https://doi.org/10.1080/09638288.2021.1955303">https://doi.org/10.1080/09638288.2021.1955303</a> 
+                </p>
                 <p class="lineBreak">
                 <a
                 href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"></a>
@@ -909,17 +956,19 @@
                  
                 </a> <a
                 href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391"><i>Video abstract</i></a><i></i></p>
-                <table >
-                 <tr>
-                  <td width=159 valign=top >
-                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2021.1955303"></div>
-                  </td>
-                  <td width=159 valign=top class="FWCIcell" >
-                  <div>FWCI: 3.87</div>
-                  </td>
-                 </tr>
-                <tr><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/429ffb99-e67c-4037-8051-61dfcaadf87d">Evidence Map</a>; cited in UK Stroke Guidelines</i></b></tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2021.1955303" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2021.1955303"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI: 3.87
+    </div>
+    <div class="publication-metric-note"><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/429ffb99-e67c-4037-8051-61dfcaadf87d">Evidence Map</a>; cited in UK Stroke Guidelines</i></b></div>
+</div>
+
             
                 
                 <p>Rose, M. L., <b>Pierce, J. E., </b>Scharp,
@@ -928,16 +977,17 @@
                 Comprehensive Aphasia Programs: An international survey of practice. <i>Disability
                 and Rehabilitation, 44</i>(20), 5863-5877. <a
                 href="https://doi.org/10.1080/09638288.2021.1948621">https://doi.org/10.1080/09638288.2021.1948621</a> </p>
-                <table >
-                 <tr>
-                  <td width=159 valign=top >
-                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2021.1948621"></div>
-                  </td>
-                  <td width=159 valign=top class="FWCIcell" >
-                    FWCI: 4.35
-                  </td>
-                 </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2021.1948621" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2021.1948621"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI: 4.35
+    </div>
+</div>
                 
                 
                 <p>Harvey, S., Carragher, M., Dickey, M. W., <b>Pierce,
@@ -950,17 +1000,19 @@
                  
                 </a> <a
                 href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top"><i>Video abstract</i></a><i></i></p>
-                <table >
-                 <tr>
-                  <td width=159 valign=top >
-                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2020.1843079"></div>
-                  </td>
-                  <td width=159 valign=top  class="FWCIcell" >
-                    FWCI: 2.96
-                  </td>
-                 </tr>
-                    <tr><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/ae168cdd-921c-4a72-9394-8fad14b5c7c8">Evidence Map</a>, cited in <a href='https://www.nice.org.uk/guidance/ng236'>NICE guideline - stroke rehabilitation for adults</a></i></b></tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09638288.2020.1843079" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09638288.2020.1843079"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI: 2.96
+    </div>
+    <div class="publication-metric-note"><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/ae168cdd-921c-4a72-9394-8fad14b5c7c8">Evidence Map</a>, cited in <a href='https://www.nice.org.uk/guidance/ng236'>NICE guideline - stroke rehabilitation for adults</a></i></b></div>
+</div>
+
                 
                 
                 
@@ -974,20 +1026,24 @@
                 <a
                 href="https://www.tandfonline.com/doi/suppl/10.1080/09638288.2020.1843079?scroll=top">
                  </a>
+                </p><p class="lineBreak">
                  <img class="inlineicon" src="images/image006.png"/>
-                </a> <a href="https://vimeo.com/437127608"><i>Video abstract</i></a><i></i></p>
-                <table >
-                 <tr>
-                  <td width=159 valign=top >
-                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2020.1786412"></div>
-                  </td>
-                  <td width=159 valign=top  class="FWCIcell" >
-                  FWCI: 1.76
-                  </td>
-                 </tr>
-                    <tr><b>Cited in ASHA’s Aphasia </b><a
-                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/8db4b3d6-d39c-40cc-8ae2-4f584b9226a9"><b>evidence map</b></a></tr>
-                </table>
+                </a> 
+                <a href="https://vimeo.com/437127608"><i>Video abstract</i></a><i></i></p>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09602011.2020.1786412" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2020.1786412"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI: 1.76
+    </div>
+    <div class="publication-metric-note"><b>Cited in ASHA’s Aphasia </b><a
+                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/8db4b3d6-d39c-40cc-8ae2-4f584b9226a9"><b>evidence map</b></a></div>
+</div>
+
                 
                 
                 <p><b>Pierce, J. E.</b>,&nbsp;O’Halloran, R., Menahemi-Falkov, M., Togher, L.,
@@ -999,6 +1055,7 @@
                 <a
                 href="https://figshare.com/articles/dataset/A_systematic_review_of_maintenance_following_intensive_therapy_programs_in_chronic_post-stroke_aphasia_importance_of_individual_response_analysis/15157621?file=29121391">
                  </a>
+                </p><p class="lineBreak">
                  <img class="inlineicon" src="images/image006.png"/>
                  
                 </a> <a href="https://vimeo.com/427783862"><i>Video abstract –
@@ -1008,18 +1065,19 @@
                  
                 </a> <a
                 href="https://vimeo.com/427784453"><i>Video abstract – aphasia friendly</i></a><i></i></p>
-                <table >
-                 <tr>
-                  <td width=159 valign=top >
-                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2020.1768127"></div>
-                  </td>
-                  <td width=159 valign=top >
-                    FWCI 1.76
-                  </td>
-                 </tr>
-                    <tr><b>Cited in ASHA’s Aphasia </b><a
-                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/880e2f9c-1ab6-4bf8-80de-aac5afb5a20b"><b>evidence map</b></a></tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09602011.2020.1768127" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2020.1768127"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI 1.76
+    </div>
+<div class="publication-metric-note"><b>Cited in ASHA’s Aphasia </b><a
+                href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/880e2f9c-1ab6-4bf8-80de-aac5afb5a20b"><b>evidence map</b></a></div>
+</div>
                 
                 
                 <p><b>Pierce, J. E</b>., O’Halloran, R., Togher, L., &amp; Rose, M.
@@ -1030,37 +1088,41 @@
                 <a
                 href="https://doi.org/10.23641/asha.7646717">
                  </a>
+                </p><p>
                  <img class="inlineicon" src="images/image006.png"/>
                  
                 </a> <a href="https://doi.org/10.23641/asha.7646717"><i>Video abstract</i></a> (1526 views) </p>
-                <table >
-                 <tr>
-                  <td width=159 valign=top >
-                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.23641/asha.7646717"></div>
-                  </td>
-                  <td width=159 valign=top  class="FWCIcell" >
-                    FWCI: 1.43
-                  </td>
-                 </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.23641/asha.7646717" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.23641/asha.7646717"></div>
+    </div>
+    <div class="metric-item fwci-metric FWCIcell">
+        FWCI: 1.43
+    </div>
+</div>
 
                 <p>Rose, M. L., Ali, M., Elders, A., Godwin, J., Sandri, A. K., Williams, L. J., Williams, L. R., VandenBerg, K., Abel, S., Abo, M., Becker, F., Bowen, A., Brandenburg, C., Breitenstein, C., Copland, D., Cranfill, T., Pietro-Bachmann, M. D., Enderby, P., Fillingham, J., Pierce, J. E., … Brady, M. C. (2018). Tidier descriptions of speech and language therapy interventions for people with aphasia; consensus from the RELEASE collaboration. <i>Aphasiology, 32</i>(S1), 183–186.</p>
-                <table >
-                    <tr>
-                     <td width=159 valign=top >
-                       <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2018.1487021"></div>
-                     </td>
-                    </tr>
-                   </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/02687038.2018.1487021" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2018.1487021"></div>
+    </div>
+</div>
 
                 <p>Rose, M. L., <b>Pierce, J. E.</b>, Menahemi-Falkov, M., O'Halloran, R., &amp; Togher, L. (2018). Does constraint-induced aphasia therapy or multimodal aphasia therapy lead to better outcomes for people with chronic post-stroke aphasia? A review of latest evidence and rationale for the COMPARE clinical trial. <i>Aphasiology, 32</i>(S1), 178–179. <a href="https://doi.org/10.1080/02687038.2018.1485844">https://doi.org/10.1080/02687038.2018.1485844</a></p>
-                <table >
-                    <tr>
-                     <td width=159 valign=top >
-                       <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2018.1485844"></div>
-                     </td>
-                    </tr>
-                   </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/02687038.2018.1485844" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/02687038.2018.1485844"></div>
+    </div>
+</div>
                 
                 <p><b>Pierce, J. E.</b>, Menahemi-Falkov, M., O'Halloran,
                 R., Togher, L., &amp; Rose, M. L. (2017). Constraint and multimodal approaches to therapy for chronic
@@ -1069,30 +1131,27 @@
                >cal
                 Rehabilitation, </i>29(7), 1–37. <a
                 href="https://doi.org/10.1080/09602011.2017.1365730">https://doi.org/10.1080/09602011.2017.1365730</a></p>
-                <table >
-                 <tr>
-                  <td width=159 valign=top >
-                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2017.1365730"></div>
-                  </td>
-                  <td width=159 valign=top >
-                    
-                  </td>
-                  <td width=159 valign=top >
-                  </td>
-                 </tr>
-                    <tr><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/778e4c32-acb0-498a-88ff-eb66f7f6751f">Evidence Map</a>, cited in French National Authority for Health (Haute Autorité de Santé) Clinical Guideline for chronic stroke rehabilitation</i></b></tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1080/09602011.2017.1365730" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1080/09602011.2017.1365730"></div>
+    </div>
+<div class="publication-metric-note"><b><i>Cited in ASHA's <a href="https://apps.asha.org/EvidenceMaps/Articles/ArticleSummary/778e4c32-acb0-498a-88ff-eb66f7f6751f">Evidence Map</a>, cited in French National Authority for Health (Haute Autorité de Santé) Clinical Guideline for chronic stroke rehabilitation</i></b></div>
+</div>
                 
                 <p><b>Pierce, J. E.</b>, Cotton, S., &amp; Perry, A. (2013). Alternating &amp;
                 sequential motion rates in older adults. <i>International Journal of Language
                 &amp; Communication Disorders, 48</i>(3): 257-264.&nbsp;<a href="http://doi.org/10.1111/1460-6984.12001">http://doi.org/10.1111/1460-6984.12001</a></p>
-                <table >
-                 <tr>
-                  <td width=159 valign=top >
-                    <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.12001"></div>
-                  </td>
-                 </tr>
-                </table>
+                <div class="publication-metrics">
+    <div class="metric-item dimensions-metric">
+        <span class="__dimensions_badge_embed__ dimensions-badge" data-doi="10.1111/1460-6984.12001" data-hide-zero-citations="true" data-style="small_circle"></span>
+    </div>
+    <div class="metric-item altmetric-metric">
+        <div class='altmetric-embed altmetric' data-badge-type='donut' data-doi="10.1111/1460-6984.12001"></div>
+    </div>
+</div>
         </div>
         <div class="clear"></div>
         <div class="leftCol">

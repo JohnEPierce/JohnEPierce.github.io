@@ -41,7 +41,7 @@
         </symbol>
     </svg>
     <script>
-        window.onload = function() {
+        window.addEventListener("DOMContentLoaded", function() {
         //Unscramble
         let emaila = document.getElementById('emaila');
         let href = emaila.getAttribute("href").substring(7);
@@ -303,7 +303,7 @@
             metricsObserver.observe(metricsContainer, { childList: true, subtree: true, characterData: true });
             updatePublicationMetricsState(metricsContainer);
         });
-    }
+    });
 
     
     </script>
@@ -345,7 +345,7 @@
             <span><span id="yearsPost">1</span> years post PhD</span>
             <span><span id="funding">$—</span> funding | <span id="fundingCIA">$—</span> as CIA </span>
             <span><span  id="pubsCount">—</span> publications </span>
-            <span><span>488</span> citations</span>
+            <span><span>527</span> citations</span>
             <span><i>h</i>-index <span>12</span></span>
             <!-- https://www.scopus.com/authid/detail.uri?authorId=57209304655 -->
         </p>

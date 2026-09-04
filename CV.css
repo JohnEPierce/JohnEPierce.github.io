@@ -66,6 +66,12 @@ h1 {
     margin: 0 auto;
     max-width: 51rem;
 }
+.byline {
+    color: var(--highlight-color);
+    font-size: 1.1rem;
+    margin: 0.2rem auto 0.8rem;
+    font-weight: 500;
+}
 svg {
     fill: var(--highlight-color);
     height: 100%;

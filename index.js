@@ -61,7 +61,7 @@ var classCounts = elements.reduce((acc, curr) => {
   
   //exclude toplinks
   var excludeToplinks = [];
-    excludeToplinks.push("aphasia", "technology", "multimodal", "Presentations", "Publications");
+    excludeToplinks.push("aphasia", "technology", "multimodal", "Presentations", "Publications", "external", "summary", "youtube", "local-pdf");
 
     document.querySelectorAll('.wordcloud span').forEach(span => {
       // Delete if in exclude list

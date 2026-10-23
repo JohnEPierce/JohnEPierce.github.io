@@ -404,11 +404,11 @@ a {
 }
 
 .local-pdf .cardUpper::after {
-    content: "PDF available";
+    content: "Full-text PDF";
 }
 
 .summary .cardUpper::after {
-    content: "Paper summary";
+    content: "Summary page";
 }
 
 .youtube .cardUpper::after {
